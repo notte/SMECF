@@ -1,0 +1,15 @@
+header {
+    @apply w-full flex flex-row items-center bg-system-dark_03;
+
+    height: 103.4px;
+}
+
+.bottom_container {
+    @apply w-full flex flex-col;
+}
+
+.navigation {
+    background-color: #f00;
+    height: 100%;
+    width: 30%;
+}
