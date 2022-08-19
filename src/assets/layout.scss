@@ -1,15 +1,45 @@
-header {
-    @apply w-full flex flex-row items-center bg-system-dark_03;
-
-    height: 103.4px;
+body {
+    @apply overflow-hidden;
 }
 
-.bottom_container {
-    @apply w-full flex flex-col;
+.container_layout {
+    @apply flex w-screen h-screen overflow-hidden;
+    
+    // height: calc(100vh - 104px);
+
+    nav {
+        @apply flex flex-col justify-center overflow-hidden;
+
+        background-color: #ddd;
+        width: 5%;
+    }
+
+    main {
+        @apply w-full overflow-hidden ;
+        //  flex items-center w-full 
+        .container_main {
+            @apply  p-7 overflow-y-scroll  h-full;
+        }
+    }
 }
 
-.navigation {
-    background-color: #f00;
-    height: 100%;
-    width: 30%;
+.wrapper_grid {
+    @apply grid;
+
+    gap: 30px;
+}
+
+.container_charts,
+.wrapper_statistics_tabs {
+    @apply my-4;
+}
+
+.wrapper_title_button {
+    @apply flex justify-between my-4 items-center;
+}
+
+.map {
+    background-color: #ddd;
+    height: 500px;
+    width: 500px;
 }

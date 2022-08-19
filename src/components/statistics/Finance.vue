@@ -1,11 +1,12 @@
 <template>
-  <div></div>
+  <h1>Finance</h1>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+import BarChartStraight from "@/components/common/BarChartStraight.vue";
 
 export default defineComponent({
-  components: {},
+  components: { BarChartStraight },
   setup() {
     return {};
   },

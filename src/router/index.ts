@@ -4,7 +4,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../App.vue"),
+    redirect: { name: "Dashboard" },
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    components: {
+      main: () => import("../views/DashboardView.vue"),
+    },
+  },
+  {
+    path: "/statistics",
+    name: "Statistics",
+
+    components: {
+      main: () => import("../views/StatisticsView.vue"),
+    },
   },
 ];
 
