@@ -72,7 +72,30 @@
     }
 
     .btn_disabled {
-        @apply bg-system-dark_05 text-system-dark_06;
+        @apply bg-system-dark_05 text-system-dark_05;
+    }
+
+    
+    // ul（tab）
+    .tab_xl,
+    .tab_l {
+        @apply flex ;
+    }
+
+    .tab_xl > li {    
+        @apply subtitle_2 pb-2 px-4 cursor-pointer w-full;
+    }
+
+ 
+
+    .tab_true {
+        @apply text-primary-main;
+
+        border-bottom: 4px solid border-primary-main;
+    }
+
+    .tab_false {
+        @apply text-system-dark_05
     }
 
 }
