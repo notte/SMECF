@@ -1,43 +1,36 @@
 <template>
   <section class="container_charts">
     <h6 class="text-system-light_05">基本平均表現</h6>
-    <div class="wrapper_title_button">
-      <ul class="tab_xl">
+    <div class="wrapper_tab">
+      <ul class="tab_l">
         <li class="tab_false">製造業</li>
         <li class="tab_true">服務業</li>
       </ul>
-      <button></button> <button></button>
+      <hr class="division_1" />
     </div>
-    <hr class="division_1" />
-    <section class="wrapper_grid grid-cols-4">
-      <PieChart />
-      <PieChart />
-      <PieChart />
-      <PieChart />
-    </section>
+    <Base />
   </section>
   <section class="container_charts">
     <h6 class="text-system-light_05">其他平均表現</h6>
-    <div class="wrapper_title_button">
-      <div><button>製造業</button> <button>服務業</button></div>
-      <div>
-        <button>全部數據下載</button>
-      </div>
+    <div class="wrapper_tab">
+      <ul class="tab_l">
+        <li class="tab_false">財務力</li>
+        <li class="tab_true">數位力</li>
+        <li class="tab_false">創新力</li>
+        <li class="tab_false">市場力</li>
+      </ul>
+      <hr class="division_1" />
     </div>
-    <section class="wrapper_grid grid-cols-4">
-      <PieChart />
-      <PieChart />
-      <PieChart />
-      <PieChart />
-    </section>
+    <Other />
   </section>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import PieChart from "@/components/common/PieChart.vue";
+import Base from "@/components/dashboard/Base.vue";
+import Other from "@/components/dashboard/Other.vue";
 
 export default defineComponent({
-  components: { PieChart },
+  components: { Base, Other },
   setup() {
     return {};
   },

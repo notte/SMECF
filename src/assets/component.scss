@@ -58,7 +58,7 @@
         padding: 14px;
     }
 
-    // button state
+    // button status
     .btn_normal {
         @apply bg-primary-main text-system-light_05;
     }
@@ -77,25 +77,46 @@
 
     
     // ul（tab）
+
     .tab_xl,
     .tab_l {
-        @apply flex ;
+        @apply flex;
     }
 
-    .tab_xl > li {    
-        @apply subtitle_2 pb-2 px-4 cursor-pointer w-full;
+    .tab_xl  > li,
+    .tab_l > li {    
+        @apply subtitle_2 cursor-pointer pb-2 px-4;
     }
-
- 
 
     .tab_true {
         @apply text-primary-main;
 
-        border-bottom: 4px solid border-primary-main;
+        border-bottom: 4px solid #055ffc;
     }
 
     .tab_false {
         @apply text-system-dark_05
     }
 
+    // container
+    .container_charts {
+        @apply mb-10;
+    }
+
+    .container_charts:last-child {
+        @apply -mb-0;
+    }
+ 
+
+    // wrapper
+
+    .wrapper_grid {
+        @apply grid;
+    
+        gap: 30px;
+    }
+    
+    .wrapper_tab {
+        @apply my-6;
+    }
 }

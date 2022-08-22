@@ -1,10 +1,42 @@
-// .wrapper_chart {
-//     @apply w-full h-full;
-// }
+.wrapper_chart {
+    @apply my-4 bg-system-dark_02 p-6 overflow-hidden;
 
-.chart {
-    @apply w-full;
+    height: 193px;
 
-    background-color: #ddd;
-    height: 250px;
+    .title {
+        @apply flex justify-between;
+    }
+
+    ul.tabs {
+        @apply flex text-sm;
+
+        li {
+            @apply mr-2 cursor-pointer;
+        }
+
+        li:last-child {
+            @apply mr-0;
+        }
+
+        li.true {
+            @apply text-primary-main;
+        }
+    
+        li.false {
+            @apply text-system-dark_04;
+        }
+    }
 }
+
+// .info {
+//     @apply w-full h-full flex items-center;
+
+
+//     .data {
+//         @apply flex justify-center items-baseline mr-14;
+//     }
+
+//     .chart {
+//         @apply flex w-10/12;
+//     }
+// }

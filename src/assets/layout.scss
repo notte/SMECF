@@ -1,6 +1,7 @@
 body {
     @apply overflow-hidden;
-    background-color: #1E1E1E;
+
+    background-color: #1e1e1e;
 }
 
 .container_layout {
@@ -15,31 +16,10 @@ body {
     }
 
     main {
-        @apply w-full overflow-hidden ;
+        @apply w-full overflow-hidden;
         //  flex items-center w-full 
         .container_main {
             @apply  p-7 overflow-y-scroll  h-full;
         }
     }
-}
-
-.wrapper_grid {
-    @apply grid;
-
-    gap: 30px;
-}
-
-.container_charts,
-.wrapper_statistics_tabs {
-    @apply my-4;
-}
-
-.wrapper_title_button {
-    @apply flex justify-between my-4 items-center;
-}
-
-.map {
-    // background-color: #ddd;
-    height: 100%;
-    width: 100%;
 }
