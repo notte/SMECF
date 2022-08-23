@@ -1,8 +1,8 @@
 <template>
   <p class="label_large text-system-dark_05">平均分數</p>
   <section class="wrapper_grid grid-cols-4">
-    <PieChart />
-    <PieChart />
+    <DoughnutChart />
+    <DoughnutChart />
   </section>
   <p class="label_large text-system-dark_05">購面概覽</p>
   <section class="wrapper_grid grid-cols-4">
@@ -13,11 +13,11 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import PieChart from "@/components/common/PieChart.vue";
+import DoughnutChart from "@/components/common/DoughnutChart.vue";
 import BarChartHorizontal from "@/components/common/BarChartHorizontal.vue";
 
 export default defineComponent({
-  components: { PieChart, BarChartHorizontal },
+  components: { DoughnutChart, BarChartHorizontal },
   setup() {
     return {};
   },

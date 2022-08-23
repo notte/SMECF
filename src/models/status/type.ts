@@ -1,7 +1,7 @@
 export enum StatisticsType {
-  Operation = "Operation",
+  Finance = "Finance",
+  Digit = "Digit",
   Innovation = "Innovation",
   Market = "Market",
-  Finance = "Finance",
   Manufacturer = "Manufacturer",
 }

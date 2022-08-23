@@ -1,18 +1,18 @@
 <template>
   <section class="wrapper_grid grid-cols-4">
-    <PieChart />
+    <DoughnutChart />
     <BarChartHorizontal />
     <BarChartHorizontal />
-    <PieChart />
+    <DoughnutChart />
   </section>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import PieChart from "@/components/common/PieChart.vue";
+import DoughnutChart from "@/components/common/DoughnutChart.vue";
 import BarChartHorizontal from "@/components/common/BarChartHorizontal.vue";
 
 export default defineComponent({
-  components: { PieChart, BarChartHorizontal },
+  components: { DoughnutChart, BarChartHorizontal },
   setup() {
     return {};
   },

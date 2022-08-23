@@ -1,6 +1,6 @@
 <template>
-  <button @click="clickNav('Dashboard')">Dashboard</button>
-  <button @click="clickNav('Statistics')">Statistics</button>
+  <button class="true" @click="clickNav('Dashboard')">Dashboard</button>
+  <button class="false" @click="clickNav('Statistics')">Statistics</button>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";

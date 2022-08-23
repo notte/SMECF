@@ -6,18 +6,30 @@ body {
 
 .container_layout {
     @apply flex w-screen h-screen overflow-hidden;
-    
-    // height: calc(100vh - 104px);
+
 
     nav {
         @apply flex flex-col justify-center overflow-hidden bg-system-dark_02;
+        
 
         width: 5%;
+
+        button {
+            @apply subtitle_3 
+        }
+
+        button.true {
+            @apply text-primary-main;
+        }
+
+        button.false {
+            @apply text-system-dark_03;
+        }
     }
 
     main {
         @apply w-full overflow-hidden;
-        //  flex items-center w-full 
+
         .container_main {
             @apply  p-7 overflow-y-scroll  h-full;
         }

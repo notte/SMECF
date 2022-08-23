@@ -1,7 +1,5 @@
 .wrapper_chart {
-    @apply my-4 bg-system-dark_02 p-6 overflow-hidden;
-
-    height: 193px;
+    @apply my-4 bg-system-dark_02 p-6;
 
     .title {
         @apply flex justify-between;
@@ -26,17 +24,56 @@
             @apply text-system-dark_04;
         }
     }
+
+    .info {
+        @apply flex items-center justify-between;
+    
+    
+        .data {
+            .true {
+                @apply text-primary-main cursor-pointer;
+            }
+    
+            .false {
+                @apply text-system-dark_04 cursor-pointer;
+            }
+        }
+    
+        .chart {
+            height: 100px;
+            width: 100px;
+        }
+    }
 }
 
-// .info {
-//     @apply w-full h-full flex items-center;
+.container_bar {
+    @apply flex flex-col justify-between;
 
+    height: calc(100% - 24px);
+}
 
-//     .data {
-//         @apply flex justify-center items-baseline mr-14;
-//     }
+.bar_item {
+    @apply flex items-center;
 
-//     .chart {
-//         @apply flex w-10/12;
-//     }
-// }
+    .bar_info {
+        @apply flex-none mr-4 flex items-center;
+
+        .subtitle_4 {
+            @apply mr-2;
+        }
+    }
+
+    .wrapper_bar {
+        @apply w-full flex-auto bg-system-dark_03 rounded-2xl;
+    
+        height: 10px;
+
+        .bar {
+            @apply rounded-2xl;
+
+            background-color: #fff;
+            height: 10px;
+            width: 10%;
+        }
+    }
+}
