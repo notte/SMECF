@@ -1,0 +1,25 @@
+{
+  "valueChainTool": {            //價值鏈管理
+    "isUseTool": [35,65],        //index 0: 無, 1: 有
+    "order": 30,                 //庫存與訂單管理
+    "carry": 30,                 //物料搬運
+    "customer": 50,              //顧客經營與行銷
+    "analyze": 50                //數據分析決策
+  },
+  "researchTool": {              //研發生產
+    "isUseTool": [35,65],        //index 0: 無, 1: 有
+    "design": 30,                //產品研發設計
+    "monitor": 30,               //生產設備監測
+    "auto": 50,                  //產線自動化
+    "manage": 50,                //生產管理系統
+    "analyze": 50                //數據分析決策
+  },
+  "operationTool": {             //企業營運
+    "isUseTool": [35,65],        //index 0: 無, 1: 有
+    "erp": 30,                   //企業資源管理
+    "hrs": 30,                   //人事管理系統
+    "fas": 50,                   //財務會計系統
+    "ics": 50,                   //生產管理系統
+    "analyze": 50                //數據分析決策
+  }
+}
