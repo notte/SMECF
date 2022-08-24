@@ -9,20 +9,49 @@ body {
 
 
     nav {
-        @apply flex flex-col justify-center overflow-hidden bg-system-dark_02;
+        @apply flex flex-col justify-center items-start  overflow-hidden bg-system-dark_02;
         
+        width: 72px;
+        // width: 210px;
 
-        width: 5%;
-
-        button {
-            @apply subtitle_3 
+        .wrapper_nav {
+            @apply justify-center;
         }
 
-        button.true {
+        .nav_button {
+            @apply flex items-center;
+
+            box-sizing: border-box;
+
+            .nav_icon {
+                @apply my-3 mx-6;
+
+                background-color: #fff;
+                height: 20px;
+                width: 20px;
+            }
+
+            button {
+                @apply subtitle_3 flex mr-6;
+
+                width: 85px;
+            }
+        }
+
+        .nav_button.true {
             @apply text-primary-main;
+
         }
 
-        button.false {
+        .nav_button.true::before {
+            @apply absolute inline-block;
+
+            border-left: 4px solid #055ffc;
+            content: '';
+            height: 45px;
+        }
+
+        .nav_button.false {
             @apply text-system-dark_03;
         }
     }

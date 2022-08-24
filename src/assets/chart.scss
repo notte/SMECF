@@ -5,7 +5,8 @@
         @apply flex justify-between;
     }
 
-    ul.tabs {
+    // 圖表裡的 switch
+    ul.switch_chart {
         @apply flex text-sm;
 
         li {

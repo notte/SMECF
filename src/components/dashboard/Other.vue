@@ -1,11 +1,11 @@
 <template>
   <p class="label_large text-system-dark_05">平均分數</p>
-  <section class="wrapper_grid grid-cols-4">
+  <section class="wrapper_grid">
     <DoughnutChart />
     <DoughnutChart />
   </section>
   <p class="label_large text-system-dark_05">購面概覽</p>
-  <section class="wrapper_grid grid-cols-4">
+  <section class="wrapper_grid">
     <BarChartHorizontal />
     <BarChartHorizontal />
     <BarChartHorizontal />

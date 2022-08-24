@@ -68,5 +68,10 @@ module.exports = {
       },
     },
   },
+  variants: {
+    extend: {
+      width: ["hover"],
+    },
+  },
   plugins: [],
 };

@@ -1,5 +1,5 @@
 <template>
-  <section class="wrapper_grid grid-cols-4">
+  <section class="wrapper_grid">
     <DoughnutChart />
     <BarChartHorizontal />
     <BarChartHorizontal />

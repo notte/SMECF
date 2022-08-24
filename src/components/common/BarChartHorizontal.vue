@@ -2,7 +2,7 @@
   <section class="wrapper_chart">
     <div class="title">
       <p class="subtitle_3 text-system-light_01">標題</p>
-      <ul class="tabs invisible">
+      <ul class="tabs_chart">
         <li class="false">製造業</li>
         <li class="true">服務業</li>
       </ul>

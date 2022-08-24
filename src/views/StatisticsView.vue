@@ -1,5 +1,5 @@
 <template>
-  <ul class="tabs tab_l">
+  <ul class="tabs_center tab_l">
     <li class="tab_true" @click="Current = Finance">財務力</li>
     <li class="tab_false" @click="Current = Digit">數位力</li>
     <li class="tab_false" @click="Current = Innovation">創新力</li>

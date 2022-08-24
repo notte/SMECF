@@ -3,7 +3,6 @@
 @import 'tailwindcss/utilities';
 @import 'layout';
 @import 'chart';
-@import 'statistics';
 
 @layer base {
     html {
@@ -160,7 +159,32 @@
         @apply text-system-dark_05
     }
 
+    ul.tabs_center {
+        @apply flex justify-center mb-5;
+    }
+    
+    ul.switch {
+        @apply flex my-6;
+    
+        li {
+            @apply cursor-pointer;
+    
+            font-size: 12px;
+            line-height: 16px;
+            padding: 4px 12px;
+        }
+    
+        li.true {
+            @apply text-system-light_05 rounded-xl bg-primary-main;
+        }
+    
+        li.false {
+            @apply text-system-dark_04;
+        }
+    }
+
     // container
+
     .container_charts {
         @apply mb-10;
     }
@@ -173,7 +197,7 @@
     // wrapper
 
     .wrapper_grid {
-        @apply grid;
+        @apply grid grid-cols-4;
     
         gap: 30px;
     }

@@ -1,6 +1,8 @@
 <template>
   <section class="container_layout">
-    <nav><Nav /></nav>
+    <nav class="hover:w-52">
+      <Nav />
+    </nav>
     <main>
       <div class="container_main"><router-view name="main" /></div>
     </main>
