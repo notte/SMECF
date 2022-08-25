@@ -12,3 +12,8 @@ export interface DashboardOtherIntelligent {
     researchTool: number[];              //研發生產 index 0:製造業, 1:服務業
     operationTool: number[];
 }
+
+export function isDashboardOtherIntelligent(o: any): o is DashboardOtherIntelligent {
+    return "intelligentAvgScore" in o && "avgScore" in o && "valueChainTool" in o 
+    && "researchTool" in o && "operationTool" in o;
+}
