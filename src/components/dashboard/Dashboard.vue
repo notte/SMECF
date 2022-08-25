@@ -33,11 +33,37 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import PieChart from "@/components/common/PieChart.vue";
+import axios from "axios";
+import { IDashboardBasic } from "@/models/interface/dashboardBasic";
+import { IDashboardOtherFinance } from "@/models/interface/dashboardOtherFinance";
+import { IDashboardOtherIntelligent } from "@/models/interface/dashboardOtherIntelligent";
 
 export default defineComponent({
   components: { PieChart },
   setup() {
     return {};
+  },
+  methods: {
+    getDashboardBasicData() {
+      axios.get<IDashboardBasic>("./data/dashboard_basic.json").then((res) => {
+        var dashboardBasic: IDashboardBasic = res.data;
+        console.log(dashboardBasic);
+      });
+    },
+
+    getDashboardOtherFinanceData() {
+      axios.get<IDashboardOtherFinance>("./data/dashboard_other_finance.json").then((res) => {
+        var dashboardOtherFinance: IDashboardOtherFinance = res.data;
+        console.log(dashboardOtherFinance);
+      });
+    },
+
+    getDashboardOtherIntelligentData() {
+      axios.get<IDashboardOtherIntelligent>("./data/dashboard_other_intelligent.json").then((res) => {
+        var dashboardOtherIntelligent: IDashboardOtherIntelligent = res.data;
+        console.log(dashboardOtherIntelligent);
+      });
+    }
   },
 });
 </script>
