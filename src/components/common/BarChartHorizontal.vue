@@ -37,6 +37,13 @@
         </div>
         <div class="wrapper_bar"><div class="bar"></div></div>
       </div>
+      <div class="bar_item">
+        <div class="bar_info">
+          <span class="subtitle_4 text-system-dark_05">財務力</span>
+          <span class="text-system-light_03">4.9</span>
+        </div>
+        <div class="wrapper_bar"><div class="bar"></div></div>
+      </div>
     </div>
   </section>
 </template>

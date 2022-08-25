@@ -28,32 +28,106 @@
       </div> -->
       <!-- 圖表 -->
       <!-- <Doughnut class="chart" /> -->
-      <div id="container"></div>
+
+      <v-chart class="chart" :option="option" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
-import Doughnut from "@/components/chart/Doughnut";
-import { RingProgress } from "@antv/g2plot";
+import { defineComponent, ref } from "vue";
+import { CanvasRenderer } from "echarts/renderers";
+import VChart, { THEME_KEY } from "vue-echarts";
+import { use } from "echarts/core";
+import { GaugeChart } from "echarts/charts";
+import {
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent,
+} from "echarts/components";
+
+use([
+  CanvasRenderer,
+  GaugeChart,
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent,
+]);
 
 export default defineComponent({
-  components: { Doughnut },
+  components: { VChart },
   setup() {
-    const ringProgress = new RingProgress("container", {
-      height: 100,
-      width: 100,
-      autoFit: false,
-      percent: 0.7,
-      radius: 0.5,
-      color: ["#5B8FF9", "#E8EDF3"],
+    const gaugeData = [
+      {
+        value: 60,
+        // title: {
+        //   offsetCenter: ["-20%", "0%"],
+        // },
+        // detail: {
+        //   valueAnimation: true,
+        //   offsetCenter: ["0%", "40%"],
+        // },
+      },
+    ];
+    const option = ref({
+      series: [
+        {
+          type: "gauge",
+          startAngle: 90,
+          endAngle: -270,
+          // name:
+          // title: {
+          // fontSize: 5,
+          // offsetCenter: ["0%", "0%"],
+          // },
+          data: gaugeData,
+          // 隱藏指針
+          pointer: {
+            show: false,
+          },
+          // 進度條設定
+          progress: {
+            show: true,
+            overlap: false,
+            roundCap: true,
+            clip: false,
+          },
+          // 進度條設定
+          axisLine: {
+            lineStyle: {
+              width: 10,
+            },
+          },
+          // 大刻度（速度？）
+          splitLine: {
+            show: false,
+            distance: 0,
+            length: 10,
+          },
+          // 小刻度（秒數？）
+          axisTick: {
+            show: false,
+          },
+          // 秒數數字
+          axisLabel: {
+            show: false,
+            distance: 50,
+          },
+          detail: {
+            // width: 50,
+            // height: 14,
+            fontSize: 16,
+            color: "#fff",
+            // borderColor: "auto",
+            // borderRadius: 20,
+            // borderWidth: 1,
+            formatter: "5.1",
+            offsetCenter: ["0%", "5%"],
+          },
+        },
+      ],
     });
-    onMounted(() => {
-      ringProgress.render();
-    });
-
-    return {};
+    return { option };
   },
 });
 </script>

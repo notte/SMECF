@@ -62,13 +62,13 @@ export default defineComponent({
       block: string,
       event: any
     ): void {
-      Current.value = Status;
       if (block === "tabs_base") {
         for (let item of tabs_base.value.children) {
           item.className = "false";
         }
       }
       if (block === "tabs_other") {
+        Current.value = Status;
         for (let item of tabs_other.value.children) {
           item.className = "false";
         }
