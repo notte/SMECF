@@ -1,16 +1,16 @@
 <template>
-  <ul class="tabs_center tab_l">
-    <li class="tab_true" @click="Current = Finance">財務力</li>
-    <li class="tab_false" @click="Current = Digit">數位力</li>
-    <li class="tab_false" @click="Current = Innovation">創新力</li>
-    <li class="tab_false" @click="Current = Market">市場力</li>
-    <li class="tab_false" @click="Current = Manufacturer">過案廠商樣貌</li>
+  <ul class="tabs_center tab_l" ref="tabs">
+    <li class="true" @click="clickTab(Finance, $event)">財務力</li>
+    <li class="false" @click="clickTab(Digit, $event)">數位力</li>
+    <li class="false" @click="clickTab(Innovation, $event)">創新力</li>
+    <li class="false" @click="clickTab(Market, $event)">市場力</li>
+    <li class="false" @click="clickTab(Manufacturer, $event)">過案廠商樣貌</li>
   </ul>
-  <Digit v-if="isShow('Digit')" />
-  <Innovation v-if="isShow('Innovation')" />
-  <Market v-if="isShow('Market')" />
-  <Finance v-if="isShow('Finance')" />
-  <Manufacturer v-if="isShow('Manufacturer')" />
+  <Digit v-if="isShow(Digit)" />
+  <Innovation v-if="isShow(Innovation)" />
+  <Market v-if="isShow(Market)" />
+  <Finance v-if="isShow(Finance)" />
+  <Manufacturer v-if="isShow(Manufacturer)" />
 </template>
 
 <script lang="ts">
@@ -32,6 +32,16 @@ export default defineComponent({
     const Finance = ref(Status.StatisticsType.Finance);
     const Manufacturer = ref(Status.StatisticsType.Manufacturer);
 
+    const tabs = ref();
+
+    function clickTab(Status: Status.StatisticsType, event: any): void {
+      for (let item of tabs.value.children) {
+        item.className = "false";
+      }
+      Current.value = Status;
+      event.path[0].className = "true";
+    }
+
     function isShow(page: Status.StatisticsType): boolean {
       return Current.value === page ? true : false;
     }
@@ -44,6 +54,8 @@ export default defineComponent({
       Finance,
       Manufacturer,
       Current,
+      tabs,
+      clickTab,
     };
   },
 });

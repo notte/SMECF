@@ -2,9 +2,11 @@
   <section class="container_charts">
     <h6 class="text-system-light_05">基本平均表現</h6>
     <div class="wrapper_tab">
-      <ul class="tab_l">
-        <li class="tab_false">製造業</li>
-        <li class="tab_true">服務業</li>
+      <ul class="tab_l" ref="tabs_base">
+        <li class="false" @click="clickTab('A', 'tabs_base', $event)">
+          製造業
+        </li>
+        <li class="true" @click="clickTab('A', 'tabs_base', $event)">服務業</li>
       </ul>
       <hr class="division_1" />
     </div>
@@ -13,26 +15,82 @@
   <section class="container_charts">
     <h6 class="text-system-light_05">其他平均表現</h6>
     <div class="wrapper_tab">
-      <ul class="tab_l">
-        <li class="tab_false">財務力</li>
-        <li class="tab_true">數位力</li>
-        <li class="tab_false">創新力</li>
-        <li class="tab_false">市場力</li>
+      <ul class="tab_l" ref="tabs_other">
+        <li class="true" @click="clickTab(Finance, 'tabs_other', $event)">
+          財務力
+        </li>
+        <li class="false" @click="clickTab(Digit, 'tabs_other', $event)">
+          數位力
+        </li>
+        <li class="false" @click="clickTab(Innovation, 'tabs_other', $event)">
+          創新力
+        </li>
+        <li class="false" @click="clickTab(Market, 'tabs_other', $event)">
+          市場力
+        </li>
       </ul>
       <hr class="division_1" />
     </div>
-    <Other />
+    <Finance v-if="isShow(Finance)" />
+    <Digit v-if="isShow(Digit)" />
+    <Innovation v-if="isShow(Innovation)" />
+    <Market v-if="isShow(Market)" />
   </section>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import Base from "@/components/dashboard/Base.vue";
-import Other from "@/components/dashboard/Other.vue";
+import Finance from "@/components/dashboard/Finance.vue";
+import Digit from "@/components/dashboard/Digit.vue";
+import Innovation from "@/components/dashboard/Innovation.vue";
+import Market from "@/components/dashboard/Market.vue";
+import * as Status from "@/models/status/type";
 
 export default defineComponent({
-  components: { Base, Other },
+  components: { Base, Finance, Digit, Innovation, Market },
   setup() {
-    return {};
+    const Current = ref(Status.StatisticsType.Finance);
+    const Finance = ref(Status.StatisticsType.Finance);
+    const Digit = ref(Status.StatisticsType.Digit);
+    const Innovation = ref(Status.StatisticsType.Innovation);
+    const Market = ref(Status.StatisticsType.Market);
+    const tabs_base = ref();
+    const tabs_other = ref();
+
+    function clickTab(
+      Status: Status.StatisticsType,
+      block: string,
+      event: any
+    ): void {
+      Current.value = Status;
+      if (block === "tabs_base") {
+        for (let item of tabs_base.value.children) {
+          item.className = "false";
+        }
+      }
+      if (block === "tabs_other") {
+        for (let item of tabs_other.value.children) {
+          item.className = "false";
+        }
+      }
+      event.path[0].className = "true";
+    }
+
+    function isShow(page: Status.StatisticsType): boolean {
+      return Current.value === page ? true : false;
+    }
+
+    return {
+      tabs_base,
+      tabs_other,
+      clickTab,
+      isShow,
+      Digit,
+      Innovation,
+      Market,
+      Finance,
+      Current,
+    };
   },
 });
 </script>

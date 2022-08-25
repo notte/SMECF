@@ -27,18 +27,32 @@
         <p class="false">場址地區</p>
       </div> -->
       <!-- 圖表 -->
-      <Doughnut class="chart" />
+      <!-- <Doughnut class="chart" /> -->
+      <div id="container"></div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import Doughnut from "@/components/chart/Doughnut";
+import { RingProgress } from "@antv/g2plot";
 
 export default defineComponent({
   components: { Doughnut },
   setup() {
+    const ringProgress = new RingProgress("container", {
+      height: 100,
+      width: 100,
+      autoFit: false,
+      percent: 0.7,
+      radius: 0.5,
+      color: ["#5B8FF9", "#E8EDF3"],
+    });
+    onMounted(() => {
+      ringProgress.render();
+    });
+
     return {};
   },
 });

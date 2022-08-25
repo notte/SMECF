@@ -133,30 +133,28 @@
 
     .tab_xl,
     .tab_l {
-        @apply flex;
+        @apply flex cursor-pointer;
+
+        .true {
+            @apply text-primary-main font-bold;
+    
+            border-bottom: 4px solid #055ffc;
+        }
+    
+        .false {
+            @apply text-system-dark_05;
+        }
     }
 
     .tab_xl  > li {    
-        @apply subtitle_2 cursor-pointer pb-2 px-4;
+        @apply subtitle_2 pb-2 px-4;
     }
 
     .tab_l > li {
-        @apply pb-2 px-4 cursor-pointer;
+        @apply pb-2 px-4;
 
         font-size: 1em;
         line-height: 28px;
-    }
-
-
-
-    .tab_true {
-        @apply text-primary-main font-bold;
-
-        border-bottom: 4px solid #055ffc;
-    }
-
-    .tab_false {
-        @apply text-system-dark_05
     }
 
     ul.tabs_center {
