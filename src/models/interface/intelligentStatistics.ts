@@ -3,10 +3,10 @@
  * researchTool: 研發生產
  * operationTool: 企業營運
  */
-export interface IntelligentStatistics {
+export interface IIntelligentStatistics {
     valueChainTool: ValueChainTool;
-    researchTool: ResearchTool;
-    operationTool: OperationTool;
+    researchTool: IResearchTool;
+    operationTool: IOperationTool;
 
 }
 
@@ -33,7 +33,7 @@ export interface ValueChainTool {
  * manage: 生產管理系統
  * analyze: 數據分析決策
  */
-export interface ResearchTool {
+export interface IResearchTool {
     isUseTool: number[];
     design: number;
     monitor: number;
@@ -50,15 +50,11 @@ export interface ResearchTool {
     ics: 生產管理系統
     analyze: 數據分析決策
  */
-export interface OperationTool {
+export interface IOperationTool {
     isUseTool: number[];
     erp: number;
     hrs: number;
     fas: number;
     ics: number;
     analyze: number;
-}
-
-export function isIntelligentStatistics(o: any): o is IntelligentStatistics {
-    return "valueChainTool" in o && "researchTool" in o && "operationTool" in o;
 }

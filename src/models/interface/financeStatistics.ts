@@ -6,13 +6,13 @@
  * structure: 財務結構
  * difficult: 財務問題
  */
-export interface FinanceStatistics {
+export interface IFinanceStatistics {
     revenue: number[];
     sumPeople: number[];
     profits: number[];
     develop: number[];
-    structure: Structure;
-    difficult: Difficult;
+    structure: IStructure;
+    difficult: IDifficult;
 }
 
 /** 財務結構 
@@ -20,7 +20,7 @@ export interface FinanceStatistics {
  * equity: 股東權益
  * debt: 總負債
 */
-export interface Structure {
+export interface IStructure {
     asset: number;
     equity: number;
     debt: number;
@@ -33,15 +33,10 @@ export interface Structure {
  * 4: 訴訟中或其他負債待解決
  * 5: 其他
  */
-export interface Difficult {
+export interface IDifficult {
     1: number;
     2: number;
     3: number;
     4: number;
     5: number;
-}
-
-export function isFinanceStatistics(o: any): o is FinanceStatistics {
-    return "revenue" in o && "sumPeople" in o && "profits" in o 
-    && "develop" in o && "structure" in o && "difficult" in o;
 }

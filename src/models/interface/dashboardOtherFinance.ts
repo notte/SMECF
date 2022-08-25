@@ -5,15 +5,10 @@
  * businessGrowth: 經營成長 index 0:製造業, 1:服務業
  * structure: 財務結構 index 0:製造業, 1:服務業
  */
-export interface DashboardOtherFinance {
+export interface IDashboardOtherFinance {
     fianceAvgScore: number;
     avgScore: number[];
     futureInvestment: number[];
     businessGrowth: number[];
     structure: number[];
-}
-
-export function isDashboardOtherFinance(o: any): o is DashboardOtherFinance {
-    return "fianceAvgScore" in o && "avgScore" in o && "futureInvestment" in o 
-    && "businessGrowth" in o && "structure" in o;
 }

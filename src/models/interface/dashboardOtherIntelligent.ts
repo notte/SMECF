@@ -5,15 +5,10 @@
  * researchTool: 研發生產 index 0:製造業, 1:服務業
  * operationTool: 企業營運 index 0:製造業, 1:服務業
  */
-export interface DashboardOtherIntelligent {
+export interface IDashboardOtherIntelligent {
     intelligentAvgScore: number;
     avgScore: number[];                 //綜合平均分數 index 0:製造業, 1:服務業
     valueChainTool: number[];               //價值鏈管理 index 0:製造業, 1:服務業
     researchTool: number[];              //研發生產 index 0:製造業, 1:服務業
     operationTool: number[];
-}
-
-export function isDashboardOtherIntelligent(o: any): o is DashboardOtherIntelligent {
-    return "intelligentAvgScore" in o && "avgScore" in o && "valueChainTool" in o 
-    && "researchTool" in o && "operationTool" in o;
 }

@@ -4,11 +4,11 @@
  * highlightCompany: 指標亮點業者
  * manufacturer: 過案廠商樣貌
  */
-export interface DashboardBasic {
+export interface IDashboardBasic {
     avgScore: number;
-    eachDimensionAvgScore: EachDimensionAvgScore; 
-    highlightCompany: HighlightCompany;
-    manufacturer: Manufacturer;
+    eachDimensionAvgScore: IEachDimensionAvgScore; 
+    highlightCompany: IHighlightCompany;
+    manufacturer: IManufacturer;
 }
 
 /** 各構面平均分數 
@@ -17,7 +17,7 @@ export interface DashboardBasic {
  * N: 創新力
  * D: 市場力
  */
-export interface EachDimensionAvgScore {
+export interface IEachDimensionAvgScore {
     F: number;
     I: number;
     N: number;
@@ -31,7 +31,7 @@ export interface EachDimensionAvgScore {
  * 4: 排名四
  * 5: 排名五
 */
-export interface HighlightCompany {
+export interface IHighlightCompany {
     1: number;
     2: number;
     3: number;
@@ -45,14 +45,9 @@ export interface HighlightCompany {
  * sumPeople: 公司人數
  * st: 場址地區
 */
-export interface Manufacturer {
+export interface IManufacturer {
     date: number;
     capital: number;
     sumPeople: number;
     st: number;
-}
-
-export function isDashboardBasic(o: any): o is DashboardBasic {
-    return "avgScore" in o && "eachDimensionAvgScore" in o 
-    && "highlightCompany" in o && "manufacturer" in o;
 }

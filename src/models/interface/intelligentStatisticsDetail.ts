@@ -5,12 +5,12 @@
  * analyze: 數據分析決策
  * goal: 導入工具或技術之目的
  */
-export interface IntelligentStatisticsDetail {
-    order: Order;
-    carry: Carry;
-    customer: Customer;
-    analyze: Analyze;
-    goal: Goal;
+export interface IIntelligentStatisticsDetail {
+    order: IOrder;
+    carry: ICarry;
+    customer: ICustomer;
+    analyze: IAnalyze;
+    goal: IGoal;
 }
 
 /** 庫存與訂單管理
@@ -18,7 +18,7 @@ export interface IntelligentStatisticsDetail {
  * 2: 倉儲管理系統(WMS)
  * 3: 供應鏈管理系統(SCM)
  */
-export interface Order {
+export interface IOrder {
     1: number;
     2: number;
     3: number;
@@ -29,7 +29,7 @@ export interface Order {
  * 2: 自動導引車(AGV)
  * 3: 自主移動機器人(AMR)
  */
-export interface Carry {
+export interface ICarry {
     1: number;
     2: number;
     3: number;
@@ -41,7 +41,7 @@ export interface Carry {
  * 3: 自有社群媒體經營
  * 4: 顧客管理系統(CRM)
  */
-export interface Customer {
+export interface ICustomer {
     1: number;
     2: number;
     3: number;
@@ -52,7 +52,7 @@ export interface Customer {
  * 1: 資料庫管理系統
  * 2: 人工智慧(AI)/機器學習技術
  */
-export interface Analyze {
+export interface IAnalyze {
     1: number;
     2: number;
 }
@@ -64,15 +64,10 @@ export interface Analyze {
  * 4: 提升銷售量
  * 5: 提高決策效率
  */
-export interface Goal {
+export interface IGoal {
     1: number;
     2: number;
     3: number;
     4: number;
     5: number;
-}
-
-export function isIntelligentStatisticsDetail(o: any): o is IntelligentStatisticsDetail {
-    return "order" in o && "carry" in o && "customer" in o 
-    && "analyze" in o && "goal" in o;
 }
