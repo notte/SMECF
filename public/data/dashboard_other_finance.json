@@ -1,7 +1,7 @@
 {
-  "fianceAvgScore": 5.1,                   //財務力綜合平均分數
-  "avgScore": [5.1,null],                  //綜合平均分數 index 0:製造業, 1:服務業
-  "futureInvestment": [3,null],            //未來投資能力 index 0:製造業, 1:服務業
-  "businessGrowth": [3,null],              //經營成長 index 0:製造業, 1:服務業
-  "structure": [3,null]                    //財務結構 index 0:製造業, 1:服務業
+  "fianceAvgScore": 5.1,
+  "avgScore": [5.1,null],
+  "futureInvestment": [3,null],
+  "businessGrowth": [3,null],
+  "structure": [3,null]
 }

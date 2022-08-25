@@ -1,7 +1,7 @@
 {
-  "intelligentAvgScore": 5.1,              //數位力綜合平均分數
-  "avgScore": [5.1,null],                  //綜合平均分數 index 0:製造業, 1:服務業
-  "valueChainTool": [3,null],              //價值鏈管理 index 0:製造業, 1:服務業
-  "researchTool": [3,null],                //研發生產 index 0:製造業, 1:服務業
-  "operationTool": [3,null]                //企業營運 index 0:製造業, 1:服務業
+  "intelligentAvgScore": 5.1,
+  "avgScore": [5.1,null],
+  "valueChainTool": [3,null],
+  "researchTool": [3,null],
+  "operationTool": [3,null]
 }
