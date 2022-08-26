@@ -39,7 +39,7 @@ export default defineComponent({
 
       let g = svg.append("g").attr("id", "group");
 
-      d3.json<Model.IMapResponseData>("./map.geojson").then((data) => {
+      d3.json<Model.IMapResponseData>("./Taiwan.geo.json").then((data) => {
         if (data) {
           g.selectAll("path")
             .data(data.features)

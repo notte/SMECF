@@ -1,20 +1,21 @@
 <template>
   <section class="wrapper_grid">
-    <DoughnutChart />
+    <DoughnutChart data="30" />
     <BarChartHorizontal />
     <BarChartHorizontal />
-    <DoughnutChart />
+    <DoughnutChart data="60" />
   </section>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import DoughnutChart from "@/components/common/DoughnutChart.vue";
 import BarChartHorizontal from "@/components/common/BarChartHorizontal.vue";
 
 export default defineComponent({
   components: { DoughnutChart, BarChartHorizontal },
   setup() {
-    return {};
+    const data = ref<number>(60);
+    return { data };
   },
 });
 </script>

@@ -5,10 +5,10 @@
       <p class="subtitle_3 text-system-light_01">標題</p>
       <button>下載</button>
     </div>
-    <!-- 第二層 tab，可能有可能沒有 -->
-    <ul class="switch_chart invisible">
-      <li class="false">製造業</li>
-      <li class="true">服務業</li>
+    <!-- 第二層 tab，可能有可能沒有，或者是出現圖標示圖 -->
+    <ul class="switch_chart" ref="tabs_switch">
+      <li class="true" @click="clickTab('tabs_switch', $event)">製造業</li>
+      <li class="false" @click="clickTab('tabs_switch', $event)">服務業</li>
     </ul>
     <div class="info">
       <!-- 分數資訊 -->
@@ -19,16 +19,12 @@
         </h1>
         <p class="subtitle_4 text-system-dark_04">整體平均 4.6 分</p>
       </div>
-      <!-- 可切換資訊 -->
-      <!-- <div class="data">
-        <p class="true">公司年資</p>
-        <p class="false">資本額</p>
-        <p class="false">員工數</p>
-        <p class="false">場址地區</p>
+      <!-- <div class="data" ref="tabs">
+        <p class="true" @click="clickTab('tabs', $event)">公司年資</p>
+        <p class="false" @click="clickTab('tabs', $event)">資本額</p>
+        <p class="false" @click="clickTab('tabs', $event)">員工數</p>
+        <p class="false" @click="clickTab('tabs', $event)">場址地區</p>
       </div> -->
-      <!-- 圖表 -->
-      <!-- <Doughnut class="chart" /> -->
-
       <v-chart class="chart" :option="option" />
     </div>
   </section>
@@ -37,7 +33,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { CanvasRenderer } from "echarts/renderers";
-import VChart, { THEME_KEY } from "vue-echarts";
+import VChart from "vue-echarts";
 import { use } from "echarts/core";
 import { GaugeChart } from "echarts/charts";
 import {
@@ -56,30 +52,35 @@ use([
 
 export default defineComponent({
   components: { VChart },
-  setup() {
+  setup(props, { attrs }) {
+    const tabs = ref();
+    const tabs_switch = ref();
+
     const gaugeData = [
       {
-        value: 60,
-        // title: {
-        //   offsetCenter: ["-20%", "0%"],
-        // },
-        // detail: {
-        //   valueAnimation: true,
-        //   offsetCenter: ["0%", "40%"],
-        // },
+        value: attrs.data,
       },
     ];
     const option = ref({
+      // 進度條本身顏色
+      color: ["#055FFC"],
+      tooltip: {
+        trigger: "item",
+        backgroundColor: "#383C41",
+        borderWidth: 0,
+        formatter: attrs.data,
+        textStyle: {
+          color: "#FCFDFE",
+        },
+        axisPointer: {
+          type: "shadow",
+        },
+      },
       series: [
         {
           type: "gauge",
           startAngle: 90,
           endAngle: -270,
-          // name:
-          // title: {
-          // fontSize: 5,
-          // offsetCenter: ["0%", "0%"],
-          // },
           data: gaugeData,
           // 隱藏指針
           pointer: {
@@ -92,19 +93,22 @@ export default defineComponent({
             roundCap: true,
             clip: false,
           },
-          // 進度條設定
+          // 甜甜區底設定
           axisLine: {
             lineStyle: {
               width: 10,
+              color: [[1, "#383C41"]],
+              show: true,
+              roundCap: false,
             },
           },
-          // 大刻度（速度？）
+          // 大刻度
           splitLine: {
             show: false,
             distance: 0,
             length: 10,
           },
-          // 小刻度（秒數？）
+          // 小刻度
           axisTick: {
             show: false,
           },
@@ -114,20 +118,29 @@ export default defineComponent({
             distance: 50,
           },
           detail: {
-            // width: 50,
-            // height: 14,
             fontSize: 16,
-            color: "#fff",
-            // borderColor: "auto",
-            // borderRadius: 20,
-            // borderWidth: 1,
+            color: "#F7F9FC",
             formatter: "5.1",
             offsetCenter: ["0%", "5%"],
           },
         },
       ],
     });
-    return { option };
+
+    function clickTab(status: string, event: any): void {
+      if (status === "tabs") {
+        for (let item of tabs.value.children) {
+          item.className = "false";
+        }
+      } else {
+        for (let item of tabs_switch.value.children) {
+          item.className = "false";
+        }
+      }
+      event.path[0].className = "true";
+    }
+
+    return { option, tabs_switch, tabs, clickTab };
   },
 });
 </script>

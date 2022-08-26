@@ -4,9 +4,16 @@
     .title {
         @apply flex justify-between;
     }
+    
 
-    // 圖表裡的 switch
-    ul.switch_chart {
+    // 圖表裡的 switch，顏色示意
+
+    ul.legends {
+        @apply flex-col;
+    }
+
+    ul.switch_chart,
+    ul.legends {
         @apply flex text-sm;
 
         li {
@@ -23,6 +30,18 @@
     
         li.false {
             @apply text-system-dark_04;
+        }
+
+        li.legend_item {
+            @apply flex items-center text-system-light_01 font-medium text-sm;
+
+            .icon {
+                @apply relative mr-2 p-0;
+
+                background-color: #fff;
+                height: 10px;
+                width: 10px;
+            }
         }
     }
 
@@ -48,18 +67,22 @@
 }
 
 .container_bar {
-    @apply flex flex-col justify-between;
+    @apply flex flex-col justify-evenly;
 
-    height: calc(100% - 24px);
+    height: calc(100% - 48px);
 }
 
 .bar_item {
     @apply flex items-center;
 
     .bar_info {
-        @apply flex-none mr-4 flex items-center;
+        @apply flex-none  flex items-center;
 
-        .subtitle_4 {
+        *:first-child {
+            @apply mr-1;
+        }
+
+        *:last-child {
             @apply mr-2;
         }
     }
@@ -74,7 +97,7 @@
 
             background-color: #fff;
             height: 10px;
-            width: 10%;
+            width: 10px;
         }
     }
 }
