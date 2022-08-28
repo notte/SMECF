@@ -6,8 +6,7 @@
     }
     
 
-    // 圖表裡的 switch，顏色示意
-
+    // 圖表裡的 switch 或 例圖
     ul.legends {
         @apply flex-col;
     }
@@ -45,6 +44,7 @@
         }
     }
 
+    // (下方的)資訊區塊
     .info {
         @apply flex items-center justify-between w-full h-auto;
     
@@ -84,6 +84,8 @@
     }
 }
 
+
+// 自製 Progress Bar
 .container_bar {
     @apply flex flex-col justify-evenly;
 
@@ -120,6 +122,17 @@
     }
 }
 
+
+// 地圖樣式
+.container_map {
+    @apply flex flex-col w-full justify-center items-center;
+
+    height: calc(100% - 60px);
+
+    .map {
+        @apply flex justify-center w-3/6 h-3/4;
+    }
+}
 
 .map {
     path {

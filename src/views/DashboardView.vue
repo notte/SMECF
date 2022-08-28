@@ -39,11 +39,11 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import Base from "@/components/dashboard/Base.vue";
-import Finance from "@/components/dashboard/Finance.vue";
-import Digit from "@/components/dashboard/Digit.vue";
-import Innovation from "@/components/dashboard/Innovation.vue";
-import Market from "@/components/dashboard/Market.vue";
+import Base from "@/components/dashboard/Base/Base.vue";
+import Finance from "@/components/dashboard/Other/Finance.vue";
+import Digit from "@/components/dashboard/Other/Digit.vue";
+import Innovation from "@/components/dashboard/Other/Innovation.vue";
+import Market from "@/components/dashboard/Other/Market.vue";
 import * as Status from "@/models/status/type";
 
 export default defineComponent({

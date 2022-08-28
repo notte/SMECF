@@ -2,6 +2,7 @@ body {
     @apply overflow-hidden;
 
     background-color: #1e1e1e;
+
 }
 
 .container_layout {
@@ -9,7 +10,7 @@ body {
 
 
     nav {
-        @apply flex flex-col justify-center items-start  overflow-hidden bg-system-dark_02;
+        @apply transition-all flex flex-col justify-center items-start  overflow-hidden bg-system-dark_02;
         
         width: 72px;
         // width: 210px;
@@ -19,7 +20,7 @@ body {
         }
 
         .nav_button {
-            @apply flex items-center;
+            @apply flex items-center transition-colors;
 
             box-sizing: border-box;
 
@@ -62,16 +63,5 @@ body {
         .container_main {
             @apply  p-7 overflow-y-scroll  h-full;
         }
-    }
-}
-
-
-.container_map {
-    @apply flex w-full justify-center items-center;
-
-    height: calc(100% - 60px);
-
-    .map {
-        @apply w-3/6 h-4/5;
     }
 }

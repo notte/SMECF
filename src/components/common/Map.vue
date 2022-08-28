@@ -27,7 +27,7 @@ export default defineComponent({
 
       let projection = d3
         .geoMercator()
-        .scale(scale)
+        .scale(scale * 0.8)
         .translate([width / 2, height / 2.5])
         .center([121, 24]);
       let path = d3.geoPath().projection(projection);
@@ -45,10 +45,10 @@ export default defineComponent({
             .data(data.features)
             .enter()
             .append("path")
-            .attr("d", path as never);
-          // .attr("id", (d) => {
-          //   return d.properties["COUNTYENG"].split(" ")[0];
-          // })
+            .attr("d", path as never)
+            .attr("id", (d) => {
+              return d.properties["COUNTYID"];
+            });
           // .on("click", (e, d) => {
 
           // });
