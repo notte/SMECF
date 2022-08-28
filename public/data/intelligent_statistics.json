@@ -1,0 +1,25 @@
+{
+  "valueChainTool": {
+    "isUseTool": [35,65],
+    "order": 30,
+    "carry": 30,
+    "customer": 50,
+    "analyze": 50
+  },
+  "researchTool": {
+    "isUseTool": [35,65],
+    "design": 30,
+    "monitor": 30,
+    "auto": 50,
+    "manage": 50,
+    "analyze": 50
+  },
+  "operationTool": {
+    "isUseTool": [35,65],
+    "erp": 30,
+    "hrs": 30,
+    "fas": 50,
+    "ics": 50,
+    "analyze": 50
+  }
+}

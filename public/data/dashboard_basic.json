@@ -1,0 +1,22 @@
+{
+  "avgScore": 5.1,
+  "eachDimensionAvgScore": {
+    "F": 4.9, 
+    "I": 4.9,
+    "N": 4.9,
+    "D": 4.9
+  },
+  "highlightCompany": {
+    "1": 4.9,
+    "2": 4.9,
+    "3": 4.9,
+    "4": 4.9,
+    "5": 4.9
+  },
+  "manufacturer": {
+    "date": 4.9,
+    "capital": 4.9,
+    "sumPeople": 4.9,
+    "st": 4.9
+  }
+}
