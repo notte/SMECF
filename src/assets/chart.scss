@@ -33,7 +33,7 @@
         }
 
         li.legend_item {
-            @apply flex items-center text-system-light_01 font-medium text-sm;
+            @apply flex my-1 items-center text-system-light_01 font-medium text-sm cursor-default;
 
             .icon {
                 @apply relative mr-2 p-0;
@@ -46,7 +46,7 @@
     }
 
     .info {
-        @apply flex items-center justify-between;
+        @apply flex items-center justify-between w-full h-auto;
     
     
         .data {
@@ -60,9 +60,27 @@
         }
     
         .chart {
-            height: 100px;
-            width: 100px;
+            // bottom: 10px;
+            height: 120px;
+            position: relative;
+            // right: -5px;
+            width: 120px;
         }
+
+        .barBase {
+            // height: 250px;
+            // position: relative;
+            // width: 300px;
+
+            // canvas {
+            //     bottom: 0;
+            //     left: 10px;
+            //     right: 0;
+            //     top: 0;
+            //     width: 200px;
+            // }
+        }
+
     }
 }
 
@@ -99,5 +117,29 @@
             height: 10px;
             width: 10px;
         }
+    }
+}
+
+
+.map {
+    path {
+        box-shadow: 0 0 3px #000;
+        cursor: pointer;
+        fill: #fff;
+        stroke: #383c41;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+
+        &:hover,
+        &.active {
+            // box-sizing: content-box;
+            fill: rgba(#9ed8db, 0.6);
+            stroke: rgba(#9ed8db, 0.6);
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1px;
+        }
+        
     }
 }

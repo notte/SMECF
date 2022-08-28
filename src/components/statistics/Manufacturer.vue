@@ -1,19 +1,28 @@
 <template>
-  <section class="map"><Map /></section>
+  <section class="container_map">
+    <div class="map" ref="map">
+      <Map />
+    </div>
+    <div class="data"></div>
+  </section>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
-import BarChartStraight from "@/components/common/BarChartStraight.vue";
+import { defineComponent, onMounted, ref } from "vue";
 import Map from "@/components/statistics/Taiwan.vue";
 import EventBus from "@/utilities/event-bus";
+import PieChart from "@/components/common/PieChart.vue";
 
 export default defineComponent({
-  components: { BarChartStraight, Map },
+  components: { PieChart, Map },
   setup() {
+    const map = ref();
     onMounted(() => {
-      EventBus.emit("create_map");
+      EventBus.emit("create_map", [
+        map.value.offsetWidth,
+        map.value.offsetHeight,
+      ]);
     });
-    return {};
+    return { map };
   },
 });
 </script>

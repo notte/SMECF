@@ -64,3 +64,14 @@ body {
         }
     }
 }
+
+
+.container_map {
+    @apply flex w-full justify-center items-center;
+
+    height: calc(100% - 60px);
+
+    .map {
+        @apply w-3/6 h-4/5;
+    }
+}

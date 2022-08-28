@@ -13,11 +13,11 @@
     <div class="info">
       <!-- 分數資訊 -->
       <div class="data">
-        <h1 class="text-system-light_05">
+        <h1 class="text-system-light_05 flex flex-nowrap items-baseline">
           5.1
           <span class="subtitle_2">/10</span>
         </h1>
-        <p class="subtitle_4 text-system-dark_04">整體平均 4.6 分</p>
+        <!-- <p class="subtitle_4 text-system-dark_04">整體平均 4.6 分</p> -->
       </div>
       <!-- <div class="data" ref="tabs">
         <p class="true" @click="clickTab('tabs', $event)">公司年資</p>
@@ -25,7 +25,7 @@
         <p class="false" @click="clickTab('tabs', $event)">員工數</p>
         <p class="false" @click="clickTab('tabs', $event)">場址地區</p>
       </div> -->
-      <v-chart class="chart" :option="option" />
+      <v-chart :option="option" class="chart" />
     </div>
   </section>
 </template>

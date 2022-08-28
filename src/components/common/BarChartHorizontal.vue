@@ -2,6 +2,10 @@
   <section class="wrapper_chart">
     <div class="title">
       <p class="subtitle_3 text-system-light_01">標題</p>
+      <!-- <ul class="switch_chart" ref="tabs_switch">
+        <li class="true" @click="clickTab($event)">製造業</li>
+        <li class="false" @click="clickTab($event)">服務業</li>
+      </ul> -->
 
       <button>下載</button>
     </div>

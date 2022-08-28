@@ -9,9 +9,9 @@ import * as d3 from "d3";
 
 export default defineComponent({
   setup() {
-    EventBus.on("create_map", () => {
-      let width = 1000;
-      let height = 1000;
+    EventBus.on("create_map", (prams) => {
+      let width = (prams as number[])[0];
+      let height = (prams as number[])[1];
 
       let scale;
 
@@ -45,13 +45,13 @@ export default defineComponent({
             .data(data.features)
             .enter()
             .append("path")
-            .attr("d", path as never)
-            .attr("id", (d) => {
-              return d.properties["COUNTYENG"].split(" ")[0];
-            })
-            .on("click", (e, d) => {
-              //
-            });
+            .attr("d", path as never);
+          // .attr("id", (d) => {
+          //   return d.properties["COUNTYENG"].split(" ")[0];
+          // })
+          // .on("click", (e, d) => {
+
+          // });
         }
       });
 

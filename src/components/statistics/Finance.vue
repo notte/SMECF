@@ -1,7 +1,7 @@
 <template>
   <section class="container_charts">
     <h6 class="text-system-light_05">企業近3年財務現況</h6>
-    <section class="wrapper_grid grid-cols-4">
+    <section class="wrapper_grid">
       <BarChartStraight />
       <BarChartStraight />
       <BarChartStraight />

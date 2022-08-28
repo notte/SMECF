@@ -3,6 +3,10 @@
     <!-- 最上層標題 -->
     <div class="title">
       <p class="subtitle_3 text-system-light_01">標題</p>
+      <!-- <ul class="switch_chart" ref="tabs_switch">
+        <li class="true" @click="clickTab($event)">製造業</li>
+        <li class="false" @click="clickTab($event)">服務業</li>
+      </ul> -->
       <button>下載</button>
     </div>
     <!-- 第二層 tab，可能有可能沒有，或者是出現圖標示圖 -->
@@ -30,7 +34,7 @@
           服務業
         </li>
       </ul>
-      <v-chart class="chart" :option="option" />
+      <v-chart :option="option" class="chart" />
     </div>
   </section>
 </template>
