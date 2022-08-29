@@ -1,12 +1,14 @@
 <template>
-  <div class="wrapper_nav">
+  <div class="container_nav">
     <ul ref="tabs">
       <li
         class="nav_button true"
         @click="clickTab('Dashboard')"
         ref="dashboard"
       >
-        <div class="nav_icon"></div>
+        <div class="nav_icon">
+          <i class="gg-voicemail-o"></i>
+        </div>
         Dashboard
       </li>
       <li
@@ -14,7 +16,7 @@
         @click="clickTab('Statistics')"
         ref="statistics"
       >
-        <div class="nav_icon"></div>
+        <div class="nav_icon"><i class="gg-chart"></i></div>
         Statistics
       </li>
     </ul>

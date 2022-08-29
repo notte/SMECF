@@ -1,7 +1,7 @@
 <template>
-  <section class="container_charts">
+  <section>
     <h6 class="text-system-light_05">企業近3年財務現況</h6>
-    <section class="wrapper_grid">
+    <section class="container_grid">
       <BarChartStraight />
       <BarChartStraight />
       <BarChartStraight />
@@ -13,8 +13,8 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import BarChartStraight from "@/components/common/BarChartStraight.vue";
-import PieChart from "@/components/common/PieChart.vue";
+import BarChartStraight from "@/components/chart/BarChartStraight.vue";
+import PieChart from "@/components/chart/PieChart.vue";
 import axios from "axios";
 import { IFinanceStatistics } from "@/models/interface/financeStatistics";
 

@@ -1,3 +1,6 @@
+<template>
+  <div></div>
+</template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import * as Model from "@/models/interface/map";
@@ -25,7 +28,7 @@ export default defineComponent({
 
       let projection = d3
         .geoMercator()
-        .scale(scale * 0.8)
+        .scale(scale * 0.7)
         .translate([width / 2, height / 2.5])
         .center([121, 24]);
       let path = d3.geoPath().projection(projection);

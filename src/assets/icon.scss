@@ -1,0 +1,144 @@
+// 勾勾
+.gg-check {
+    border: 2px solid transparent;
+    border-radius: 100px;
+    bottom: 2px;
+    box-sizing: border-box;
+    display: block;
+    height: 22px;
+    left: -2px;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+}
+   
+.gg-check::after {
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    height: 10px;
+    left: 3px;
+    position: absolute;
+    top: -1px;
+    transform: rotate(45deg);
+    transform-origin: bottom left;
+    width: 6px
+}
+
+// 下載
+.gg-software-download {
+    border: 2px solid #8a93a1;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top: 0;
+    box-sizing: border-box;
+    display: block;
+    height: 6px;
+    margin-top: 8px;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 16px
+}
+   
+.gg-software-download::after {
+    border-bottom: 2px solid #8a93a1;
+    border-left: 2px solid #8a93a1;
+    bottom: 4px;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    height: 8px;
+    left: 2px;
+    position: absolute;
+    transform: rotate(-45deg);
+    width: 8px
+}
+   
+.gg-software-download::before {
+    background: #8a93a1;
+    border-radius: 3px;
+    bottom: 5px;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    height: 10px;
+    left: 5px;
+    position: absolute;
+    width: 2px
+}
+
+// 圖表
+.gg-chart {
+    border-bottom: 2px solid #666e7a;
+    border-left: 2px solid #666e7a;
+    box-sizing: border-box;
+    display: block;
+    height: 10px;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 10px
+}
+   
+.gg-chart::after,
+.gg-chart::before {
+    border: 2px solid #666e7a;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    position: absolute
+}
+   
+.gg-chart::before {
+    border-top-right-radius: 100px;
+    height: 8px;
+    right: -2px;
+    top: -2px;
+    width: 8px
+}
+   
+.gg-chart::after {
+    border-radius: 100px;
+    border-right-color: transparent;
+    height: 18px;
+    left: -10px;
+    transform: rotate(-45deg);
+    width: 18px
+}
+
+// dashboard
+.gg-voicemail-o {
+    background:
+        linear-gradient(to left, currentcolor 10px, transparent 0)
+        no-repeat 5px 10px/8px 2px;
+    border: 2px solid #666e7a;
+    border-radius: 30px;
+    box-sizing: border-box;
+    display: block;
+    height: 22px;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 22px
+}
+   
+.gg-voicemail-o::after,
+.gg-voicemail-o::before {
+    border: 2px solid #666e7a;
+    border-radius: 10px;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    height: 6px;
+    position: absolute;
+    top: 6px;
+    width: 6px
+}
+   
+.gg-voicemail-o::before {
+    left: 2px
+}
+   
+.gg-voicemail-o::after {
+    right: 2px
+}

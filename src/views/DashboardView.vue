@@ -1,7 +1,7 @@
 <template>
-  <section class="container_charts">
+  <section>
     <h6 class="text-system-light_05">基本平均表現</h6>
-    <div class="wrapper_tab">
+    <div class="container_tab">
       <ul class="tab_l" ref="tabs_base">
         <li class="false" @click="clickTab('A', 'tabs_base', $event)">
           製造業
@@ -12,9 +12,9 @@
     </div>
     <Base />
   </section>
-  <section class="container_charts">
+  <section>
     <h6 class="text-system-light_05">其他平均表現</h6>
-    <div class="wrapper_tab">
+    <div class="container_tab">
       <ul class="tab_l" ref="tabs_other">
         <li class="true" @click="clickTab(Finance, 'tabs_other', $event)">
           財務力

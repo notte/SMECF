@@ -1,7 +1,7 @@
 <template>
-  <section class="container_center">
+  <section class="container_map">
     <h6 class="text-system-light_05">產業區域分布</h6>
-    <ul class="switch" ref="tabs">
+    <ul class="switch_button" ref="tabs">
       <li class="true" @click="clickTab(Register, $event)">登記地區</li>
       <li class="false" @click="clickTab(Expand, $event)">擴建廠房分佈</li>
       <li class="false" @click="clickTab(Created, $event)">新建廠房分佈</li>
@@ -9,18 +9,18 @@
         產業別區域分佈
       </li>
     </ul>
-    <ManufacturerA v-if="isShow(Register) | isShow(Expand) | isShow(Created)" />
-    <ManufacturerB v-if="isShow(Distributed)" />
+    <DetailCity v-if="isShow(Register) | isShow(Expand) | isShow(Created)" />
+    <DetailArea v-if="isShow(Distributed)" />
   </section>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import * as Status from "@/models/status/type";
-import ManufacturerA from "@/components/common/ManufacturerA.vue";
-import ManufacturerB from "@/components/common/ManufacturerB.vue";
+import DetailCity from "@/components/common/DetailCity.vue";
+import DetailArea from "@/components/common/DetailArea.vue";
 
 export default defineComponent({
-  components: { ManufacturerA, ManufacturerB },
+  components: { DetailCity, DetailArea },
   setup() {
     const Current = ref(Status.ManufacturerType.Register);
     const Register = ref(Status.ManufacturerType.Register);

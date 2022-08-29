@@ -1,5 +1,5 @@
 <template>
-  <ul class="tabs_center tab_l" ref="tabs">
+  <ul class="tabs_statisticsView tab_l" ref="tabs">
     <li class="true" @click="clickTab(Finance, $event)">財務力</li>
     <li class="false" @click="clickTab(Digit, $event)">數位力</li>
     <li class="false" @click="clickTab(Innovation, $event)">創新力</li>

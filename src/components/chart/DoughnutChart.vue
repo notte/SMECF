@@ -1,25 +1,25 @@
 <template>
-  <section class="wrapper_chart">
+  <section class="container_chart">
     <!-- 最上層標題 -->
-    <div class="title">
-      <p class="subtitle_3 text-system-light_01">標題</p>
-      <button>下載</button>
+    <div class="top">
+      <p class="title">標題</p>
+      <button><i class="gg-software-download"></i></button>
     </div>
     <!-- 第二層 tab，可能有可能沒有，或者是出現圖標示圖 -->
-    <ul class="switch_chart" ref="tabs_switch">
+    <ul class="switch_text" ref="tabs_switch">
       <li class="true" @click="clickTab('tabs_switch', $event)">製造業</li>
       <li class="false" @click="clickTab('tabs_switch', $event)">服務業</li>
     </ul>
     <div class="info">
       <!-- 分數資訊 -->
-      <div class="data">
-        <h1 class="text-system-light_05 flex flex-nowrap items-baseline">
+      <div class="text">
+        <h1 class="percent">
           5.1
           <span class="subtitle_2">/10</span>
         </h1>
         <!-- <p class="subtitle_4 text-system-dark_04">整體平均 4.6 分</p> -->
       </div>
-      <!-- <div class="data" ref="tabs">
+      <!-- <div class="text" ref="tabs">
         <p class="true" @click="clickTab('tabs', $event)">公司年資</p>
         <p class="false" @click="clickTab('tabs', $event)">資本額</p>
         <p class="false" @click="clickTab('tabs', $event)">員工數</p>

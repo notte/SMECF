@@ -1,8 +1,9 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@import 'style';
+@import 'icon';
 @import 'chart';
+@import 'style';
 
 @layer base {
     h1 {
@@ -47,6 +48,7 @@
         line-height: 30px;
     }
 }
+
 @layer components {
     // button size & icon in text button
     .btn_xl {
@@ -129,7 +131,7 @@
 
     .tab_xl,
     .tab_l {
-        @apply flex cursor-pointer;
+        @apply flex justify-center cursor-pointer;
 
         .true {
             @apply text-primary-main font-bold;
@@ -152,19 +154,8 @@
         font-size: 1em;
         line-height: 28px;
     }
-
-  
-
-    // container
-
-    .container_charts {
-        @apply mb-10;
-    }
-
-    .container_charts:last-child {
-        @apply -mb-0;
-    }
 }
+
 @layer utilities {
 
     // Typography

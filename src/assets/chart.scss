@@ -1,8 +1,12 @@
-.wrapper_chart {
+.container_chart {
     @apply my-4 bg-system-dark_02 p-6;
 
-    .title {
+    .top {
         @apply flex justify-between;
+
+        .title {
+            @apply subtitle_3 text-system-light_01;
+        }
     }
 
     // (下方的)資訊區塊
@@ -10,7 +14,7 @@
         @apply flex items-center justify-between w-full h-auto;
     
     
-        .data {
+        .text {
             .true {
                 @apply text-primary-main cursor-pointer;
             }
@@ -18,68 +22,21 @@
             .false {
                 @apply text-system-dark_04 cursor-pointer;
             }
+
         }
-    
+
+        
+        h1.percent {
+            @apply text-system-light_05 flex flex-nowrap items-baseline;
+        }
+        
+        // 圖表
         .chart {
-            // bottom: 10px;
             height: 120px;
             position: relative;
-            // right: -5px;
             width: 120px;
         }
 
-        .barBase {
-            // height: 250px;
-            // position: relative;
-            // width: 300px;
-
-            // canvas {
-            //     bottom: 0;
-            //     left: 10px;
-            //     right: 0;
-            //     top: 0;
-            //     width: 200px;
-            // }
-        }
-
-    }
-}
-
-// 圖表裡的 switch 或 例圖
-ul.legends {
-    @apply flex-col;
-}
-
-ul.switch_chart,
-ul.legends {
-    @apply flex text-sm;
-
-    li {
-        @apply mr-2 cursor-pointer;
-    }
-
-    li:last-child {
-        @apply mr-0;
-    }
-
-    li.true {
-        @apply text-primary-main;
-    }
-
-    li.false {
-        @apply text-system-dark_04;
-    }
-
-    li.legend_item {
-        @apply flex my-1 items-center text-system-light_01 font-medium text-sm cursor-default;
-
-        .icon {
-            @apply relative mr-2 p-0;
-
-            background-color: #fff;
-            height: 10px;
-            width: 10px;
-        }
     }
 }
 
@@ -105,7 +62,7 @@ ul.legends {
         }
     }
 
-    .wrapper_bar {
+    .base_bar {
         @apply w-full flex-auto bg-system-dark_03 rounded-2xl;
     
         height: 10px;
@@ -118,57 +75,59 @@ ul.legends {
             width: 10px;
         }
     }
+
 }
 
-
 // 地圖樣式
-.container_center {
+.container_map {
     @apply flex flex-col w-full justify-center items-center;
 
     height: calc(100% - 60px);
 
-
-    .container_map {
+    .info {
         @apply flex w-full h-full justify-center items-center;
+    }
+       
+    .map {
+        @apply flex justify-center w-3/6 h-5/6;
 
-        
-        .map {
-            @apply flex justify-center w-3/6 h-5/6;
+        path {
+            box-shadow: 0 0 3px #000;
+            cursor: pointer;
+            fill: #fff;
+            stroke: #383c41;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1px;
 
-            path {
-                box-shadow: 0 0 3px #000;
-                cursor: pointer;
-                fill: #fff;
-                stroke: #383c41;
+            &:hover,
+            &.active {
+                // box-sizing: content-box;
+                fill: rgba(#9ed8db, 0.6);
+                stroke: rgba(#9ed8db, 0.6);
                 stroke-linecap: round;
                 stroke-linejoin: round;
                 stroke-width: 1px;
-
-                &:hover,
-                &.active {
-                    // box-sizing: content-box;
-                    fill: rgba(#9ed8db, 0.6);
-                    stroke: rgba(#9ed8db, 0.6);
-                    stroke-linecap: round;
-                    stroke-linejoin: round;
-                    stroke-width: 1px;
-                }
-        
             }
+    
+        }
+    }
+
+    .city {
+        @apply h-full flex flex-col justify-center items-start;
+
+        .chart {
+            height: 350px;
+            width: 350px;
         }
 
-        .city {
-            @apply h-full flex flex-col justify-center items-start;
-
-            .chart {
-                height: 350px;
-                width: 350px;
-            }
-
-            .back {
-                @apply body_14 mt-6 text-system-light_05 self-center;
-            }
+        .back {
+            @apply body_14 mt-6 text-system-light_05 self-center;
         }
+    }
+
+    .city.center_city {
+        @apply items-center;
     }
 }
 

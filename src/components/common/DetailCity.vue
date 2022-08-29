@@ -1,15 +1,41 @@
 <template>
-  <h6 class="text-system-light_05">縣市</h6>
-  <!-- <ul class="switch" ref="tabs">
-    <li class="true" @click="clickTab(Register, $event)">登記地區</li>
-    <li class="false" @click="clickTab(Expand, $event)">擴建廠房分佈</li>
-    <li class="false" @click="clickTab(Created, $event)">新建廠房分佈</li>
-    <li class="false" @click="clickTab(Distributed, $event)">產業別區域分佈</li>
-  </ul> -->
-  <div class="chart">
-    <v-chart :option="option" />
+  <div class="info">
+    <div class="map" ref="map_size">
+      <Map />
+    </div>
+    <div class="city">
+      <h6 class="text-system-light_05">縣市</h6>
+      <ul class="switch_button" ref="tabs">
+        <li class="true" @click="clickTab(Register, $event)">登記地區</li>
+        <li class="false" @click="clickTab(Expand, $event)">擴建廠房分佈</li>
+        <li class="false" @click="clickTab(Created, $event)">新建廠房分佈</li>
+        <li class="false" @click="clickTab(Distributed, $event)">
+          產業別區域分佈
+        </li>
+      </ul>
+      <div class="chart">
+        <v-chart :option="option" />
+      </div>
+      <ul class="checkbox">
+        <li class="label_item">
+          <label class="container">
+            <input type="checkbox" checked />
+            <span class="checkmark"><i class="gg-check"></i></span>
+            <p>製造業</p>
+          </label>
+        </li>
+        <li class="label_item">
+          <label>
+            <input type="checkbox" checked />
+            <span><i class="gg-check"></i></span>
+            <p>服務業</p>
+          </label>
+        </li>
+      </ul>
+      <button class="back">回到產業區域分布</button>
+    </div>
   </div>
-  <!-- <ul class="checkbox">
+  <ul class="checkbox">
     <li class="label_item">
       <label class="container">
         <input type="checkbox" checked />
@@ -25,20 +51,12 @@
       </label>
     </li>
   </ul>
-  <button class="back">回到產業區域分布</button> -->
-  <ul class="legends self-center flex-row">
-    <li class="legend_item">
-      <div class="icon"></div>
-      製造業
-    </li>
-    <li class="legend_item">
-      <div class="icon"></div>
-      服務業
-    </li>
-  </ul>
 </template>
+
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
+import Map from "@/components/common/Map.vue";
+import EventBus from "@/utilities/event-bus";
 import { CanvasRenderer } from "echarts/renderers";
 import VChart from "vue-echarts";
 import * as echarts from "echarts/core";
@@ -59,10 +77,10 @@ echarts.use([
   CanvasRenderer,
   LabelLayout,
 ]);
-
 export default defineComponent({
-  components: { VChart },
+  components: { Map, VChart },
   setup() {
+    const map_size = ref();
     const Current = ref(Status.ManufacturerType.Register);
     const Register = ref(Status.ManufacturerType.Register);
     const Expand = ref(Status.ManufacturerType.Expand);
@@ -78,7 +96,7 @@ export default defineComponent({
         textStyle: {
           color: "#FCFDFE",
         },
-        formatter: (params: any, ticket: any, callback: any) => {
+        formatter: (params: any) => {
           return params.data.label;
         },
       },
@@ -112,7 +130,23 @@ export default defineComponent({
       Current.value = Status;
       event.path[0].className = "true";
     }
-    return { option, tabs, clickTab, Register, Expand, Created, Distributed };
+
+    onMounted(() => {
+      EventBus.emit("create_map", [
+        map_size.value.offsetWidth,
+        map_size.value.offsetHeight,
+      ]);
+    });
+    return {
+      map_size,
+      option,
+      tabs,
+      clickTab,
+      Register,
+      Expand,
+      Created,
+      Distributed,
+    };
   },
 });
 </script>

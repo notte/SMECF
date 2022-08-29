@@ -1,5 +1,5 @@
 <template>
-  <section class="wrapper_grid">
+  <section class="container_grid">
     <DoughnutChart data="30" />
     <BarChartHorizontal />
     <BarChartHorizontal />
@@ -8,8 +8,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import DoughnutChart from "@/components/common/DoughnutChart.vue";
-import BarChartHorizontal from "@/components/common/BarChartHorizontal.vue";
+import DoughnutChart from "@/components/chart/DoughnutChart.vue";
+import BarChartHorizontal from "@/components/chart/BarChartHorizontal.vue";
 
 export default defineComponent({
   components: { DoughnutChart, BarChartHorizontal },

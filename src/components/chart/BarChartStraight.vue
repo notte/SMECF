@@ -1,10 +1,10 @@
 <template>
-  <section class="wrapper_chart">
-    <div class="title">
-      <p class="subtitle_3 text-system-light_01">標題</p>
-      <button>下載</button>
+  <section class="container_chart">
+    <div class="top">
+      <p class="title">標題</p>
+      <button><i class="gg-software-download"></i></button>
     </div>
-    <ul class="switch_chart">
+    <ul class="switch_text">
       <li class="legend_item">
         <div class="icon"></div>
         製造業
