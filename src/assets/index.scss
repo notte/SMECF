@@ -1,14 +1,10 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@import 'layout';
+@import 'style';
 @import 'chart';
 
 @layer base {
-    html {
-        font-size: 16px;
-    }
-
     h1 {
         @apply font-bold;
 
@@ -157,29 +153,7 @@
         line-height: 28px;
     }
 
-    ul.tabs_center {
-        @apply flex justify-center mb-5;
-    }
-    
-    ul.switch {
-        @apply flex my-6;
-    
-        li {
-            @apply cursor-pointer;
-    
-            font-size: 12px;
-            line-height: 16px;
-            padding: 4px 12px;
-        }
-    
-        li.true {
-            @apply text-system-light_05 rounded-xl bg-primary-main;
-        }
-    
-        li.false {
-            @apply text-system-dark_04;
-        }
-    }
+  
 
     // container
 
@@ -189,19 +163,6 @@
 
     .container_charts:last-child {
         @apply -mb-0;
-    }
- 
-
-    // wrapper
-
-    .wrapper_grid {
-        @apply grid grid-cols-4;
-    
-        gap: 30px;
-    }
-    
-    .wrapper_tab {
-        @apply my-6;
     }
 }
 @layer utilities {

@@ -1,6 +1,3 @@
-<template>
-  <div></div>
-</template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import * as Model from "@/models/interface/map";
@@ -10,6 +7,7 @@ import * as d3 from "d3";
 export default defineComponent({
   setup() {
     EventBus.on("create_map", (prams) => {
+      d3.selectAll("svg").remove();
       let width = (prams as number[])[0];
       let height = (prams as number[])[1];
 
@@ -31,6 +29,7 @@ export default defineComponent({
         .translate([width / 2, height / 2.5])
         .center([121, 24]);
       let path = d3.geoPath().projection(projection);
+
       let svg = d3
         .select(".map")
         .append("svg")

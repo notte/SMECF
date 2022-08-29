@@ -5,3 +5,10 @@ export enum StatisticsType {
   Market = "Market",
   Manufacturer = "Manufacturer",
 }
+
+export enum ManufacturerType {
+  Register = "Register",
+  Expand = "Expand",
+  Created = "Created",
+  Distributed = "Distributed",
+}

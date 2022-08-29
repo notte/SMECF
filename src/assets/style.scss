@@ -1,0 +1,168 @@
+html {
+    font-size: 16px;
+
+    body {
+        @apply overflow-hidden;
+
+        background-color: #1e1e1e;
+    }
+
+}
+
+// wrapper
+
+.wrapper_grid {
+    @apply grid grid-cols-4;
+    
+    gap: 30px;
+}
+    
+.wrapper_tab {
+    @apply my-6;
+}
+
+.container_layout {
+    @apply flex w-screen h-screen overflow-hidden ;
+
+
+    nav {
+        @apply transition-all flex flex-col justify-center items-start  overflow-hidden bg-system-dark_02;
+        
+        width: 72px;
+        // width: 210px;
+
+        .wrapper_nav {
+            @apply justify-center cursor-pointer;
+        }
+
+        .nav_button {
+            @apply flex items-center transition-colors;
+
+            box-sizing: border-box;
+
+            .nav_icon {
+                @apply my-3 mx-6;
+
+                background-color: #fff;
+                height: 20px;
+                width: 20px;
+            }
+
+            button {
+                @apply subtitle_3 flex mr-6;
+
+                width: 85px;
+            }
+        }
+
+        .nav_button.true {
+            @apply text-primary-main;
+
+        }
+
+        .nav_button.true::before {
+            @apply absolute inline-block;
+
+            border-left: 4px solid #055ffc;
+            content: '';
+            height: 45px;
+        }
+
+        .nav_button.false {
+            @apply text-system-dark_03;
+        }
+    }
+
+    main {
+        @apply w-full overflow-hidden;
+
+        .container_main {
+            @apply  p-7 overflow-y-scroll  h-full;
+        }
+    }
+}
+
+ul.tabs_center {
+    @apply flex justify-center mb-5;
+}
+    
+ul.switch {
+    @apply flex my-6;
+    
+    li {
+        @apply cursor-pointer;
+    
+        font-size: 12px;
+        line-height: 16px;
+        padding: 4px 12px;
+    }
+    
+    li.true {
+        @apply text-system-light_05 rounded-xl bg-primary-main;
+    }
+    
+    li.false {
+        @apply text-system-dark_04;
+    }
+}
+
+ul.checkbox {
+    @apply flex justify-center self-center;
+
+    .label_item {
+        @apply mx-3;
+
+        p {
+            @apply text-system-light_01 tips ml-6;
+        }
+
+        label {
+            @apply block relative cursor-pointer select-none;
+        }
+      
+        label input {
+            @apply cursor-pointer absolute opacity-0 w-0 h-0;
+        }
+      
+        span {
+            @apply absolute bg-gray-50 w-4 h-4;
+
+            border-radius: 2px;
+            left: 0;
+            top: -2px;
+        }
+      
+        label input:checked ~ span {
+            background-color: #055ffc;
+        }
+    }
+
+}
+
+.gg-check {
+    border: 2px solid transparent;
+    border-radius: 100px;
+    bottom: 2px;
+    box-sizing: border-box;
+    display: block;
+    height: 22px;
+    left: -2px;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+}
+   
+.gg-check::after {
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    height: 10px;
+    left: 3px;
+    position: absolute;
+    top: -1px;
+    transform: rotate(45deg);
+    transform-origin: bottom left;
+    width: 6px
+}

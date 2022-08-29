@@ -124,35 +124,52 @@
 
 
 // 地圖樣式
-.container_map {
+.container_center {
     @apply flex flex-col w-full justify-center items-center;
 
     height: calc(100% - 60px);
 
-    .map {
-        @apply flex justify-center w-3/6 h-3/4;
-    }
-}
 
-.map {
-    path {
-        box-shadow: 0 0 3px #000;
-        cursor: pointer;
-        fill: #fff;
-        stroke: #383c41;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 1px;
+    .container_map {
+        @apply flex w-full h-full justify-center items-center;
 
-        &:hover,
-        &.active {
-            // box-sizing: content-box;
-            fill: rgba(#9ed8db, 0.6);
-            stroke: rgba(#9ed8db, 0.6);
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-width: 1px;
-        }
         
+        .map {
+            @apply flex justify-center w-3/6 h-5/6;
+
+            path {
+                box-shadow: 0 0 3px #000;
+                cursor: pointer;
+                fill: #fff;
+                stroke: #383c41;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 1px;
+
+                &:hover,
+                &.active {
+                    // box-sizing: content-box;
+                    fill: rgba(#9ed8db, 0.6);
+                    stroke: rgba(#9ed8db, 0.6);
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 1px;
+                }
+        
+            }
+        }
+
+        .city {
+            @apply h-full flex flex-col justify-center items-start;
+
+            .chart {
+                @apply h-2/5;
+            }
+
+            .back {
+                @apply body_14 mt-6 text-system-light_05 self-center;
+            }
+        }
     }
 }
+
