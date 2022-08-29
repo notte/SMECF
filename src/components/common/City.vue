@@ -1,13 +1,15 @@
 <template>
   <h6 class="text-system-light_05">縣市</h6>
-  <ul class="switch" ref="tabs">
+  <!-- <ul class="switch" ref="tabs">
     <li class="true" @click="clickTab(Register, $event)">登記地區</li>
     <li class="false" @click="clickTab(Expand, $event)">擴建廠房分佈</li>
     <li class="false" @click="clickTab(Created, $event)">新建廠房分佈</li>
     <li class="false" @click="clickTab(Distributed, $event)">產業別區域分佈</li>
-  </ul>
-  <v-chart :option="option" class="chart" />
-  <ul class="checkbox">
+  </ul> -->
+  <div class="chart">
+    <v-chart :option="option" />
+  </div>
+  <!-- <ul class="checkbox">
     <li class="label_item">
       <label class="container">
         <input type="checkbox" checked />
@@ -23,8 +25,8 @@
       </label>
     </li>
   </ul>
-  <button class="back">回到產業區域分布</button>
-  <ul class="switch_chart">
+  <button class="back">回到產業區域分布</button> -->
+  <ul class="legends self-center flex-row">
     <li class="legend_item">
       <div class="icon"></div>
       製造業
