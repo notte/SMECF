@@ -21,6 +21,14 @@ const routes: Array<RouteRecordRaw> = [
       main: () => import("../views/StatisticsView.vue"),
     },
   },
+  {
+    path: "/demo",
+    name: "demo",
+
+    components: {
+      main: () => import("../components/common/DetailPopup.vue"),
+    },
+  },
 ];
 
 const router = createRouter({

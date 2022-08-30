@@ -87,31 +87,6 @@
     .info {
         @apply flex w-full h-full justify-center items-center;
     }
-       
-    .map {
-        @apply flex justify-center w-3/6 h-5/6;
-
-        path {
-            box-shadow: 0 0 3px #000;
-            cursor: pointer;
-            fill: #fff;
-            stroke: #383c41;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-width: 1px;
-
-            &:hover,
-            &.active {
-                // box-sizing: content-box;
-                fill: rgba(#9ed8db, 0.6);
-                stroke: rgba(#9ed8db, 0.6);
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-width: 1px;
-            }
-    
-        }
-    }
 
     .city {
         @apply h-full flex flex-col justify-center items-start;
@@ -125,9 +100,122 @@
             @apply body_14 mt-6 text-system-light_05 self-center;
         }
     }
+}
 
-    .city.center_city {
-        @apply items-center;
+// 地圖樣式
+.map {
+    @apply flex justify-center w-3/6 h-5/6;
+
+    path {
+        cursor: pointer;
+        position: static;
+        stroke: #383c41;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 0.5px;
+
+        &:hover,
+        &.active {
+            @apply transition-all;
+
+            position: absolute;
+            stroke: #084fcb;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform: translateY(-5px);
+        }
+
+    }
+
+    path.city_9007,
+    path.city_9020 {
+        display: none;
     }
 }
 
+.map.city {
+    // 宜蘭苗栗
+    path.city_10002,
+    path.city_10005,
+    path.city_10010,
+    path.city_10007, {
+        fill: #ed6565;
+    }
+    // 桃園新竹
+    path.city_10004,
+    path.city_68,
+    path.city_63,
+    path.city_10018 {
+        fill: #eb4646;
+    }
+    // 高雄台南台中花蓮
+    path.city_64,
+    path.city_67,
+    path.city_66,
+    path.city_10015 {
+        fill: #fb9090;
+    }
+    // 南投台東嘉義市基隆
+    path.city_10008,
+    path.city_10014,
+    path.city_10009,
+    path.city_10020,
+    path.city_10017,
+    path.city_10013 {
+        fill: #ffc1c1;
+    }
+    // 新北市
+    path.city_65 {
+        fill: #f37c7c;
+    }
+
+    path.city_10016,
+    path.city_10014 {
+        fill: #ffc1c1;
+        stroke: transparent;
+    }
+}
+
+.map.area {
+    // 藍色
+    path.city_10002,
+    path.city_10005,
+    path.city_10004,
+    path.city_68,
+    path.city_63,
+    path.city_10018,
+    path.city_65,
+    path.city_10017 {
+        fill: #00bae2;
+    }
+
+
+    // 黃色
+    path.city_10010,
+    path.city_10007,
+    path.city_66,
+    path.city_10009,
+    path.city_10020,
+    path.city_10008 {
+        fill: #fbb42b;
+    }
+
+    // 綠色
+    path.city_64,
+    path.city_67,
+    path.city_10013 {
+        fill: #2bc679;
+    }
+
+
+    path.city_10015,
+    path.city_10014, {
+        fill: #f37c7c;
+        stroke: transparent;
+    }
+
+    path.city_10016 {
+        fill: #fbb42b;
+        stroke: transparent;
+    }
+}

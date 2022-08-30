@@ -142,3 +142,34 @@
 .gg-voicemail-o::after {
     right: 2px
 }
+
+// 關閉
+.gg-close {
+    border: 2px solid transparent;
+    border-radius: 40px;
+    box-sizing: border-box;
+    display: block;
+    height: 22px;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 22px
+}
+   
+.gg-close::after,
+.gg-close::before {
+    background: #8a93a1;
+    border-radius: 5px;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    height: 2px;
+    left: 1px;
+    position: absolute;
+    top: 8px;
+    transform: rotate(45deg);
+    width: 16px
+}
+   
+.gg-close::after {
+    transform: rotate(-45deg)
+}

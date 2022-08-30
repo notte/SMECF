@@ -28,7 +28,7 @@ export default defineComponent({
 
       let projection = d3
         .geoMercator()
-        .scale(scale * 0.7)
+        .scale(scale * 0.65)
         .translate([width / 2, height / 2.5])
         .center([121, 24]);
       let path = d3.geoPath().projection(projection);
@@ -39,6 +39,12 @@ export default defineComponent({
         .attr("width", width)
         .attr("height", height);
 
+      let Tooltip = d3
+        .select(".map")
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltips");
+
       let g = svg.append("g").attr("id", "group");
 
       d3.json<Model.IMapResponseData>("./Taiwan.geo.json").then((data) => {
@@ -48,11 +54,29 @@ export default defineComponent({
             .enter()
             .append("path")
             .attr("d", path as never)
-            .attr("id", (d) => {
-              return d.properties["COUNTYID"];
+            .attr("class", (d) => {
+              return "city_" + d.properties["COUNTYID"];
+            })
+            .on("mouseover", (event) => {
+              svg.selectAll("path").sort(function (a, b): number {
+                if (
+                  (a as Model.IFeatur).properties["COUNTYID"] !==
+                  (b as Model.IFeatur).properties["COUNTYID"]
+                ) {
+                  return -1;
+                } else {
+                  return 1;
+                }
+              });
+              Tooltip.html("The exact value of<br>this cell is: ")
+                .style("opacity", 1)
+                .style("left", event.pageX + "px")
+                .style("top", event.pageY + "px");
+            })
+            .on("mouseout", (d) => {
+              Tooltip.style("opacity", 0);
             });
           // .on("click", (e, d) => {
-
           // });
         }
       });

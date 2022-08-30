@@ -1,9 +1,9 @@
 <template>
   <div class="info">
-    <div class="map" ref="map_size">
+    <div class="map area" ref="map_size">
       <Map />
     </div>
-    <div class="city center_city">
+    <div class="city items-center">
       <h6 class="text-system-light_05">縣市</h6>
       <div class="chart">
         <v-chart :option="option" />

@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <div class="map" ref="map_size">
+    <div class="map city" ref="map_size">
       <Map />
     </div>
     <div class="city">

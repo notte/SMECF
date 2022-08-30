@@ -101,14 +101,46 @@ html {
     }
 }
 
-.tabs_statisticsView {
-    @apply mb-5 tab_l;
-}
 
 .container_grid {
     @apply grid grid-cols-4;
     
     gap: 30px;
+    
+}
+
+.popup {
+    @apply flex flex-col overflow-hidden p-7;
+
+    .title_popup {
+        @apply flex justify-between mb-10;
+    }
+
+    .chain_item {
+        @apply mb-8;
+    }
+
+    .chain_item:last-child {
+        @apply mb-0;
+    }
+}
+
+.container_chain {
+    @apply grid grid-cols-2;
+
+    gap: 50px;
+
+    .bar_item {
+        @apply mt-5;
+    }
+
+    .bar_info {
+        @apply w-2/5;
+    }
+}
+
+.tabs_statisticsView {
+    @apply mb-5 tab_l;
 }
 
 .container_tab {

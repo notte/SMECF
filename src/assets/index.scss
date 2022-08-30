@@ -2,8 +2,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import 'icon';
-@import 'chart';
 @import 'style';
+@import 'chart';
 
 @layer base {
     h1 {
@@ -380,7 +380,7 @@
 
     // tooltips
     .tooltips {
-        @apply relative opacity-95 max-w-max bg-system-dark_03 font-normal text-sm text-system-light_01 radius_8 ;
+        @apply absolute transition-all opacity-95 max-w-max bg-system-dark_03 font-normal text-sm text-system-light_01 radius_8 ;
 
         gap: 8px;
         margin: 4px;
