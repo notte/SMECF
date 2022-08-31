@@ -6,7 +6,11 @@
       <button><i class="gg-close"></i></button>
     </div>
     <div class="container_chain">
-      <div class="chain_item">
+      <div
+        class="chain_item"
+        v-on:mouseover="show($event, 'content')"
+        v-on:mouseleave="leave"
+      >
         <h6 class="text-system-light_03">庫存與訂單管理</h6>
         <div class="container_bar">
           <div class="bar_item">
@@ -125,7 +129,9 @@
                 >提升庫存週轉率</span
               >
             </div>
-            <div class="base_bar"><div class="bar"></div></div>
+            <div class="base_bar">
+              <div class="bar"></div>
+            </div>
           </div>
           <div class="bar_item">
             <div class="bar_info">
@@ -160,13 +166,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import BarChartHorizontal from "@/components/chart/BarChartHorizontal.vue";
+import * as d3 from "d3";
 
 export default defineComponent({
   components: { BarChartHorizontal },
   setup() {
-    return {};
+    let Tooltip: any;
+
+    onMounted(() => {
+      Tooltip = d3
+        .select(".popup")
+        .append("div")
+        .style("z-index", 10)
+        .style("opacity", 0)
+        .attr("class", "tooltips");
+    });
+
+    function show(event: any, content: string): void {
+      Tooltip.html(content)
+        .style("opacity", 1)
+        .style("left", event.pageX + "px")
+        .style("top", event.pageY + "px");
+    }
+
+    function leave(): void {
+      Tooltip.style("opacity", 0);
+    }
+
+    return { show, leave };
   },
 });
 </script>

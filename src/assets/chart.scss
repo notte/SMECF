@@ -7,6 +7,12 @@
         .title {
             @apply subtitle_3 text-system-light_01;
         }
+
+        .icon_top {
+            button:first-child {
+                @apply mr-3.5;
+            }
+        }
     }
 
     // (下方的)資訊區塊

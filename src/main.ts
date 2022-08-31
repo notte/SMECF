@@ -3,5 +3,6 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import "./assets/index.scss";
+import FloatingVue from "floating-vue";
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).use(FloatingVue).mount("#app");

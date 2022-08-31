@@ -173,3 +173,36 @@
 .gg-close::after {
     transform: rotate(-45deg)
 }
+// info
+.gg-info {
+    border: 2px solid #8a93a1;
+    border-radius: 40px;
+    box-sizing: border-box;
+    display: block;
+    height: 20px;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 20px
+}
+   
+.gg-info::after,
+.gg-info::before {
+    background: #8a93a1;
+    border-radius: 3px;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    left: 7px;
+    position: absolute;
+    width: 2px
+}
+   
+.gg-info::after {
+    bottom: 2px;
+    height: 8px
+}
+   
+.gg-info::before {
+    height: 2px;
+    top: 2px
+}

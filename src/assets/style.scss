@@ -29,22 +29,15 @@ html {
             box-sizing: border-box;
 
             .nav_icon {
-                @apply my-3 mx-6 relative h-5 w-5;
+                @apply relative flex justify-center items-center;
 
-                i {
+                height: 50px;
+                width: 70px;
+
+                img {
                     @apply absolute;
-
-                    bottom: -1px;
-                    right: -1px;
-                }
-
-                i.gg-chart {
-                    left: 8px;
-                    top: 2px;
                 }
             }
-
-            
 
             button {
                 @apply subtitle_3 flex mr-6;
@@ -56,28 +49,20 @@ html {
 
         .nav_button.false {
             @apply text-system-dark_03;
+
+            .nav_icon {
+                img {
+                    @apply transition-all z-0;
+                }
+            }
         }
 
         .nav_button.true {
             @apply text-primary-main;
 
             .nav_icon {
-                i.gg-chart {
-                    border-bottom-color: #055ffc;
-                    border-left-color: #055ffc;
-                }
-
-                i.gg-chart::after,
-                i.gg-chart::before {
-                    border-color: #055ffc;
-                    border-right-color: transparent;
-                }
-
-                .gg-voicemail-o,
-                .gg-voicemail-o::after,
-                .gg-voicemail-o::before {
-                    border-color: #055ffc;
-
+                img {
+                    @apply transition-all z-10;
                 }
             }
         }
@@ -249,3 +234,28 @@ ul.checkbox {
 .other_subtitle {
     @apply label_large text-system-dark_05;
 }
+
+.info_icon {
+    @apply relative;
+}
+
+
+
+// .info_icon::before {
+//     @apply absolute transition-all opacity-0 max-w-max bg-system-dark_03 font-normal text-sm text-system-light_01 radius_8;
+
+//     bottom: 25px;
+//     content: '點擊查看詳細使用工具';
+//     gap: 8px;
+//     margin: 4px;
+//     padding: 6px 8px;
+//     right: 5%;
+//     width: max-content;
+// }
+
+// .info_icon:hover {
+//     &::before {
+//         @apply transition-all opacity-95;
+//     }
+
+// }

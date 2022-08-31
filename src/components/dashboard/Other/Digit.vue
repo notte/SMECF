@@ -6,9 +6,9 @@
   </section>
   <p class="other_subtitle">購面概覽</p>
   <section class="container_grid">
-    <BarChartHorizontal />
-    <BarChartHorizontal />
-    <BarChartHorizontal />
+    <BarChartHorizontal class="h-52" />
+    <BarChartHorizontal class="h-52" />
+    <BarChartHorizontal class="h-52" />
   </section>
 </template>
 <script lang="ts">
