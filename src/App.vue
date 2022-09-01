@@ -10,7 +10,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import Nav from "@/components/common/Nav.vue";
+import Nav from "@/components/common/nav.vue";
 
 export default defineComponent({
   components: { Nav },

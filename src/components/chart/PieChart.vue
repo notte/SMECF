@@ -60,7 +60,6 @@ import {
 import { PieChart } from "echarts/charts";
 import { LabelLayout } from "echarts/features";
 import * as d3 from "d3";
-import * as common from "@/utilities/common-method";
 
 echarts.use([
   TitleComponent,
