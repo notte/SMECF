@@ -1,14 +1,14 @@
 <template>
   <p class="other_subtitle">平均分數</p>
   <section class="container_grid">
-    <DoughnutChart />
-    <DoughnutChart />
+    <DoughnutChart type=1 title="Intelligent 綜合平均分數" :data="5" />
+    <DoughnutChart type=3 title="平均分數" :data="6" />
   </section>
-  <p class="other_subtitle">購面概覽</p>
+  <p class="other_subtitle">構面概覽</p>
   <section class="container_grid">
-    <BarChartHorizontal class="h-52" />
-    <BarChartHorizontal class="h-52" />
-    <BarChartHorizontal class="h-52" />
+    <BarChartHorizontal class="h-52" type=2 title="價值鏈管理" :data="1" />
+    <BarChartHorizontal class="h-52" type=2 title="研發生產" :data="2" />
+    <BarChartHorizontal class="h-52" type=2 title="企業營運" :data="3" />
   </section>
 </template>
 <script lang="ts">
