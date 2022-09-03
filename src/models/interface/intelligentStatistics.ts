@@ -7,7 +7,6 @@ export interface IIntelligentStatistics {
     valueChainTool: ValueChainTool;
     researchTool: IResearchTool;
     operationTool: IOperationTool;
-
 }
 
 /** 價值鏈管理
