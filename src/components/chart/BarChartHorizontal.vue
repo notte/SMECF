@@ -24,19 +24,15 @@
 
     <!-- type2-->
     <ul v-if="type==2" class="switch_text">
-      <li class="legend_item">
+      <li class="legend_item" v-for="item in data" :key="item.key">
         <div class="icon"></div>
-        製造業
-      </li>
-      <li class="legend_item">
-        <div class="icon"></div>
-        服務業
+        {{item.name}}
       </li>
     </ul>
     <div v-if="type==2" class="container_bar">
       <div class="bar_item" v-for="item in data" :key="item.key">
         <div class="bar_info">
-          <span class="text-system-light_03">3.1</span>
+          <span class="text-system-light_03">{{item.data}}</span>
           <span class="subtitle_4 text-system-dark_05">/10</span>
         </div>
         <div class="base_bar"><div class="bar"></div></div>

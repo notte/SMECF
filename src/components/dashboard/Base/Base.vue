@@ -1,9 +1,9 @@
 <template>
   <section class="container_grid">
-    <DoughnutChart type=1 title="綜合平均分數" :data="data.avgScore" />
-    <BarChartHorizontal type=1 title="各構面平均分數" :data="data.eachDimensionAvgScore" />
-    <BarChartHorizontal type=1 title="指標亮點業者" :data="data.highlightCompany" />
-    <DoughnutChart type=2 title="過案廠商樣貌" :data="data.manufacturer" />
+    <DoughnutChart type=1 title="綜合平均分數" :data="data.avgScore" :max="10"/>
+    <BarChartHorizontal type=1 title="各構面平均分數" :data="data.eachDimensionAvgScore"/>
+    <BarChartHorizontal type=1 title="指標亮點業者" :data="data.highlightCompany"/>
+    <DoughnutChart type=2 title="過案廠商樣貌" :data="data.manufacturer" :max="data.manufacturerMaxCount"/>
   </section>
 </template>
 <script lang="ts">
@@ -17,9 +17,7 @@ export default defineComponent({
   components: { DoughnutChart, BarChartHorizontal },
   setup() {
     const data = reactive({
-      avgScore: 
-        { name: "5.1", data: 5.1 } 
-      ,
+      avgScore: [{ name: "5.1", data: 5.1 }],
       eachDimensionAvgScore: [
         { name: "財務力", data: 4.9 },
         { name: "數位力", data: 4.9 },
@@ -39,15 +37,16 @@ export default defineComponent({
         { name: "員工數", data: 0 },
         { name: "場址地區", data: 0 },
       ],
+      manufacturerMaxCount: 0,
     })
     
     onMounted(() => {
       axios.get<IDashboardBasic>("./data/dashboard_basic.json")
         .then((res) => {
           console.log(res.data);
-          data.avgScore = 
+          data.avgScore = [
             { name: res.data.avgScore.toString(), data: res.data.avgScore }
-          ;
+          ];
           data.eachDimensionAvgScore = [
             { name: "財務力", data: res.data.eachDimensionAvgScore.F },
             { name: "數位力", data: res.data.eachDimensionAvgScore.I },
@@ -67,6 +66,10 @@ export default defineComponent({
             { name: "員工數", data: res.data.manufacturer.sumPeople },
             { name: "場址地區", data: res.data.manufacturer.st },
           ];
+          data.manufacturerMaxCount = res.data.manufacturer.date 
+            + res.data.manufacturer.capital
+            + res.data.manufacturer.sumPeople
+            + res.data.manufacturer.st;
         })
       });
       return {data};
