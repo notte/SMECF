@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import Digit from "@/components/statistics/Digit.vue";
 import Market from "@/components/statistics/Market.vue";
 import Innovation from "@/components/statistics/Innovation.vue";
@@ -33,6 +33,14 @@ export default defineComponent({
     const Manufacturer = ref(Status.StatisticsType.Manufacturer);
 
     const tabs = ref();
+
+    onMounted(() => {
+      for (let i = 0; i <= tabs.value.children.length - 2; i++) {
+        let str = tabs.value.children[i].innerHTML;
+        str = str.slice(0, 2);
+        tabs.value.children[i].innerHTML = str;
+      }
+    });
 
     function clickTab(Status: Status.StatisticsType, event: any): void {
       for (let item of tabs.value.children) {

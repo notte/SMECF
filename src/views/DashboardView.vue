@@ -13,7 +13,7 @@
     <Base />
   </section>
   <section>
-    <h6 class="text-system-light_05">其他平均表現</h6>
+    <h6 class="text-system-light_05 mt-4">其他平均表現</h6>
     <div class="container_tab">
       <ul class="tab_l" ref="tabs_other">
         <li class="true" @click="clickTab(Finance, 'tabs_other', $event)">

@@ -1,3 +1,4 @@
+/* stylelint-disable keyframes-name-pattern */
 html {
     font-size: 16px;
 
@@ -14,25 +15,57 @@ html {
 
 
     nav {
-        @apply transition-all flex flex-col justify-center items-start  overflow-hidden bg-system-dark_02;
+        @apply transition-all relative flex flex-col justify-center items-start  overflow-hidden bg-system-dark_02;
         
         width: 72px;
-        // width: 210px;
+
+        .logo {
+            @apply absolute w-full top-0 flex justify-center transition-all;
+
+            .logo_small,
+            .logo_full {
+                @apply  absolute  w-full my-4 h-14;
+
+                // height: 60px;
+            }
+
+            .logo_full {
+                @apply hidden;
+            }
+
+            hr {
+                @apply absolute w-11/12 items-center;
+
+                top: 70px;
+            }
+        }
+
+        .menu_tablet {
+            @apply hidden;
+        }
 
         .container_nav {
             @apply justify-center cursor-pointer;
         }
 
-        .nav_button {
-            @apply flex items-center transition-colors;
+        li.nav_button {
+            @apply flex items-center transition-colors relative;
 
             box-sizing: border-box;
+
+            .nav_content {
+                @apply flex flex-row items-center;
+            }
 
             .nav_icon {
                 @apply relative flex justify-center items-center;
 
                 height: 50px;
                 width: 70px;
+
+                .icon_mobile {
+                    @apply hidden;
+                }
 
                 img {
                     @apply absolute;
@@ -44,6 +77,10 @@ html {
 
                 width: 85px;
             }
+        }
+
+        li.hidden_switch {
+            @apply hidden;
         }
 
 
@@ -77,11 +114,29 @@ html {
 
     }
 
+    nav:hover {
+        @apply w-52;
+
+        .logo {
+            .logo_small {
+                @apply hidden;
+            }
+
+            .logo_full {
+                @apply block h-10;
+            }
+        }
+    }
+
     main {
         @apply w-full overflow-hidden;
 
         .scroll_main {
-            @apply  p-7 overflow-y-scroll  h-full;
+            @apply  p-7 overflow-y-scroll overflow-x-hidden h-full relative;
+
+            .mode_switch {
+                @apply absolute cursor-pointer right-8 p-2 bg-system-dark_02 radius_8 w-max h-auto;
+            }
         }
     }
 }
@@ -90,8 +145,7 @@ html {
 .container_grid {
     @apply grid grid-cols-4;
     
-    gap: 30px;
-    
+    gap: 0 30px;
 }
 
 .popup {
@@ -114,6 +168,10 @@ html {
     @apply grid grid-cols-2;
 
     gap: 50px;
+
+    h6 {
+        @apply mb-4;
+    }
 
     .bar_item {
         @apply mt-5;
@@ -239,23 +297,44 @@ ul.checkbox {
     @apply relative;
 }
 
+.loader,
+.loader::before,
+.loader::after {
+    animation: bblFadInOut 1.8s infinite ease-in-out;
+    animation-fill-mode: both;
+    border-radius: 50%;
+    height: 2.5em;
+    width: 2.5em;
+}
 
+.loader {
+    animation-delay: -0.16s;
+    color: #fff;
+    font-size: 7px;
+    position: relative;
+    text-indent: -9999em;
+    transform: translateZ(0);
+}
 
-// .info_icon::before {
-//     @apply absolute transition-all opacity-0 max-w-max bg-system-dark_03 font-normal text-sm text-system-light_01 radius_8;
+.loader::before,
+.loader::after {
+    content: '';
+    position: absolute;
+    top: 0;
+}
 
-//     bottom: 25px;
-//     content: '點擊查看詳細使用工具';
-//     gap: 8px;
-//     margin: 4px;
-//     padding: 6px 8px;
-//     right: 5%;
-//     width: max-content;
-// }
+.loader::before {
+    animation-delay: -0.32s;
+    left: -3.5em;
+}
 
-// .info_icon:hover {
-//     &::before {
-//         @apply transition-all opacity-95;
-//     }
-
-// }
+.loader::after {
+    left: 3.5em;
+}
+  
+@keyframes bblFadInOut {
+    0%,
+    80%,
+    100% { box-shadow: 0 2.5em 0 -1.3em }
+    40% { box-shadow: 0 2.5em 0 0 }
+}
