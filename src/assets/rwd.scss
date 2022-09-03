@@ -41,7 +41,6 @@
     .container_nav {
         @apply transition-all relative -top-52 bg-system-dark_02 w-full flex;
 
-
         ul {
             width: 100% !important;
         }
@@ -80,8 +79,6 @@
             display: flex !important;
         }
 
-       
-
         .nav_button.true {
             @apply bg-system-dark_03 ;
 
@@ -105,7 +102,7 @@
             @apply grid-cols-1;
 
             h6 {
-                text-align: center;
+                @apply text-center;
             }
     
             .bar_item {
@@ -124,6 +121,8 @@
 
 
     .container_map {
+        // @apply top-16;
+
         ul.checkbox {
             @apply order-1;
         }
@@ -185,30 +184,29 @@
         }
 
         .info {
-            // @apply overflow-y-scroll;
-
             flex-direction: row !important;
 
             .map {
-                display: none;
+                // display: none;
             }
 
             .city {
                 @apply items-center justify-start;
-                // display: none;
+
+                display: none;
             }
 
             .checkbox {
-                order: 1;
+                @apply order-1;
             }
 
             .chart {
-                order: 2;
+                @apply order-2;
             }
 
             button.back,
             .legends_row {
-                order: 3;
+                @apply order-3;
             }
         }
 

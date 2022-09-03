@@ -25,8 +25,6 @@ html {
             .logo_small,
             .logo_full {
                 @apply  absolute  w-full my-4 h-14;
-
-                // height: 60px;
             }
 
             .logo_full {
@@ -34,13 +32,11 @@ html {
             }
 
             hr {
-                @apply absolute w-11/12 items-center;
-
-                top: 70px;
+                @apply absolute w-11/12 items-center top-16;
             }
         }
 
-        .menu_tablet {
+        button.menu_tablet {
             @apply hidden;
         }
 
@@ -49,9 +45,7 @@ html {
         }
 
         li.nav_button {
-            @apply flex items-center transition-colors relative;
-
-            box-sizing: border-box;
+            @apply flex items-center transition-colors relative box-border;
 
             .nav_content {
                 @apply flex flex-row items-center;
@@ -115,7 +109,7 @@ html {
     }
 
     nav:hover {
-        @apply w-52;
+        @apply w-52 transition-all;
 
         .logo {
             .logo_small {
@@ -184,14 +178,6 @@ html {
 
 .tabs_statisticsView {
     @apply mb-5 tab_l;
-}
-
-.container_tab {
-    @apply my-6;
-
-    ul {
-        @apply justify-start;
-    }
 }
     
 ul.switch_button {
@@ -283,7 +269,7 @@ ul.checkbox {
         }
       
         label input:checked ~ span {
-            background-color: #055ffc;
+            @apply bg-primary-main;
         }
     }
 
@@ -291,50 +277,4 @@ ul.checkbox {
 
 .other_subtitle {
     @apply label_large text-system-dark_05;
-}
-
-.info_icon {
-    @apply relative;
-}
-
-.loader,
-.loader::before,
-.loader::after {
-    animation: bblFadInOut 1.8s infinite ease-in-out;
-    animation-fill-mode: both;
-    border-radius: 50%;
-    height: 2.5em;
-    width: 2.5em;
-}
-
-.loader {
-    animation-delay: -0.16s;
-    color: #fff;
-    font-size: 7px;
-    position: relative;
-    text-indent: -9999em;
-    transform: translateZ(0);
-}
-
-.loader::before,
-.loader::after {
-    content: '';
-    position: absolute;
-    top: 0;
-}
-
-.loader::before {
-    animation-delay: -0.32s;
-    left: -3.5em;
-}
-
-.loader::after {
-    left: 3.5em;
-}
-  
-@keyframes bblFadInOut {
-    0%,
-    80%,
-    100% { box-shadow: 0 2.5em 0 -1.3em }
-    40% { box-shadow: 0 2.5em 0 0 }
 }

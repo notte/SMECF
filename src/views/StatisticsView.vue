@@ -35,10 +35,12 @@ export default defineComponent({
     const tabs = ref();
 
     onMounted(() => {
-      for (let i = 0; i <= tabs.value.children.length - 2; i++) {
-        let str = tabs.value.children[i].innerHTML;
-        str = str.slice(0, 2);
-        tabs.value.children[i].innerHTML = str;
+      if (navigator.userAgent.match("iPhone")) {
+        for (let i = 0; i <= tabs.value.children.length - 2; i++) {
+          let str = tabs.value.children[i].innerHTML;
+          str = str.slice(0, 2);
+          tabs.value.children[i].innerHTML = str;
+        }
       }
     });
 

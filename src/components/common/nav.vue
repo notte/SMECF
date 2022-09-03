@@ -75,12 +75,14 @@ export default defineComponent({
         dashboard_status.value != dashboard_status.value;
         statistics_status.value != statistics_status.value;
       }
+
       if (Status === "Statistics") {
         dashboard.value.className = "nav_button false";
         statistics.value.className = "nav_button true";
       }
       dashboard_status.value = !dashboard_status.value;
       statistics_status.value = !statistics_status.value;
+
       router.push({
         name: Status,
       });
