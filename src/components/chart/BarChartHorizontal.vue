@@ -1,52 +1,108 @@
 <template>
   <section class="container_chart">
     <div class="top">
-      <p class="title">標題</p>
-      <!-- <ul class="switch_text" ref="tabs_switch">
-        <li class="true" @click="clickTab($event)">製造業</li>
-        <li class="false" @click="clickTab($event)">服務業</li>
-      </ul> -->
-
+      <p class="title">{{title}}</p>
+      <!-- type3-->
+      <ul v-if="type==3" class="switch_text" ref="tabs_switch">
+        <li class="true" @click="clickTab('tabs_switch', $event)">製造業</li>
+        <li class="false" @click="clickTab('tabs_switch', $event)">服務業</li>
+      </ul>
+      <div class="icon_top">
+      <button
+        v-on:mouseover="showTooltip($event, 'content')"
+        v-on:mouseleave="leaveTooltip">
+        <i class="gg-info"></i>
+      </button>
       <button><i class="gg-software-download"></i></button>
+      </div>
     </div>
-    <ul class="switch_text">
-      <!-- <li class="false">製造業</li>
-      <li class="true">服務業</li> -->
-      <li class="legend_item">
-        <div class="icon"></div>
-        製造業
-      </li>
-      <li class="legend_item">
-        <div class="icon"></div>
-        服務業
-      </li>
-    </ul>
-    <div class="container_bar">
-      <div class="bar_item">
+    
+
+    <!-- type1-->
+    <div v-if="type==1" class="container_bar">
+      <div class="bar_item" v-for="item in data" :key="item.key">
         <div class="bar_info">
-          <span class="subtitle_4 text-system-dark_05">財務力</span>
-          <span class="text-system-light_03">4.9</span>
+          <span class="subtitle_4 text-system-dark_05">{{item.name}}</span>
+          <span class="text-system-light_03">{{item.data}}</span>
         </div>
         <div class="base_bar"><div class="bar"></div></div>
       </div>
-      <div class="bar_item">
+    </div>
+
+    <!-- type2-->
+    <ul v-if="type==2" class="switch_text">
+      <li class="legend_item" v-for="item in data" :key="item.key">
+        <div class="icon"></div>
+        {{item.name}}
+      </li>
+    </ul>
+    <div v-if="type==2" class="container_bar">
+      <div class="bar_item" v-for="item in data" :key="item.key">
         <div class="bar_info">
-          <span class="text-system-light_03">3.1</span>
+          <span class="text-system-light_03">{{item.data}}</span>
           <span class="subtitle_4 text-system-dark_05">/10</span>
         </div>
         <div class="base_bar"><div class="bar"></div></div>
       </div>
     </div>
+
+    <!-- type3-->
+    <!-- <ul v-if="type==3" class="switch_text" ref="tabs_switch">
+        <li @click="clickTab('tabs_switch', $event)" class="true">製造業</li>
+        <li @click="clickTab('tabs_switch', $event)" class="false">服務業</li>
+    </ul> -->
+    <div v-if="type==3" class="container_bar">
+      <div class="bar_item" v-for="item in data" :key="item.key">
+        <div class="bar_info">
+          <span class="text-system-light_03">{{item.name}}</span>
+          <span class="subtitle_4 text-system-dark_05">{{item.data}}</span>
+        </div>
+        <div class="base_bar"><div class="bar"></div></div>
+      </div>
+    </div>
+
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   components: {},
+  props: [
+    'type',
+    'title',
+    'data'
+  ],
   setup() {
-    return {};
+    const tabs = ref();
+    const tabs_switch = ref();
+    let Tooltip: any;
+
+    function showTooltip(event: any, content: string): void {
+      Tooltip.html(content)
+        .style("opacity", 1)
+        .style("left", event.pageX + "px")
+        .style("top", event.pageY + "px");
+    }
+
+    function leaveTooltip(): void {
+      Tooltip.style("opacity", 0);
+    }
+
+    function clickTab(status: string, event: any): void {
+      if (status === "tabs") {
+        for (let item of tabs.value.children) {
+          item.className = "false";
+        }
+      } else {
+        for (let item of tabs_switch.value.children) {
+          item.className = "false";
+        }
+      }
+      event.path[0].className = "true";
+    }
+    return { tabs_switch, tabs, clickTab, showTooltip, leaveTooltip };
   },
 });
 </script>

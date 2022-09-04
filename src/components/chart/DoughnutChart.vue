@@ -2,30 +2,51 @@
   <section class="container_chart">
     <!-- 最上層標題 -->
     <div class="top">
-      <p class="title">標題</p>
+      <p class="title"> {{title}} </p>
       <button><i class="gg-software-download"></i></button>
     </div>
-    <!-- 第二層 tab，可能有可能沒有，或者是出現圖標示圖 -->
-    <ul class="switch_text" ref="tabs_switch">
-      <li class="true" @click="clickTab('tabs_switch', $event)">製造業</li>
-      <li class="false" @click="clickTab('tabs_switch', $event)">服務業</li>
-    </ul>
-    <div class="info">
+
+    <!-- type1 整體平均 -->
+    <div v-if="type==1">
+      <div class="info">
       <!-- 分數資訊 -->
       <div class="text">
         <h1 class="percent">
-          5.1
+          {{data[0].data}}
           <span class="subtitle_2">/10</span>
         </h1>
-        <!-- <p class="subtitle_4 text-system-dark_04">整體平均 4.6 分</p> -->
+        <p class="subtitle_4 text-system-dark_04">整體平均 {{data[0].data}} 分</p>
       </div>
-      <!-- <div class="text" ref="tabs">
-        <p class="true" @click="clickTab('tabs', $event)">公司年資</p>
-        <p class="false" @click="clickTab('tabs', $event)">資本額</p>
-        <p class="false" @click="clickTab('tabs', $event)">員工數</p>
-        <p class="false" @click="clickTab('tabs', $event)">場址地區</p>
-      </div> -->
       <v-chart :option="option" class="chart" />
+      </div>
+    </div>
+
+     <!-- type2-->
+    <div v-if="type==2">
+      <div class="info">
+        <!-- 分數資訊 -->
+        <div class="text" ref="tabs">
+          <p @click="clickTab('tabs', $event)" v-for="(item, index) in data" :key="item.key" :class="(index == 0)? 'true': 'false'">{{item.name}}</p>
+        </div>
+        <v-chart :option="option" class="chart" />
+      </div>
+    </div>
+
+     <!-- type3-->
+    <div v-if="type==3">
+      <ul class="switch_text" ref="tabs_switch">
+        <li @click="clickTab('tabs_switch', $event)" v-for="(item, index) in data" :key="item.key" :class="(index == 0)? 'true': 'false'">{{item.name}}</li>
+      </ul>
+      <div class="info">
+        <!-- 分數資訊 -->
+        <div class="text">
+          <h1 class="percent">
+            {{data[0].data}}
+            <span class="subtitle_2">/10</span>
+          </h1>
+        </div>
+        <v-chart :option="option" class="chart" />
+      </div>
     </div>
   </section>
 </template>
@@ -52,15 +73,28 @@ use([
 
 export default defineComponent({
   components: { VChart },
+  props: [
+    'type',
+    'title',
+    'data',
+    'max'
+  ],
   setup(props, { attrs }) {
     const tabs = ref();
     const tabs_switch = ref();
 
-    const gaugeData = [
+    const gaugeData = ref([
       {
-        value: attrs.data,
+        value: props.data[0].data,
       },
-    ];
+    ]);
+
+    // for(var i=0; i<props.data.length; i++) {
+    //   gaugeData[i] = {
+    //     value: props.data[i].data
+    //   }
+    // }
+
     const option = ref({
       // 進度條本身顏色
       color: ["#055FFC"],
@@ -68,7 +102,7 @@ export default defineComponent({
         trigger: "item",
         backgroundColor: "#383C41",
         borderWidth: 0,
-        formatter: attrs.data,
+        formatter: '{c}',
         textStyle: {
           color: "#FCFDFE",
         },
@@ -81,7 +115,7 @@ export default defineComponent({
           type: "gauge",
           startAngle: 90,
           endAngle: -270,
-          data: gaugeData,
+          data: [{value:props.data[0].data}],
           // 隱藏指針
           pointer: {
             show: false,
@@ -120,9 +154,11 @@ export default defineComponent({
           detail: {
             fontSize: 16,
             color: "#F7F9FC",
-            formatter: "5.1",
+            formatter: props.data[0].name,
             offsetCenter: ["0%", "5%"],
           },
+          min: 0,
+          max: props.max,
         },
       ],
     });
@@ -140,7 +176,7 @@ export default defineComponent({
       event.path[0].className = "true";
     }
 
-    return { option, tabs_switch, tabs, clickTab };
+    return { option, tabs_switch, tabs, clickTab, gaugeData };
   },
 });
 </script>

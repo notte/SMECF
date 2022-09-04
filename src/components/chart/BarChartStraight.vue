@@ -1,7 +1,7 @@
 <template>
   <section class="container_chart">
     <div class="top">
-      <p class="title">標題</p>
+      <p class="title">{{title}}</p>
       <button><i class="gg-software-download"></i></button>
     </div>
     <ul class="switch_text">
@@ -31,6 +31,8 @@ import {
 import VChart from "vue-echarts";
 import { BarChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
+import { propsToAttrMap } from "@vue/shared";
+import { keyCodesByKeyName } from "@vue/test-utils/dist/createDomEvent";
 
 echarts.use([
   DatasetComponent,
@@ -42,7 +44,11 @@ echarts.use([
 
 export default defineComponent({
   components: { VChart },
-  setup() {
+  props: [
+    'title',
+    'data'
+  ],
+  setup(props) {
     const option = {
       color: ["#00C7F2", "#695CFB"],
       legend: { show: false },
@@ -51,22 +57,25 @@ export default defineComponent({
       xAxis: {
         type: "category",
         axisLine: { lineStyle: { color: "#8A93A1" } },
-        data: ["2019", "2020", "2021"],
+        data: props.data.xAxis,
       },
       yAxis: [
         {
           type: "value",
-          min: 0,
-          max: 40,
-          interval: 10,
+          // min: 0,
+          // max: Math.max(props.data.data),
+          // interval: 1000,
           axisLabel: {
-            formatter: "{value}k",
+            // formatter: "{value}k",
+            formatter: function (value: number, index:number) {
+              return (value/1000) +'k';
+            },
           },
         },
       ],
       series: [
-        { type: "bar", data: [10, 20, 30] },
-        { type: "bar", data: [10, 20, 30] },
+        { type: "bar", data: props.data.data },
+        { type: "bar", data: props.data.data },
       ],
     };
 
