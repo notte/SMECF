@@ -1,4 +1,5 @@
 <template>
+  <!-- <Loading /> -->
   <section class="layout">
     <nav @touchstart="showMenu($event)" @touchcancel="hiddenMenu(e)" ref="menu">
       <div class="logo">
@@ -26,9 +27,10 @@
 import { defineComponent, ref } from "vue";
 import Nav from "@/components/common/Nav.vue";
 import ModeSwitch from "@/components/common/ModeSwitch.vue";
+import Loading from "@/components/common/Loading.vue";
 
 export default defineComponent({
-  components: { Nav, ModeSwitch },
+  components: { Nav, ModeSwitch, Loading },
   setup() {
     const menu = ref();
     const main = ref();
