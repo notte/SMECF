@@ -8,12 +8,12 @@
         <li class="false" @click="clickTab($event)">服務業</li>
       </ul>
       <div class="icon_top">
-        <button
+        <!-- <button
           v-on:mouseover="showTooltip($event, 'content')"
           v-on:mouseleave="leaveTooltip"
         >
           <i class="gg-info"></i>
-        </button>
+        </button> -->
         <button><i class="gg-software-download"></i></button>
       </div>
     </div>

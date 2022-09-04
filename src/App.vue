@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import Nav from "@/components/common/Nav.vue";
+import Nav from "@/components/common/nav.vue";
 import ModeSwitch from "@/components/common/ModeSwitch.vue";
 import Loading from "@/components/common/Loading.vue";
 

@@ -68,7 +68,10 @@ export default defineComponent({
           axisLabel: {
             // formatter: "{value}k",
             formatter: function (value: number, index:number) {
-              return (value/1000) +'k';
+              if(value >= 1000)
+                return (value/1000) +'k';
+              else 
+                return value;
             },
           },
         },
