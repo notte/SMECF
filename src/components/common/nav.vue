@@ -4,36 +4,52 @@
       <li
         class="nav_button true"
         @click="clickTab('Dashboard')"
+        @touchstart="clickTab('Dashboard')"
         ref="dashboard"
       >
-        <div class="nav_icon">
-          <!-- <img src="@/assets/icons/dashboard.svg" /> -->
-          <!-- <img src="@/assets/icons/dashboard_focus.svg" /> -->
-          <img src="@/assets/icons/dashboard.svg" v-if="!dashboard_status" />
-          <img
-            src="@/assets/icons/dashboard_focus.svg"
-            class="true"
-            v-if="dashboard_status"
-          />
+        <div class="nav_content">
+          <div class="nav_icon">
+            <img
+              class="icon_mobile"
+              src="@/assets/icons/dashboard_mobile.svg"
+            />
+            <img src="@/assets/icons/dashboard.svg" v-if="!dashboard_status" />
+            <img
+              src="@/assets/icons/dashboard_focus.svg"
+              class="true"
+              v-if="dashboard_status"
+            />
+          </div>
+          <p>Dashboard</p>
         </div>
-        Dashboard
       </li>
       <li
         class="nav_button false"
         @click="clickTab('Statistics')"
+        @touchstart="clickTab('Statistics')"
         ref="statistics"
       >
-        <div class="nav_icon">
-          <!-- <img src="@/assets/icons/chart.svg" /> -->
-          <!-- <img src="@/assets/icons/chart_focus.svg" /> -->
-          <img src="@/assets/icons/chart.svg" v-if="statistics_status" />
-          <img
-            src="@/assets/icons/chart_focus.svg"
-            class="true"
-            v-if="!statistics_status"
-          />
+        <div class="nav_content">
+          <div class="nav_icon">
+            <img class="icon_mobile" src="@/assets/icons/chart_mobile.svg" />
+            <img src="@/assets/icons/chart.svg" v-if="statistics_status" />
+            <img
+              src="@/assets/icons/chart_focus.svg"
+              class="true"
+              v-if="!statistics_status"
+            />
+          </div>
+          <p>Statistics</p>
         </div>
-        Statistics
+      </li>
+      <li class="nav_button hidden_switch">
+        <div class="nav_content">
+          <div class="nav_icon">
+            <img class="icon_mobile" src="@/assets/icons/moon_mobile.svg" />
+            <!-- <img class="icon_mobile" src="@/assets/icons/sun_mobile.svg" /> -->
+          </div>
+          <p>Dark Mode</p>
+        </div>
       </li>
     </ul>
   </div>
@@ -59,12 +75,14 @@ export default defineComponent({
         dashboard_status.value != dashboard_status.value;
         statistics_status.value != statistics_status.value;
       }
+
       if (Status === "Statistics") {
         dashboard.value.className = "nav_button false";
         statistics.value.className = "nav_button true";
       }
       dashboard_status.value = !dashboard_status.value;
       statistics_status.value = !statistics_status.value;
+
       router.push({
         name: Status,
       });

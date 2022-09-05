@@ -7,30 +7,105 @@
     </ul>
     <p class="other_subtitle">價值鏈管理</p>
     <section class="container_grid">
-      <PieChart />
-      <BarChartHorizontal />
+      <PieChart type="2" title="" :data="data.pieValueChainTool"/>
+      <BarChartHorizontal type="3" title="" :data="data.barValueChainTool"/>
     </section>
     <p class="other_subtitle">研發生產</p>
     <section class="container_grid">
-      <PieChart />
-      <BarChartHorizontal />
+      <PieChart type="2" title="" :data="data.pieResearchTool"/>
+      <BarChartHorizontal type="3" title="" :data="data.barResearchTool"/>
     </section>
     <p class="other_subtitle">企業管理</p>
     <section class="container_grid">
-      <PieChart />
-      <BarChartHorizontal />
+      <PieChart type="2" title="" :data="data.pieOperationTool"/>
+      <BarChartHorizontal type="3" title="" :data="data.barOperationTool"/>
     </section>
   </section>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive, onMounted} from "vue";
 import BarChartHorizontal from "@/components/chart/BarChartHorizontal.vue";
 import PieChart from "@/components/chart/PieChart.vue";
+import axios from "axios";
+import { IIntelligentStatistics } from "@/models//interface/intelligentStatistics";
 
 export default defineComponent({
   components: { BarChartHorizontal, PieChart },
   setup() {
-    return {};
+    const data = reactive({
+      pieValueChainTool: [
+        { label: "無採用數位化工具", value: 0 }, 
+        { label: "有採用數位化工具", value: 0 },
+      ],
+      barValueChainTool: [
+        { name: "庫存與訂單管理", data: 0 },
+        { name: "物料搬運", data: 0 },
+        { name: "顧客經營與行銷", data: 0 },
+        { name: "數據分析決策", data: 0 },
+      ],
+      pieResearchTool: [
+        { label: "無採用數位化工具", value: 0 }, 
+        { label: "有採用數位化工具", value: 0 },
+      ],
+      barResearchTool: [
+        { name: "產品研發設計", data: 0 },
+        { name: "生產設備監測", data: 0 },
+        { name: "產線自動化", data: 0 },
+        { name: "生產管理系統", data: 0 },
+        { name: "數據分析決策", data: 0 },
+      ],
+      pieOperationTool: [
+        { label: "無採用數位化工具", value: 0 }, 
+        { label: "有採用數位化工具", value: 0 }
+      ],
+      barOperationTool: [
+        { name: "企業資源管理", data: 0 },
+        { name: "人事管理系統", data: 0 },
+        { name: "財務會計系統", data: 0 },
+        { name: "內部溝通工具", data: 0 },
+        { name: "數據分析決策", data: 0 },
+      ],
+    })
+    
+    onMounted(() => {
+      axios.get<IIntelligentStatistics>("./data/intelligent_statistics.json")
+        .then((res) => {
+          // console.log(res.data);
+          data.pieValueChainTool = [
+            { label: "無採用數位化工具", value: res.data.valueChainTool.isUseTool[0] },
+            { label: "有採用數位化工具", value: res.data.valueChainTool.isUseTool[1] },
+          ];
+          data.barValueChainTool = [
+            { name: "庫存與訂單管理", data: res.data.valueChainTool.order },
+            { name: "物料搬運", data: res.data.valueChainTool.carry },
+            { name: "顧客經營與行銷", data: res.data.valueChainTool.customer },
+            { name: "數據分析決策", data: res.data.valueChainTool.analyze },
+          ];
+          data.pieResearchTool = [
+            { label: "無採用數位化工具", value: res.data.researchTool.isUseTool[0] },
+            { label: "有採用數位化工具", value: res.data.researchTool.isUseTool[1] },
+          ];
+          data.barResearchTool = [
+            { name: "產品研發設計", data: res.data.researchTool.design },
+            { name: "生產設備監測", data: res.data.researchTool.monitor },
+            { name: "產線自動化", data: res.data.researchTool.auto },
+            { name: "生產管理系統", data: res.data.researchTool.manage },
+            { name: "數據分析決策", data: res.data.researchTool.analyze },
+          ];
+          data.pieOperationTool = [
+            { label: "無採用數位化工具", value: res.data.operationTool.isUseTool[0] },
+            { label: "有採用數位化工具", value: res.data.operationTool.isUseTool[1] },
+          ];
+          data.barOperationTool = [
+            { name: "企業資源管理", data: res.data.operationTool.erp },
+            { name: "人事管理系統", data: res.data.operationTool.hrs },
+            { name: "財務會計系統", data: res.data.operationTool.fas },
+            { name: "內部溝通工具", data: res.data.operationTool.ics },
+            { name: "數據分析決策", data: res.data.operationTool.analyze },
+          ];
+        })
+      });
+      return {data};
   },
 });
 </script>

@@ -15,20 +15,25 @@ export default defineComponent({
       let height = (prams as number[])[1];
 
       let scale;
+      let multiplier;
 
       if (width > 1366) {
         scale = 11000;
+        multiplier = 0.65;
       } else if (width <= 1366 && width > 480) {
         scale = 10000;
+        multiplier = 0.7;
       } else if (width <= 480 && width > 320) {
         scale = 8000;
+        multiplier = 0.8;
       } else {
         scale = 6000;
+        multiplier = 0.4;
       }
 
       let projection = d3
         .geoMercator()
-        .scale(scale * 0.65)
+        .scale(scale * multiplier)
         .translate([width / 2, height / 2.5])
         .center([121, 24]);
       let path = d3.geoPath().projection(projection);

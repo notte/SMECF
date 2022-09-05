@@ -2,11 +2,11 @@
   <section class="container_chart">
     <!-- 最上層標題 -->
     <div class="top">
-      <p class="title">標題</p>
-      <!-- <ul class="switch_text" ref="tabs_switch">
+      <p v-if="type==1" class="title">{{title}}</p>
+      <ul v-if="type==2" class="switch_text" ref="tabs_switch">
         <li class="true" @click="clickTab($event)">製造業</li>
         <li class="false" @click="clickTab($event)">服務業</li>
-      </ul> -->
+      </ul>
       <div class="icon_top">
         <button
           v-on:mouseover="showTooltip($event, 'content')"
@@ -18,17 +18,17 @@
       </div>
     </div>
     <!-- 第二層 tab，可能有可能沒有，或者是出現圖標示圖 -->
-    <ul class="switch_text" ref="tabs_switch">
+    <ul v-if="type==1" class="switch_text" ref="tabs_switch">
       <li class="true" @click="clickTab($event)">製造業</li>
       <li class="false" @click="clickTab($event)">服務業</li>
     </ul>
     <div class="info">
       <!-- 分數資訊 -->
-      <!-- <div class="text">
-        <p class="text-system-light_05 subtitle_2">5.1</p>
-        <p class="subtitle_4 text-system-dark_04">整體平均 4.6 分</p>
-      </div> -->
-      <ul class="legends">
+      <div v-if="type==2" class="text">
+        <p class="text-system-light_05 subtitle_2">{{data[1].value}} %</p>
+        <p class="subtitle_4 text-system-dark_04">{{data[1].label}}</p>
+      </div>
+      <ul v-if="type==1" class="legends">
         <li class="legend_item">
           <div class="icon"></div>
           製造業
@@ -60,6 +60,7 @@ import {
 import { PieChart } from "echarts/charts";
 import { LabelLayout } from "echarts/features";
 import * as d3 from "d3";
+import { number } from "echarts/core";
 
 echarts.use([
   TitleComponent,
@@ -72,7 +73,12 @@ echarts.use([
 
 export default defineComponent({
   components: { VChart },
-  setup(props, { attrs }) {
+  props: [
+    'type',
+    'title',
+    'data'
+  ],
+  setup(props, { attrs }: any) {
     const tabs_switch = ref();
     let Tooltip: any;
 
@@ -102,8 +108,13 @@ export default defineComponent({
       }
       event.path[0].className = "true";
     }
+  
+    const colors = (props.type==2)
+    ? ["#8BEAFF", "#00C7F2"]
+    : ["#00C7F2", "#7A6FFF", "#FBB42B", "#2BC679", "#666E7A"];
+
     const option = {
-      color: ["#7A6FFF", "#2BC679", "#F3A41B", "#666E7A", "#00C7F2"],
+      color: colors,
       tooltip: {
         trigger: "item",
         backgroundColor: "#383C41",
@@ -138,13 +149,14 @@ export default defineComponent({
           labelLine: {
             show: false,
           },
-          data: [
-            { value: 1048, label: "缺乏專業/專責財務人員" },
-            { value: 735, label: "缺乏專業/專責財務人員" },
-            { value: 580, label: "缺乏專業/專責財務人員" },
-            { value: 484, label: "缺乏專業/專責財務人員" },
-            { value: 300, label: "缺乏專業/專責財務人員" },
-          ],
+          data: props.data,
+          // data: [
+          //   { value: 1048, label: "缺乏專業/專責財務人員" },
+          //   { value: 735, label: "缺乏專業/專責財務人員" },
+          //   { value: 580, label: "缺乏專業/專責財務人員" },
+          //   { value: 484, label: "缺乏專業/專責財務人員" },
+          //   { value: 300, label: "缺乏專業/專責財務人員" },
+          // ],
         },
       ],
     };

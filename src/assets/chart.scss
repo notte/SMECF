@@ -86,7 +86,7 @@
 
 // 地圖樣式
 .container_map {
-    @apply flex flex-col w-full justify-center items-center;
+    @apply relative top-0 flex flex-col w-full justify-center items-center;
 
     height: calc(100% - 60px);
 
@@ -98,8 +98,7 @@
         @apply h-full flex flex-col justify-center items-start;
 
         .chart {
-            height: 350px;
-            width: 350px;
+            @apply w-96 h-96;
         }
 
         .back {
@@ -139,7 +138,7 @@
     }
 }
 
-.map.city {
+.map.color_city {
     // 宜蘭苗栗
     path.city_10002,
     path.city_10005,
@@ -182,7 +181,7 @@
     }
 }
 
-.map.area {
+.map.color_area {
     // 藍色
     path.city_10002,
     path.city_10005,
