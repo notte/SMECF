@@ -1,3 +1,4 @@
 module.exports = {
-  filenameHashing: false,
+    filenameHashing: false,
+    publicPath: process.env.NODE_ENV === 'production'? '/smecf/' : '/'
 };
