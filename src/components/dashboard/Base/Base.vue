@@ -3,7 +3,8 @@
     <DoughnutChart type=1 title="綜合平均分數" :data="data.avgScore" :max="10"/>
     <BarChartHorizontal type=1 title="各構面平均分數" :data="data.eachDimensionAvgScore"/>
     <BarChartHorizontal type=1 title="指標亮點業者" :data="data.highlightCompany"/>
-    <DoughnutChart type=2 title="過案廠商樣貌" :data="data.manufacturer" :max="data.manufacturerMaxCount"/>
+    <!-- TODO: 過案廠商樣貌 要換成 PieChart -->
+    <!-- <DoughnutChart type=2 title="過案廠商樣貌" :data="data.manufacturer"/> -->
   </section>
 </template>
 <script lang="ts">
@@ -32,12 +33,11 @@ export default defineComponent({
         { name: "公司 E", data: 0}
       ],
       manufacturer: [
-        { name: "公司年資", data: 0 },
-        { name: "資本額", data: 0 },
-        { name: "員工數", data: 0 },
-        { name: "場址地區", data: 0 },
+        { name: "公司年資", data: [0, 0] },
+        { name: "資本額", data: [0, 0] },
+        { name: "員工數", data: [0, 0] },
+        { name: "場址地區", data: [0, 0] },
       ],
-      manufacturerMaxCount: 0,
     })
     
     onMounted(() => {
@@ -61,15 +61,11 @@ export default defineComponent({
             { name: "公司 E", data: res.data.highlightCompany[5] }
           ];
           data.manufacturer = [
-            { name: "公司年資", data: res.data.manufacturer.date },
-            { name: "資本額", data: res.data.manufacturer.capital },
-            { name: "員工數", data: res.data.manufacturer.sumPeople },
-            { name: "場址地區", data: res.data.manufacturer.st },
+            { name: "公司年資", data: [res.data.manufacturer.date.actual, res.data.manufacturer.date.total] },
+            { name: "資本額", data: [res.data.manufacturer.capital.actual, res.data.manufacturer.capital.total] },
+            { name: "員工數", data: [res.data.manufacturer.sumPeople.actual, res.data.manufacturer.sumPeople.total] },
+            { name: "場址地區", data: [res.data.manufacturer.st.actual, res.data.manufacturer.st.total] },
           ];
-          data.manufacturerMaxCount = res.data.manufacturer.date 
-            + res.data.manufacturer.capital
-            + res.data.manufacturer.sumPeople
-            + res.data.manufacturer.st;
         })
       });
       return {data};

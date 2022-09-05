@@ -14,9 +14,21 @@
     "5": 4.9
   },
   "manufacturer": {
-    "date": 4.9,
-    "capital": 4.9,
-    "sumPeople": 4.9,
-    "st": 4.9
+    "date": {
+      "actual": 25,
+      "total": 75
+    },
+    "capital": {
+      "actual": 5,
+      "total": 200
+    },
+    "sumPeople": {
+      "actual": 45,
+      "total": 60
+    },
+    "st": {
+      "actual": 35,
+      "total": 100
+    }
   }
 }

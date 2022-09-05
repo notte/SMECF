@@ -46,8 +46,17 @@ export interface IHighlightCompany {
  * st: 場址地區
 */
 export interface IManufacturer {
-    date: number;
-    capital: number;
-    sumPeople: number;
-    st: number;
+    date: IManufacturerAmount;
+    capital: IManufacturerAmount;
+    sumPeople: IManufacturerAmount;
+    st: IManufacturerAmount;
+}
+
+/**
+ * actual: 實際數字
+ * total: 總數字
+ */
+export interface IManufacturerAmount {
+    actual: number;
+    total: number;
 }
