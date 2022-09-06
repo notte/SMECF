@@ -26,7 +26,7 @@
       <div class="info">
         <!-- 分數資訊 -->
         <div class="text" ref="tabs">
-          <p @click="clickTab('tabs', $event)" v-for="(item, index) in data" :key="item.key" :class="(index == 0)? 'true': 'false'">{{item.name}}</p>
+          <p @click="clickTab('tabs', $event, index)" v-for="(item, index) in data" :key="item.name" :class="(index == 0)? 'true': 'false'">{{item.name}}</p>
         </div>
         <v-chart :option="option" class="chart" />
       </div>
@@ -35,7 +35,7 @@
      <!-- type3-->
     <div v-if="type==3">
       <ul class="switch_text" ref="tabs_switch">
-        <li @click="clickTab('tabs_switch', $event)" v-for="(item, index) in data" :key="item.key" :class="(index == 0)? 'true': 'false'">{{item.name}}</li>
+        <li @click="clickTab('tabs_switch', $event, index)" v-for="(item, index) in data" :key="item.name" :class="(index == 0)? 'true': 'false'">{{item.name}}</li>
       </ul>
       <div class="info">
         <!-- 分數資訊 -->
@@ -76,25 +76,20 @@ export default defineComponent({
   props: [
     'type',
     'title',
-    'data',
-    'max'
+    'data'
   ],
   setup(props, { attrs }) {
     const tabs = ref();
     const tabs_switch = ref();
 
-    const gaugeData = ref([
+    var gaugeData = ref([
       {
         value: props.data[0].data,
       },
     ]);
-
-    // for(var i=0; i<props.data.length; i++) {
-    //   gaugeData[i] = {
-    //     value: props.data[i].data
-    //   }
-    // }
-
+    var detail = ref(props.data[0].max);
+    var max = ref(props.data[0].max);
+ 
     const option = ref({
       // 進度條本身顏色
       color: ["#055FFC"],
@@ -115,7 +110,7 @@ export default defineComponent({
           type: "gauge",
           startAngle: 90,
           endAngle: -270,
-          data: [{value:props.data[0].data}],
+          data: gaugeData,
           // 隱藏指針
           pointer: {
             show: false,
@@ -154,16 +149,25 @@ export default defineComponent({
           detail: {
             fontSize: 16,
             color: "#F7F9FC",
-            formatter: props.data[0].name,
+            formatter: detail,
             offsetCenter: ["0%", "5%"],
           },
           min: 0,
-          max: props.max,
+          max: max,
         },
       ],
     });
 
-    function clickTab(status: string, event: any): void {
+    function clickTab(status: string, event: any, index:number): void {
+      // console.log("index: " +index);
+      // gaugeData = ref([
+      //   {
+      //     value: props.data[index].data,
+      //   }
+      // ]);
+      // detail = ref(props.data[index].max);
+      // max = ref(props.data[index].max);
+     
       if (status === "tabs") {
         for (let item of tabs.value.children) {
           item.className = "false";

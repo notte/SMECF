@@ -34,36 +34,36 @@ export default defineComponent({
   setup() {
     const data = reactive({
       pieValueChainTool: [
-        { label: "無採用數位化工具", value: 0 }, 
-        { label: "有採用數位化工具", value: 0 },
+        { label: "無採用數位化工具", value: 35 }, 
+        { label: "有採用數位化工具", value: 65 },
       ],
       barValueChainTool: [
-        { name: "庫存與訂單管理", data: 0 },
-        { name: "物料搬運", data: 0 },
-        { name: "顧客經營與行銷", data: 0 },
-        { name: "數據分析決策", data: 0 },
+        { name: "庫存與訂單管理", data: 30 },
+        { name: "物料搬運", data: 30 },
+        { name: "顧客經營與行銷", data: 50 },
+        { name: "數據分析決策", data: 50 },
       ],
       pieResearchTool: [
-        { label: "無採用數位化工具", value: 0 }, 
-        { label: "有採用數位化工具", value: 0 },
+        { label: "無採用數位化工具", value: 35 }, 
+        { label: "有採用數位化工具", value: 65 },
       ],
       barResearchTool: [
-        { name: "產品研發設計", data: 0 },
-        { name: "生產設備監測", data: 0 },
-        { name: "產線自動化", data: 0 },
-        { name: "生產管理系統", data: 0 },
-        { name: "數據分析決策", data: 0 },
+        { name: "產品研發設計", data: 30 },
+        { name: "生產設備監測", data: 30 },
+        { name: "產線自動化", data: 50 },
+        { name: "生產管理系統", data: 50 },
+        { name: "數據分析決策", data: 50 },
       ],
       pieOperationTool: [
-        { label: "無採用數位化工具", value: 0 }, 
-        { label: "有採用數位化工具", value: 0 }
+        { label: "無採用數位化工具", value: 35 }, 
+        { label: "有採用數位化工具", value: 65 }
       ],
       barOperationTool: [
-        { name: "企業資源管理", data: 0 },
-        { name: "人事管理系統", data: 0 },
-        { name: "財務會計系統", data: 0 },
-        { name: "內部溝通工具", data: 0 },
-        { name: "數據分析決策", data: 0 },
+        { name: "企業資源管理", data: 30 },
+        { name: "人事管理系統", data: 30 },
+        { name: "財務會計系統", data: 50 },
+        { name: "內部溝通工具", data: 50 },
+        { name: "數據分析決策", data: 50 },
       ],
     })
     

@@ -22,44 +22,44 @@ export default defineComponent({
   components: { DoughnutChart, BarChartHorizontal },
   setup() {
     const data = reactive({
-      compositeAveScore: [{ name: "5.1", data: 5.1 }],
+      compositeAveScore: [{ name: "5.1", data: 5.1, max: 10}],
       avgScore: [
-        { name: "", data: 0 },
-        { name: "", data: 0 }
+        { name: "製造業", data: 5.1, max: 10, color:"purple" },
+        { name: "服務業", data: 0, max: 10, color:"blue" }
       ],
       facetedOverview1: [
-        { name: "", data: 0 },
-        { name: "", data: 0 }
+        { name: "製造業", data: 3, max: 10, color:"purple" },
+        { name: "服務業", data: 0, max: 10, color:"blue" }
       ],
       facetedOverview2: [
-        { name: "", data: 0 },
-        { name: "", data: 0 }
+        { name: "製造業", data: 3, max: 10, color:"purple" },
+        { name: "服務業", data: 0, max: 10, color:"blue" }
       ],
       facetedOverview3: [
-        { name: "", data: 0 },
-        { name: "", data: 0 }
+        { name: "製造業", data: 3, max: 10, color:"purple" },
+        { name: "服務業", data: 0, max: 10, color:"blue" }
       ],
     })
     onMounted(() => {
       axios.get<IDashboardOtherFinance>("./data/dashboard_other_finance.json")
         .then((res) => {
           console.log(res.data);
-          data.compositeAveScore = [{ name: res.data.fianceAvgScore.toString(), data: res.data.fianceAvgScore }];
+          data.compositeAveScore = [{ name: res.data.fianceAvgScore.toString(), data: res.data.fianceAvgScore, max: 10 }];
           data.avgScore = [
-            { name: "製造業", data: res.data.avgScore[0]?? 0 },
-            { name: "服務業", data: res.data.avgScore[1]?? 0 }
+            { name: "製造業", data: res.data.avgScore[0]?? 0, max: 10, color:"purple" },
+            { name: "服務業", data: res.data.avgScore[1]?? 0, max: 10, color:"blue" }
           ];
           data.facetedOverview1 = [
-            { name: "製造業", data: res.data.futureInvestment[0]?? 0 },
-            { name: "服務業", data: res.data.futureInvestment[1]?? 0 }
+            { name: "製造業", data: res.data.futureInvestment[0]?? 0, max: 10, color:"purple" },
+            { name: "服務業", data: res.data.futureInvestment[1]?? 0, max: 10, color:"blue" }
           ];
           data.facetedOverview2 = [
-            { name: "製造業", data: res.data.businessGrowth[0]?? 0 },
-            { name: "服務業", data: res.data.businessGrowth[1]?? 0 }
+            { name: "製造業", data: res.data.businessGrowth[0]?? 0, max: 10, color:"purple" },
+            { name: "服務業", data: res.data.businessGrowth[1]?? 0, max: 10, color:"blue" }
           ];
           data.facetedOverview3 = [
-            { name: "製造業", data: res.data.structure[0]?? 0 },
-            { name: "服務業", data: res.data.structure[1]?? 0 }
+            { name: "製造業", data: res.data.structure[0]?? 0, max: 10, color:"purple" },
+            { name: "服務業", data: res.data.structure[1]?? 0, max: 10, color:"blue" }
           ];
         })
       });

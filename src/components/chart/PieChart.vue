@@ -29,17 +29,9 @@
         <p class="subtitle_4 text-system-dark_04">{{data[1].label}}</p>
       </div>
       <ul v-if="type==1" class="legends">
-        <li class="legend_item">
+        <li class="legend_item" v-for="(item) in data" :key="item.name">
           <div class="icon"></div>
-          製造業
-        </li>
-        <li class="legend_item">
-          <div class="icon"></div>
-          服務業
-        </li>
-        <li class="legend_item">
-          <div class="icon"></div>
-          服務業
+          {{item.label}}
         </li>
       </ul>
       <v-chart :option="option" class="chart" />

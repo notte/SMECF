@@ -37,7 +37,7 @@
           <span class="subtitle_4 text-system-dark_05">{{ item.name }}</span>
           <span class="text-system-light_03">{{ item.data }}</span>
         </div>
-        <b-progress :class="color" :value="item.data"></b-progress>
+        <b-progress :class="item.color" :value="item.data" :max="item.max"></b-progress>
       </div>
     </div>
 
@@ -54,7 +54,7 @@
           <span class="text-system-light_03">{{ item.data }}</span>
           <span class="subtitle_4 text-system-dark_05">/10</span>
         </div>
-        <b-progress :class="color" :value="item.data"></b-progress>
+        <b-progress :class="item.color" :value="item.data" :max="item.max"></b-progress>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
           <span class="text-system-light_03">{{ item.name }}</span>
           <span class="subtitle_4 text-system-dark_05">{{ item.data }}</span>
         </div>
-        <b-progress :class="color" :value="item.data"></b-progress>
+        <b-progress :class="item.color" :value="item.data" :max="item.max"></b-progress>
       </div>
     </div>
   </section>

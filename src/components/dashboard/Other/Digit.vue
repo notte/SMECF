@@ -22,22 +22,22 @@ export default defineComponent({
   components: { DoughnutChart, BarChartHorizontal },
   setup() {
     const data = reactive({
-      compositeAveScore: [{ name: "5.1", data: 5.1 }],
+      compositeAveScore: [{ name: "5.1", data: 5.1, max: 10 }],
       avgScore: [
-        { name: "", data: 0 },
-        { name: "", data: 0 },
+        { name: "製造業", data: 5.1, max: 10, color:"purple" },
+        { name: "服務業", data: 0, max: 10, color:"blue" },
       ],
       facetedOverview1: [
-        { name: "", data: 0 },
-        { name: "", data: 0 },
+        { name: "製造業", data: 3, max: 10, color:"purple" },
+        { name: "服務業", data: 0, max: 10, color:"blue" },
       ],
       facetedOverview2: [
-        { name: "", data: 0 },
-        { name: "", data: 0 },
+        { name: "製造業", data: 3, max: 10, color:"purple" },
+        { name: "服務業", data: 0, max: 10, color:"blue" },
       ],
       facetedOverview3: [
-        { name: "", data: 0 },
-        { name: "", data: 0 },
+        { name: "製造業", data: 3, max: 10, color:"purple" },
+        { name: "服務業", data: 0, max: 10, color:"blue" },
       ],
     });
     
@@ -45,22 +45,22 @@ export default defineComponent({
       axios.get<IDashboardOtherIntelligent>("./data/dashboard_other_intelligent.json")
         .then((res) => {
           console.log(res.data);
-          data.compositeAveScore = [{ name: res.data.intelligentAvgScore.toString(), data: res.data.intelligentAvgScore }];
+          data.compositeAveScore = [{ name: res.data.intelligentAvgScore.toString(), data: res.data.intelligentAvgScore, max: 10}];
           data.avgScore = [
-            { name: "製造業", data: res.data.avgScore[0]?? 0 },
-            { name: "服務業", data: res.data.avgScore[1]?? 0 },
+            { name: "製造業", data: res.data.avgScore[0]?? 0, max: 10, color:"purple"},
+            { name: "服務業", data: res.data.avgScore[1]?? 0, max: 10, color:"blue"},
           ];
           data.facetedOverview1 = [
-            { name: "製造業", data: res.data.valueChainTool[0]?? 0 },
-            { name: "服務業", data: res.data.valueChainTool[1]?? 0 },
+            { name: "製造業", data: res.data.valueChainTool[0]?? 0, max: 10, color:"purple"},
+            { name: "服務業", data: res.data.valueChainTool[1]?? 0, max: 10, color:"blue"},
           ];
           data.facetedOverview2 = [
-            { name: "製造業", data: res.data.researchTool[0]?? 0 },
-            { name: "服務業", data: res.data.researchTool[1]?? 0 },
+            { name: "製造業", data: res.data.researchTool[0]?? 0, max: 10, color:"purple"},
+            { name: "服務業", data: res.data.researchTool[1]?? 0, max: 10, color:"blue"},
           ];
           data.facetedOverview3 = [
-            { name: "製造業", data: res.data.operationTool[0]?? 0 },
-            { name: "服務業", data: res.data.operationTool[1]?? 0 },
+            { name: "製造業", data: res.data.operationTool[0]?? 0, max: 10, color:"purple"},
+            { name: "服務業", data: res.data.operationTool[1]?? 0, max: 10, color:"blue"},
           ];
         })
     });
