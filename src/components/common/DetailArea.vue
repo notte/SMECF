@@ -4,7 +4,7 @@
       <Map />
     </div>
     <div class="city items-center">
-      <h6 class="text-system-light_05">縣市</h6>
+      <h6 class="title_h6">縣市</h6>
       <div class="chart">
         <v-chart :option="option" />
       </div>

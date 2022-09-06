@@ -5,9 +5,9 @@
       <div class="logo">
         <img src="@/assets/icons/logo.svg" class="logo_small" alt="" />
         <img src="@/assets/icons/logo-full.svg" class="logo_full" alt="" />
-        <hr class="division_1" />
+        <hr class="division" />
       </div>
-      <button class="menu_tablet"><i class="gg-menu"></i></button>
+      <button class="menu_tablet"><i class="gg-menu_light"></i></button>
       <Nav />
     </nav>
     <main>

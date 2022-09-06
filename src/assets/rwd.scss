@@ -39,7 +39,7 @@
     }
 
     .container_nav {
-        @apply transition-all relative -top-52 bg-system-dark_02 w-full flex;
+        @apply transition-all relative -top-52 w-full flex;
 
         ul {
             width: 100% !important;
@@ -48,7 +48,7 @@
         li.nav_button {
             @apply justify-center;
 
-            color: #eef0f4 !important;
+            // color: #eef0f4 !important;
 
             &::before {
                 display: none !important;
@@ -77,11 +77,6 @@
 
         li.hidden_switch {
             display: flex !important;
-        }
-
-        .nav_button.true {
-            @apply bg-system-dark_03 ;
-
         }
     }
 

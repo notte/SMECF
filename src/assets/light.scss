@@ -1,0 +1,123 @@
+html {
+    body {
+        background-color: #fff;
+    }
+}
+
+.division {
+    @apply division_light;
+}
+
+ul.switch_button {
+    li.false {
+        @apply text-system-dark_04 bg-system-light_05;
+    }
+}
+
+ul.checkbox {
+    .label_item {
+        p {
+            @apply text-system-dark_03;
+        }
+    }
+
+}
+
+nav {
+    @apply bg-system-light_04;
+
+    .nav_button.false {
+        @apply text-system-dark_03;
+    }
+}
+
+main {
+    .scroll_main {
+        .mode_switch {
+            @apply bg-system-light_03;
+        }
+    }
+}
+
+
+.other_subtitle {
+    @apply label_large;
+
+    color: #17293a;
+}
+
+.title_h6,
+.back {
+    @apply text-system-dark_03;
+}
+
+.container_chart {
+    @apply bg-system-light_03 elevation_light_modal_dialog;
+
+    .top {
+        .title {
+            @apply text-system-dark_03;
+        }
+
+    }
+
+    .info {
+        h1.percent {
+            @apply text-system-dark_03;
+        }
+
+        .text {
+            p:first-child {
+                @apply text-system-dark_03;
+            }
+
+            p:last-child {
+                @apply text-system-dark_05;
+            }
+        }
+    }
+
+    .container_bar {
+        .bar_item {
+            .progress {
+                @apply bg-system-light_05;
+            }
+        }
+    }
+
+    .ul.switch_text {
+        .li.legend_item {
+            @apply text-system-dark_03;
+        }
+    }
+}
+
+
+.popup {
+    .title_h5,
+    .title_h6,
+    span.name_color {
+        @apply text-system-dark_03;
+    }
+}
+
+@media (max-width: 1024px) {
+    nav {
+        .container_nav {
+            @apply bg-system-light_03 elevation_light_card_hover;
+
+            li.nav_button {
+                @apply text-system-dark_03;
+            }
+        }
+
+        .nav_button {
+            color: #383c41 !important;
+        }
+        
+        .nav_button.true {
+            @apply bg-system-light_05;
+
+        }
+    }
+}

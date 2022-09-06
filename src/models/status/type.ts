@@ -12,3 +12,8 @@ export enum ManufacturerType {
   Created = "Created",
   Distributed = "Distributed",
 }
+
+export enum ModeType {
+  Dark = "Dark",
+  Light = "Light",
+}

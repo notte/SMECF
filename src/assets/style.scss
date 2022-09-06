@@ -4,8 +4,6 @@ html {
 
     body {
         @apply overflow-hidden;
-
-        background-color: #1e1e1e;
     }
 
 }
@@ -15,7 +13,7 @@ html {
 
 
     nav {
-        @apply transition-all relative flex flex-col justify-center items-start  overflow-hidden bg-system-dark_02;
+        @apply transition-all relative flex flex-col justify-center items-start  overflow-hidden;
         
         width: 72px;
 
@@ -129,7 +127,13 @@ html {
             @apply  p-7 overflow-y-scroll overflow-x-hidden h-full relative;
 
             .mode_switch {
-                @apply absolute cursor-pointer right-8 p-2 bg-system-dark_02 radius_8 w-max h-auto;
+                @apply absolute cursor-pointer right-8 p-2 radius_8 w-max h-auto;
+
+                img {
+                    @apply h-auto;
+
+                    width: 13px;
+                }
             }
         }
     }
@@ -184,7 +188,7 @@ ul.switch_button {
     @apply flex my-6;
     
     li {
-        @apply cursor-pointer;
+        @apply cursor-pointer rounded-xl m-2;
     
         font-size: 12px;
         line-height: 16px;
@@ -192,11 +196,7 @@ ul.switch_button {
     }
     
     li.true {
-        @apply text-system-light_05 rounded-xl bg-primary-main;
-    }
-    
-    li.false {
-        @apply text-system-dark_04;
+        @apply text-system-light_05  bg-primary-main;
     }
 }
 
@@ -230,15 +230,28 @@ ul.legends_row {
     }
 
     li.legend_item {
-        @apply flex my-1 items-center text-system-light_01 font-medium text-sm cursor-default;
+        @apply flex my-1 items-center font-medium text-sm cursor-default;
 
         .icon {
             @apply relative mr-2 p-0;
 
-            background-color: #fff;
             height: 10px;
             width: 10px;
         }
+    }
+
+    li.legend_item:first-child {        
+        .icon {
+            @apply bg-system-purple_03;
+        }
+
+    }
+
+    li.legend_item:last-child {
+        .icon {
+            @apply bg-system-teal_03;
+        }
+
     }
 }
 
@@ -249,32 +262,40 @@ ul.checkbox {
         @apply mx-3;
 
         p {
-            @apply text-system-light_01 tips ml-6;
+            @apply tips ml-6;
         }
 
         label {
             @apply block relative cursor-pointer select-none;
-        }
-      
-        label input {
-            @apply cursor-pointer absolute opacity-0 w-0 h-0;
-        }
-      
-        span {
-            @apply absolute bg-gray-50 w-4 h-4;
+        
+            input {
+                @apply cursor-pointer absolute opacity-0 w-0 h-0;
+            }
 
-            border-radius: 2px;
-            left: 0;
-            top: -2px;
-        }
-      
-        label input:checked ~ span {
-            @apply bg-primary-main;
+            input:checked ~ span.checkmark {
+                @apply bg-primary-main;
+
+                border: 0;
+
+                /* stylelint-disable-next-line selector-max-compound-selectors */
+                i {
+                    opacity: 1;
+                }
+            }
+
+            span.checkmark {
+                @apply absolute w-4 h-4;
+
+                border: 1px solid #232323;
+                border-radius: 2px;
+                left: 0;
+                top: -2px;
+
+                i {
+                    opacity: 0;
+                }
+            }
         }
     }
 
-}
-
-.other_subtitle {
-    @apply label_large text-system-dark_05;
 }

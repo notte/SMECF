@@ -4,7 +4,7 @@
       <Map />
     </div>
     <div class="city">
-      <h6 class="text-system-light_05">縣市</h6>
+      <h6 class="title_h6">縣市</h6>
       <ul class="switch_button" ref="tabs">
         <li class="true" @click="clickTab(Register, $event)">登記地區</li>
         <li class="false" @click="clickTab(Expand, $event)">擴建廠房分佈</li>
@@ -25,9 +25,9 @@
           </label>
         </li>
         <li class="label_item">
-          <label>
+          <label class="container">
             <input type="checkbox" checked />
-            <span><i class="gg-check"></i></span>
+            <span class="checkmark"><i class="gg-check"></i></span>
             <p>服務業</p>
           </label>
         </li>
@@ -44,9 +44,9 @@
       </label>
     </li>
     <li class="label_item">
-      <label>
+      <label class="container">
         <input type="checkbox" checked />
-        <span><i class="gg-check"></i></span>
+        <span class="checkmark"><i class="gg-check"></i></span>
         <p>服務業</p>
       </label>
     </li>

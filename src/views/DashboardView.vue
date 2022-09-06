@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h6 class="text-system-light_05">基本平均表現</h6>
+    <h6 class="dashboard_title_h6">基本平均表現</h6>
     <div class="my-6">
       <ul class="tab_l justify-start" ref="tabs_base">
         <li class="false" @click="clickTab('A', 'tabs_base', $event)">
@@ -8,12 +8,12 @@
         </li>
         <li class="true" @click="clickTab('A', 'tabs_base', $event)">服務業</li>
       </ul>
-      <hr class="division_1" />
+      <hr class="division" />
     </div>
     <Base />
   </section>
   <section>
-    <h6 class="text-system-light_05 mt-4">其他平均表現</h6>
+    <h6 class="dashboard_title_h6 mt-4">其他平均表現</h6>
     <div class="my-6">
       <ul class="tab_l justify-start" ref="tabs_other">
         <li class="true" @click="clickTab(Finance, 'tabs_other', $event)">
@@ -29,7 +29,7 @@
           市場力
         </li>
       </ul>
-      <hr class="division_1" />
+      <hr class="division" />
     </div>
     <Finance v-if="isShow(Finance)" />
     <Digit v-if="isShow(Digit)" />

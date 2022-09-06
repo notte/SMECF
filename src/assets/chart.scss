@@ -1,11 +1,11 @@
 .container_chart {
-    @apply my-4 bg-system-dark_02 p-6;
+    @apply my-4 p-6;
 
     .top {
         @apply flex justify-between;
 
         .title {
-            @apply subtitle_3 text-system-light_01;
+            @apply subtitle_3;
         }
 
         .icon_top {
@@ -33,14 +33,15 @@
 
         
         h1.percent {
-            @apply text-system-light_05 flex flex-nowrap items-baseline;
+            @apply flex flex-nowrap items-baseline;
         }
         
         // 圖表
         .chart {
             height: 120px;
             position: relative;
-            width: 120px;
+            // width: 120px;
+            width: 100%;
         }
 
     }
@@ -51,56 +52,58 @@
     @apply flex flex-col justify-evenly;
 
     height: calc(100% - 26px);
+
+    .bar_item {
+        @apply flex items-center;
+    
+        .bar_info {
+            @apply flex-none  flex items-center;
+    
+            *:first-child {
+                @apply mr-1;
+            }
+    
+            *:last-child {
+                @apply mr-2;
+            }
+        }
+    
+        .progress {
+            @apply w-full h-2/5;
+    
+            .progress-bar {
+                @apply bg-primary-main;
+            }
+            
+        }
+    
+        .purple.progress {
+            .progress-bar {
+                @apply bg-system-purple_03;
+            }
+        }
+    
+        .blue.progress {
+            .progress-bar {
+                @apply bg-system-blue_02;
+            }
+        }
+    
+        .green.progress {
+            .progress-bar {
+                @apply bg-system-green_02;
+            }
+        }
+    
+        .orange.progress {
+            .progress-bar {
+                @apply bg-system-orange_01;
+            }
+        }
+    }
 }
 
-.bar_item {
-    @apply flex items-center;
 
-    .bar_info {
-        @apply flex-none  flex items-center;
-
-        *:first-child {
-            @apply mr-1;
-        }
-
-        *:last-child {
-            @apply mr-2;
-        }
-    }
-
-    .progress {
-        @apply w-full h-2/5 bg-system-dark_03;
-
-        .progress-bar {
-            @apply bg-primary-main;
-        }
-        
-    }
-
-    .purple.progress {
-        .progress-bar {
-            @apply bg-system-purple_03;
-        }
-    }
-
-    .blue.progress {
-        .progress-bar {
-            @apply bg-system-blue_02;
-        }
-    }
-
-    .green.progress {
-        .progress-bar {
-            @apply bg-system-green_02;
-        }
-    }
-
-    .orange.progress {
-        .progress-bar {
-            @apply bg-system-orange_01;
-        }
-    }
-}
 
 // 地圖樣式
 .container_map {
@@ -120,7 +123,7 @@
         }
 
         .back {
-            @apply body_14 mt-6 text-system-light_05 self-center;
+            @apply body_14 mt-6 self-center;
         }
     }
 }

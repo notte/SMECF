@@ -7,6 +7,8 @@
 @import 'style';
 @import 'chart';
 @import 'rwd';
+@import 'light';
+// @import 'dark';
 
 @layer base {
     h1 {
@@ -361,6 +363,10 @@
 
     .division_2 {
         border: 1px dashed #383c41;
+    }
+
+    .division_light {
+        border: 1px solid #d8dee7;
     }
 
     // radius
