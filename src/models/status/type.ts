@@ -14,6 +14,6 @@ export enum ManufacturerType {
 }
 
 export enum ModeType {
-  Dark = "Dark",
-  Light = "Light",
+  Dark = "dark",
+  Light = "light",
 }

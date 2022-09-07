@@ -1,28 +1,21 @@
-html {
-    body {
-        background-color: #1e1e1e;
-    }
-
-}
-
 .division {
     @apply division_1;
 }
 
 ul.switch_button {
     li.false {
-        @apply text-system-dark_04 bg-system-dark_02;
+        @apply dark:text-system-dark_04 dark:bg-system-dark_02;
     }
 }
 
 ul.checkbox {
     .label_item {
         p {
-            @apply text-system-light_01;
+            @apply dark:text-system-light_01;
         }
 
         span {
-            @apply bg-gray-50;
+            @apply dark:bg-gray-50;
         }
       
     }
@@ -30,10 +23,10 @@ ul.checkbox {
 }
 
 nav {
-    @apply bg-system-dark_02;
+    @apply dark:bg-system-dark_02;
 
     .nav_button.false {
-        @apply text-system-dark_03;
+        @apply dark:text-system-dark_03;
     }
 }
 
@@ -41,51 +34,51 @@ nav {
 main {
     .scroll_main {
         .mode_switch {
-            @apply bg-system-dark_02;
+            @apply dark:bg-system-dark_02;
         }
     }
 }
 
 .title_h6 {
-    @apply text-system-light_05;
+    @apply dark:text-system-light_05;
 }
 
 .other_subtitle {
-    @apply label_large text-system-dark_05;
+    @apply label_large dark:text-system-dark_05;
 }
 
 
 
-.ul.switch_text,
+ul.switch_text,
 ul.legends_row {
     li.legend_item {
-        @apply text-system-light_01;
+        @apply dark:text-system-light_01;
     }
 }
 
 
 .container_chart {
-    @apply bg-system-dark_02;
+    @apply dark:bg-system-dark_02;
 
     .top {
         .title {
-            @apply text-system-light_01;
+            @apply dark:text-system-light_01;
         }
     }
 
 
     .info {
         h1.percent {
-            @apply text-system-light_05;
+            @apply dark:text-system-light_05;
         }
 
         .text {
             p:first-child {
-                @apply text-system-light_05;
+                @apply dark:text-system-light_05;
             }
 
             p:last-child {
-                @apply text-system-dark_04;
+                @apply dark:text-system-dark_04;
             }
         }
     }
@@ -93,7 +86,7 @@ ul.legends_row {
     .container_bar {
         .bar_item {
             .progress {
-                @apply bg-system-dark_03;
+                @apply dark:bg-system-dark_03;
             }
         }
     }
@@ -102,14 +95,14 @@ ul.legends_row {
 .container_map {
     .city {
         .back {
-            @apply  text-system-light_05 ;
+            @apply  dark:text-system-light_05 ;
         }
     }
 }
 
 .popup {
     .title_h5 {
-        @apply text-system-light_05;
+        @apply dark:text-system-light_05;
     }
 
     .title_h6 {
@@ -117,7 +110,7 @@ ul.legends_row {
     }
 
     span.name_color {
-        @apply text-system-light_03;
+        @apply dark:text-system-light_03;
     }
 }
 
@@ -126,19 +119,19 @@ ul.legends_row {
 @media (max-width: 1024px) {
     nav {
         .container_nav {
-            @apply bg-system-dark_02;
+            @apply dark:bg-system-dark_02;
 
             li.nav_button {
-                @apply text-system-light_03;
+                @apply dark:text-system-light_03;
             }
         }
 
         .nav_button {
-            color: #eef0f4 !important;
+            @apply dark:text-system-light_03;
         }
 
         .nav_button.true {
-            @apply bg-system-dark_03 ;
+            @apply dark:bg-system-dark_03 ;
 
             
         }

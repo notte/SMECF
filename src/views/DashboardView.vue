@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h6 class="dashboard_title_h6">基本平均表現</h6>
+    <h6 class="title_h6 dark:title_h6_dark">基本平均表現</h6>
     <div class="my-6">
       <ul class="tab_l justify-start" ref="tabs_base">
         <li class="false" @click="clickTab('A', 'tabs_base', $event)">
@@ -13,7 +13,7 @@
     <Base />
   </section>
   <section>
-    <h6 class="dashboard_title_h6 mt-4">其他平均表現</h6>
+    <h6 class="title_h6 mt-4">其他平均表現</h6>
     <div class="my-6">
       <ul class="tab_l justify-start" ref="tabs_other">
         <li class="true" @click="clickTab(Finance, 'tabs_other', $event)">

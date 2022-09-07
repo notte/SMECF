@@ -42,13 +42,32 @@
           <p>Statistics</p>
         </div>
       </li>
-      <li class="nav_button hidden_switch">
+      <li
+        class="nav_button hidden_switch"
+        @click="setMode(Light)"
+        v-show="isShow(Dark)"
+      >
         <div class="nav_content">
           <div class="nav_icon">
             <img class="icon_mobile" src="@/assets/icons/moon_mobile.svg" />
-            <!-- <img class="icon_mobile" src="@/assets/icons/sun_mobile.svg" /> -->
           </div>
           <p>Dark Mode</p>
+        </div>
+      </li>
+      <li
+        class="nav_button hidden_switch"
+        @click="setMode(Dark)"
+        v-show="isShow(Light)"
+      >
+        <div class="nav_content">
+          <div class="nav_icon">
+            <img
+              class="icon_mobile"
+              src="@/assets/icons/sun_mobile.svg"
+              alt=""
+            />
+          </div>
+          <p>Light Mode</p>
         </div>
       </li>
     </ul>
@@ -57,16 +76,23 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
+import * as Status from "@/models/status/type";
+import EventBus from "@/utilities/event-bus";
+import { statusStore } from "@/store/index";
 
 export default defineComponent({
   components: {},
   setup() {
+    const Current = ref(Status.ModeType.Light);
+    const Dark = ref(Status.ModeType.Dark);
+    const Light = ref(Status.ModeType.Light);
     const router = useRouter();
     const dashboard = ref();
     const statistics = ref();
-    const tabs = ref();
     const dashboard_status = ref(true);
     const statistics_status = ref(true);
+    const tabs = ref();
+    const status = statusStore();
 
     function clickTab(Status: string): void {
       if (Status === "Dashboard") {
@@ -88,6 +114,22 @@ export default defineComponent({
       });
     }
 
+    function setMode(mode: string): void {
+      status.increment(mode);
+      Current.value = mode as Status.ModeType;
+      if (status.mode === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+
+      EventBus.emit("mode_switch", mode);
+    }
+
+    function isShow(page: Status.ModeType): boolean {
+      return Current.value === page ? true : false;
+    }
+
     return {
       clickTab,
       tabs,
@@ -95,6 +137,11 @@ export default defineComponent({
       statistics,
       dashboard_status,
       statistics_status,
+      Current,
+      Dark,
+      Light,
+      setMode,
+      isShow,
     };
   },
 });

@@ -1,13 +1,16 @@
 <template>
-  <div class="mode_switch" @click="setMode">
-    <img src="@/assets/icons/moon_mobile.svg" v-if="isShow(Dark)" alt="" />
-    <img src="@/assets/icons/sun_mobile.svg" v-if="isShow(Light)" alt="" />
+  <div class="mode_switch" @click="setMode(Light)" v-show="isShow(Dark)">
+    <img src="@/assets/icons/moon_mobile.svg" alt="" />
+  </div>
+  <div class="mode_switch" @click="setMode(Dark)" v-show="isShow(Light)">
+    <img src="@/assets/icons/sun_mobile.svg" alt="" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { statusStore } from "@/store/index";
 import * as Status from "@/models/status/type";
+import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
   components: {},
@@ -17,21 +20,23 @@ export default defineComponent({
     const Light = ref(Status.ModeType.Light);
     const status = statusStore();
 
-    function setMode(): void {
-      if (status.mode === "Dark") {
-        Current.value = Light.value;
-        status.increment("Light");
+    function setMode(mode: string): void {
+      status.increment(mode);
+      Current.value = mode as Status.ModeType;
+      if (status.mode === "dark") {
+        document.documentElement.classList.add("dark");
       } else {
-        status.increment("Dark");
-        Current.value = Dark.value;
+        document.documentElement.classList.remove("dark");
       }
-      console.log(status.mode);
+
+      EventBus.emit("mode_switch", mode);
     }
 
     function isShow(page: Status.ModeType): boolean {
       return Current.value === page ? true : false;
     }
-    return { Dark, Light, isShow, setMode };
+
+    return { Current, Dark, Light, isShow, setMode };
   },
 });
 </script>
