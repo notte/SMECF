@@ -4,16 +4,21 @@
       <li
         class="nav_button true"
         @click="clickTab('Dashboard')"
-        @touchstart="clickTab('Dashboard')"
+        @touchstart="clickTab('Dashboard', 'mobile')"
         ref="dashboard"
       >
         <div class="nav_content">
           <div class="nav_icon">
             <img
+              v-show="isShow(Dark)"
               class="icon_mobile"
               src="@/assets/icons/dashboard_mobile.svg"
             />
-            <img src="@/assets/icons/dashboard.svg" v-if="!dashboard_status" />
+            <img
+              v-show="isShow(Light)"
+              src="@/assets/icons/dashboard.svg"
+              v-if="!dashboard_status"
+            />
             <img
               src="@/assets/icons/dashboard_focus.svg"
               class="true"
@@ -26,13 +31,21 @@
       <li
         class="nav_button false"
         @click="clickTab('Statistics')"
-        @touchstart="clickTab('Statistics')"
+        @touchstart="clickTab('Statistics', 'mobile')"
         ref="statistics"
       >
         <div class="nav_content">
           <div class="nav_icon">
-            <img class="icon_mobile" src="@/assets/icons/chart_mobile.svg" />
-            <img src="@/assets/icons/chart.svg" v-if="statistics_status" />
+            <img
+              v-show="isShow(Dark)"
+              class="icon_mobile"
+              src="@/assets/icons/chart_mobile.svg"
+            />
+            <img
+              v-show="isShow(Light)"
+              src="@/assets/icons/chart.svg"
+              v-if="statistics_status"
+            />
             <img
               src="@/assets/icons/chart_focus.svg"
               class="true"
@@ -43,8 +56,8 @@
         </div>
       </li>
       <li
-        class="nav_button hidden_switch"
-        @click="setMode(Light)"
+        class="nav_button hidden_switch false"
+        @touchstart="setMode(Light)"
         v-show="isShow(Dark)"
       >
         <div class="nav_content">
@@ -55,8 +68,8 @@
         </div>
       </li>
       <li
-        class="nav_button hidden_switch"
-        @click="setMode(Dark)"
+        class="nav_button hidden_switch false"
+        @touchstart="setMode(Dark)"
         v-show="isShow(Light)"
       >
         <div class="nav_content">
@@ -74,7 +87,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import * as Status from "@/models/status/type";
 import EventBus from "@/utilities/event-bus";
@@ -94,7 +107,11 @@ export default defineComponent({
     const tabs = ref();
     const status = statusStore();
 
-    function clickTab(Status: string): void {
+    if (window.innerWidth < 1025) {
+      dashboard_status.value = false;
+    }
+
+    function clickTab(Status: string, type?: string): void {
       if (Status === "Dashboard") {
         dashboard.value.className = "nav_button true";
         statistics.value.className = "nav_button false";
@@ -109,6 +126,10 @@ export default defineComponent({
       dashboard_status.value = !dashboard_status.value;
       statistics_status.value = !statistics_status.value;
 
+      if (type) {
+        dashboard_status.value = false;
+        statistics_status.value = true;
+      }
       router.push({
         name: Status,
       });

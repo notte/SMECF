@@ -36,6 +36,11 @@
                 display: block !important;
             }
         }
+
+
+        li.nav_button.hidden_switch {
+            display: flex;
+        }
     }
 
     .container_nav {
@@ -66,18 +71,15 @@
                 }
             }
 
-            img {
-                @apply hidden;
-            }
+            // img {
+            //     @apply hidden;
+            // }
 
             img.icon_mobile {
-                display: block !important;
+                // display: block !important;
             }
         }
 
-        li.hidden_switch {
-            display: flex;
-        }
     }
 
     main {

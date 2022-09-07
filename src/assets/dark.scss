@@ -25,8 +25,25 @@ ul.checkbox {
 nav {
     @apply dark:bg-system-dark_02;
 
-    .nav_button.false {
-        @apply dark:text-system-dark_03;
+    .container_nav {
+        li.nav_button.false {
+            p {
+                @apply dark:text-system-dark_04;
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) { 
+    nav {
+        .container_nav {
+            li.nav_button.false,
+            li.nav_button.true {
+                p {
+                    @apply dark:text-system-light_03;
+                }
+            }
+        }
     }
 }
 
