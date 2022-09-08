@@ -1,0 +1,26 @@
+{
+  "patent": {
+    "have": [65, 35],
+    "type": {
+      "localCreative": 80,
+      "localNew": 79,
+      "localDesign": 74,
+      "oversea": 70
+    }
+  },
+  "license": {
+    "have": [65, 35],
+    "type": {
+      "productSafety": 80,
+      "qualityManagement": 79,
+      "other": 30
+    }
+  },
+  "ideas": {
+    "have": [65, 35],
+    "type": {
+      "newProduct": 80,
+      "newCause": 79
+    }
+  }
+}

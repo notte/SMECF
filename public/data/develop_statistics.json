@@ -1,0 +1,11 @@
+{
+    "rankInternationality": [65, 35],
+    "saleAbroad": [65, 35],
+    "carbonSearch": {
+      "have": [65, 35],
+      "downRoad": [65, 35],
+      "process": [65, 35],
+      "conversion": [65, 35],
+      "reuse": [65, 35]
+    }
+}

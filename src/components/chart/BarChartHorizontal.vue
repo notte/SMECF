@@ -1,7 +1,9 @@
+<!-- type1: Title, TopIcon,Progress -->
+<!-- type2: Title, TopIcon, Switch, Progress -->
+<!-- type3: TopIcon, Switch, Progress -->
 <template>
   <section class="container_chart">
     <div class="top">
-      <!-- type1-->
       <p v-if="type != 3" class="title">{{ title }}</p>
       <!-- type3-->
       <ul v-if="type == 3" class="switch_text" ref="tabs_switch">
