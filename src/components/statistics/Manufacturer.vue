@@ -1,6 +1,6 @@
 <template>
   <section class="container_map">
-    <h6 class="text-system-light_05">產業區域分布</h6>
+    <h6 class="title_h6">產業區域分布</h6>
     <ul class="switch_button" ref="tabs">
       <li class="true" @click="clickTab(Register, $event)">登記地區</li>
       <li class="false" @click="clickTab(Expand, $event)">擴建廠房分佈</li>
@@ -18,6 +18,7 @@ import { defineComponent, ref } from "vue";
 import * as Status from "@/models/status/type";
 import DetailCity from "@/components/common/DetailCity.vue";
 import DetailArea from "@/components/common/DetailArea.vue";
+import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
   components: { DetailCity, DetailArea },

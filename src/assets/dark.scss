@@ -1,0 +1,171 @@
+// .division {
+//     @apply division_1;
+// }
+
+ul.switch_button {
+    li.false {
+        @apply dark:text-system-dark_04 dark:bg-system-dark_02;
+    }
+}
+
+ul.checkbox {
+    .label_item {
+        p {
+            @apply dark:text-system-light_01;
+        }
+
+        span {
+            @apply dark:bg-gray-50;
+        }
+      
+    }
+
+}
+
+nav {
+    @apply dark:bg-system-dark_02;
+
+    .container_nav {
+        li.nav_button.false {
+            p {
+                @apply dark:text-system-dark_04;
+            }
+        }
+    }
+
+    .logo {
+        hr {
+            @apply dark:border-gray-500;
+        }
+    }
+}
+
+@media (max-width: 1024px) { 
+    nav {
+        .container_nav {
+            li.nav_button.false,
+            li.nav_button.true {
+                p {
+                    @apply dark:text-system-light_03;
+                }
+            }
+        }
+
+        .logo {
+            hr {
+                @apply dark:border-gray-700;
+            }
+        }
+    }
+}
+
+.container_popup {
+    @apply dark:bg-system-dark_02;
+}
+
+main {
+    .scroll_main {
+        .mode_switch {
+            @apply dark:bg-system-dark_02;
+        }
+    }
+}
+
+.title_h6 {
+    @apply dark:text-system-light_05;
+}
+
+.other_subtitle {
+    @apply label_large dark:text-system-dark_05;
+}
+
+
+
+ul.switch_text,
+ul.legends_row {
+    li.legend_item {
+        @apply dark:text-system-light_01;
+    }
+}
+
+
+.container_chart {
+    @apply dark:bg-system-dark_02;
+
+    .top {
+        .title {
+            @apply dark:text-system-light_01;
+        }
+    }
+
+
+    .info {
+        h1.percent {
+            @apply dark:text-system-light_05;
+        }
+
+        .text {
+            p:first-child {
+                @apply dark:text-system-light_05;
+            }
+
+            p:last-child {
+                @apply dark:text-system-dark_04;
+            }
+        }
+    }
+
+    .container_bar {
+        .bar_item {
+            .progress {
+                @apply dark:bg-system-dark_03;
+            }
+        }
+    }
+}
+
+.container_map {
+    .city {
+        .back {
+            @apply  dark:text-system-light_05 ;
+        }
+    }
+}
+
+.popup {
+    .title_h5 {
+        @apply dark:text-system-light_05;
+    }
+
+    .title_h6 {
+        @apply dark:text-system-light_03;
+    }
+
+    span.name_color {
+        @apply dark:text-system-light_03;
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+    nav {
+        .container_nav {
+            @apply dark:bg-system-dark_02;
+
+            li.nav_button {
+                @apply dark:text-system-light_03;
+            }
+        }
+
+        .nav_button {
+            @apply dark:text-system-light_03;
+        }
+
+        .nav_button.true {
+            @apply dark:bg-system-dark_03 ;
+
+            
+        }
+    }
+}
