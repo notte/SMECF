@@ -38,13 +38,14 @@
   </section>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import Base from "@/components/dashboard/Base/Base.vue";
 import Finance from "@/components/dashboard/Other/Finance.vue";
 import Digit from "@/components/dashboard/Other/Digit.vue";
 import Innovation from "@/components/dashboard/Other/Innovation.vue";
 import Market from "@/components/dashboard/Other/Market.vue";
 import * as Status from "@/models/status/type";
+import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
   components: { Base, Finance, Digit, Innovation, Market },

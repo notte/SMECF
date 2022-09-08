@@ -1,6 +1,6 @@
-.division {
-    @apply division_1;
-}
+// .division {
+//     @apply division_1;
+// }
 
 ul.switch_button {
     li.false {
@@ -32,6 +32,12 @@ nav {
             }
         }
     }
+
+    .logo {
+        hr {
+            @apply dark:border-gray-500;
+        }
+    }
 }
 
 @media (max-width: 1024px) { 
@@ -44,9 +50,18 @@ nav {
                 }
             }
         }
+
+        .logo {
+            hr {
+                @apply dark:border-gray-700;
+            }
+        }
     }
 }
 
+.container_popup {
+    @apply dark:bg-system-dark_02;
+}
 
 main {
     .scroll_main {
@@ -123,7 +138,7 @@ ul.legends_row {
     }
 
     .title_h6 {
-        @apply text-system-light_03;
+        @apply dark:text-system-light_03;
     }
 
     span.name_color {

@@ -18,6 +18,7 @@ import { defineComponent, ref } from "vue";
 import * as Status from "@/models/status/type";
 import DetailCity from "@/components/common/DetailCity.vue";
 import DetailArea from "@/components/common/DetailArea.vue";
+import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
   components: { DetailCity, DetailArea },

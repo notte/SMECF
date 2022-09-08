@@ -2,9 +2,9 @@
     background-color: #fff;
 }
 
-.division {
-    @apply division_light;
-}
+// .division {
+//     @apply division_light;
+// }
 
 ul.switch_button {
     li.false {
@@ -18,7 +18,6 @@ ul.checkbox {
             @apply text-system-dark_03;
         }
     }
-
 }
 
 nav {
@@ -26,6 +25,12 @@ nav {
 
     .nav_button.false {
         @apply text-system-dark_03;
+    }
+
+    .logo {
+        hr {
+            @apply border-gray-400;
+        }
     }
 }
 
@@ -118,4 +123,8 @@ main {
 
         }
     }
+}
+
+.container_popup {
+    @apply bg-system-light_03;
 }

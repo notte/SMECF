@@ -17,7 +17,7 @@
 
     // (下方的)資訊區塊
     .info {
-        @apply flex items-center justify-between w-full h-auto;
+        @apply flex items-center justify-between w-full;
     
     
         .text {
@@ -38,12 +38,8 @@
         
         // 圖表
         .chart {
-            height: 120px;
-            position: relative;
-            // width: 120px;
-            width: 100%;
+            @apply relative w-32 h-32;
         }
-
     }
 }
 
@@ -111,15 +107,20 @@
 
     height: calc(100% - 60px);
 
+    ul.switch_button {
+        @apply mb-0;
+    }
+    
     .info {
         @apply flex w-full h-full justify-center items-center;
     }
 
     .city {
-        @apply h-full flex flex-col justify-center items-start;
+        @apply h-full flex flex-col justify-center items-center;
+
 
         .chart {
-            @apply w-96 h-96;
+            @apply w-44 h-44 my-6;
         }
 
         .back {

@@ -2,13 +2,14 @@
   <div></div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import * as Model from "@/models/interface/map";
 import EventBus from "@/utilities/event-bus";
 import * as d3 from "d3";
 
 export default defineComponent({
   setup() {
+    EventBus.emit("loading_event", true);
     EventBus.on("create_map", (prams) => {
       d3.selectAll("svg").remove();
       let width = (prams as number[])[0];
@@ -19,16 +20,21 @@ export default defineComponent({
 
       if (width > 1366) {
         scale = 11000;
-        multiplier = 0.65;
       } else if (width <= 1366 && width > 480) {
         scale = 10000;
-        multiplier = 0.7;
       } else if (width <= 480 && width > 320) {
         scale = 8000;
-        multiplier = 0.8;
       } else {
         scale = 6000;
-        multiplier = 0.4;
+      }
+
+      if (width < 720 && height < 740) {
+        multiplier = 0.8;
+      }
+      if (width < 1300 && height < 440) {
+        multiplier = 0.5;
+      } else {
+        multiplier = 0.6;
       }
 
       let projection = d3
@@ -52,39 +58,45 @@ export default defineComponent({
 
       let g = svg.append("g").attr("id", "group");
 
-      d3.json<Model.IMapResponseData>("./Taiwan.geo.json").then((data) => {
-        if (data) {
-          g.selectAll("path")
-            .data(data.features)
-            .enter()
-            .append("path")
-            .attr("d", path as never)
-            .attr("class", (d) => {
-              return "city_" + d.properties["COUNTYID"];
-            })
-            .on("mouseover", (event) => {
-              svg.selectAll("path").sort(function (a, b): number {
-                if (
-                  (a as Model.IFeatur).properties["COUNTYID"] !==
-                  (b as Model.IFeatur).properties["COUNTYID"]
-                ) {
-                  return -1;
-                } else {
-                  return 1;
-                }
+      d3.json<Model.IMapResponseData>("./Taiwan.geo.json")
+        .then((data) => {
+          if (data) {
+            g.selectAll("path")
+              .data(data.features)
+              .enter()
+              .append("path")
+              .attr("d", path as never)
+              .attr("class", (d) => {
+                return "city_" + d.properties["COUNTYID"];
+              })
+              .on("mouseover", (event) => {
+                svg.selectAll("path").sort(function (a, b): number {
+                  if (
+                    (a as Model.IFeatur).properties["COUNTYID"] !==
+                    (b as Model.IFeatur).properties["COUNTYID"]
+                  ) {
+                    return -1;
+                  } else {
+                    return 1;
+                  }
+                });
+                Tooltip.html("The exact value of<br>this cell is: ")
+                  .style("opacity", 1)
+                  .style("left", event.pageX + "px")
+                  .style("top", event.pageY + "px");
+              })
+              .on("mouseout", (d) => {
+                Tooltip.style("opacity", 0);
               });
-              Tooltip.html("The exact value of<br>this cell is: ")
-                .style("opacity", 1)
-                .style("left", event.pageX + "px")
-                .style("top", event.pageY + "px");
-            })
-            .on("mouseout", (d) => {
-              Tooltip.style("opacity", 0);
-            });
-          // .on("click", (e, d) => {
-          // });
-        }
-      });
+            // .on("click", (e, d) => {
+            // });
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            EventBus.emit("loading_event", false);
+          }, 1000);
+        });
 
       let zoom = d3
         .zoom()

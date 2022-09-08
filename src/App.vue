@@ -1,5 +1,5 @@
 <template>
-  <!-- <Loading /> -->
+  <Loading v-if="loading" />
   <section class="layout dark:bg-mode-black">
     <nav @touchstart="showMenu($event)" @touchcancel="hiddenMenu(e)" ref="menu">
       <div class="logo">
@@ -46,7 +46,7 @@
   </section>
 </template>
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import Nav from "@/components/common/Nav.vue";
 import ModeSwitch from "@/components/common/ModeSwitch.vue";
 import Loading from "@/components/common/Loading.vue";
@@ -63,9 +63,14 @@ export default defineComponent({
     const Light = ref(Status.ModeType.Light);
     const isShow = common.isShow;
     const status = statusStore();
+    const loading = ref<boolean>(false);
 
     const menu = ref();
     const main = ref();
+
+    EventBus.on("loading_event", (status) => {
+      loading.value = status as boolean;
+    });
 
     EventBus.on("mode_switch", (prams) => {
       const mode = prams;
@@ -84,7 +89,17 @@ export default defineComponent({
       menu.value.children[2].style.top = "-200px";
     }
 
-    return { menu, showMenu, hiddenMenu, main, isShow, Current, Dark, Light };
+    return {
+      menu,
+      showMenu,
+      hiddenMenu,
+      main,
+      isShow,
+      Current,
+      Dark,
+      Light,
+      loading,
+    };
   },
 });
 </script>
