@@ -2,13 +2,16 @@
   <div></div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import * as Model from "@/models/interface/map";
 import EventBus from "@/utilities/event-bus";
 import * as d3 from "d3";
+import { Console } from "console";
+import * as Status from "@/models/status/type";
 
 export default defineComponent({
-  setup() {
+  props: ['type', 'data'],
+  setup(props) {
     EventBus.emit("loading_event", true);
     EventBus.on("create_map", (prams) => {
       d3.selectAll("svg").remove();
@@ -69,7 +72,7 @@ export default defineComponent({
               .attr("class", (d) => {
                 return "city_" + d.properties["COUNTYID"];
               })
-              .on("mouseover", (event) => {
+              .on("mouseover", (event, d) => {
                 svg.selectAll("path").sort(function (a, b): number {
                   if (
                     (a as Model.IFeatur).properties["COUNTYID"] !==
@@ -80,16 +83,37 @@ export default defineComponent({
                     return 1;
                   }
                 });
-                Tooltip.html("The exact value of<br>this cell is: ")
-                  .style("opacity", 1)
-                  .style("left", event.pageX + "px")
-                  .style("top", event.pageY + "px");
+
+                // By City
+                if(props.type == Status.ManufacturerMapType.City) {
+                  let items:[] = props.data;
+                  let name = "";
+                  let count = 0;
+
+                  items?.map((item: { countryId: string; name: string; count: number; }) => {
+                      if (item.countryId == d.properties["COUNTYID"]) {
+                          name = item.name;
+                          count = item.count;
+                      }
+                  });
+              
+                  let tooltipStr = "全台中小企業加速投資行動方案家數<br>" + name + ": " + count;
+
+                  Tooltip.html(tooltipStr)
+                    .style("opacity", 1)
+                    .style("left", event.pageX + "px")
+                    .style("top", event.pageY + "px");
+                } else { //By Area
+
+                }
+              
               })
               .on("mouseout", (d) => {
                 Tooltip.style("opacity", 0);
+              })
+              .on("click", (event, d) => {
+                d3OnClickListener();
               });
-            // .on("click", (e, d) => {
-            // });
           }
         })
         .then(() => {
@@ -110,6 +134,18 @@ export default defineComponent({
         });
       svg.call(zoom as never);
     });
+
+    function d3OnClickListener() {
+      //TODO: handle parent pieSection display.
+    }
   },
+  methods: {
+    updatePieSectionDisplayStatus(isShow: boolean): void {
+      if(isShow)
+        this.$emit('hidePieSection');
+      else
+        this.$emit('showPieSection');
+    },
+  }
 });
 </script>

@@ -46,17 +46,66 @@ export interface IHighlightCompany {
  * st: 場址地區
 */
 export interface IManufacturer {
-    date: IManufacturerAmount;
-    capital: IManufacturerAmount;
-    sumPeople: IManufacturerAmount;
-    st: IManufacturerAmount;
+    date: IManufacturerDate;
+    capital: IManufacturerCapital;
+    sumPeople: IManufacturerSumPeople;
+    st: IManufacturerSt;
 }
 
-/**
- * actual: 實際數字
- * total: 總數字
+/** 公司年資
+ * 1: 5年以下
+ * 2: 6-20年
+ * 3: 21-50年
+ * 4: 51年以上
  */
-export interface IManufacturerAmount {
-    actual: number;
-    total: number;
+ export interface IManufacturerDate {
+    1: number;
+    2: number;
+    3: number;
+    4: number;
+}
+
+/** 資本額
+ * 1: 2億以上
+ * 2: 1億-2億
+ * 3: 7500萬-1億
+ * 4: 5000萬-7500萬
+ * 5: 2500萬-5000萬
+ * 6: 1000萬-2500萬
+ * 7: 1000萬以下
+ */
+ export interface IManufacturerCapital {
+    1: number;
+    2: number;
+    3: number;
+    4: number;
+    5: number;
+    6: number;
+    7: number;
+}
+
+/** 公司人數
+ * 1: 10人以下
+ * 2: 11-100人
+ * 3: 101-200人
+ * 4: 201人以上
+ */
+ export interface IManufacturerSumPeople {
+    1: number;
+    2: number;
+    3: number;
+    4: number;
+}
+
+/** 場址地區
+ * 1: 東
+ * 2: 南
+ * 3: 西
+ * 4: 北
+ */
+ export interface IManufacturerSt {
+    1: number;
+    2: number;
+    3: number;
+    4: number;
 }

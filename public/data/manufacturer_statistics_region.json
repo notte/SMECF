@@ -1,0 +1,6 @@
+{
+    "north": [10, null],
+    "south": [35, null],
+    "east": [45, null],
+    "west": [10, null]
+}
