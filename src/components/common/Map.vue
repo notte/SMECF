@@ -11,7 +11,7 @@ import * as Status from "@/models/status/type";
 
 export default defineComponent({
   props: ['type', 'data'],
-  setup(props) {
+  setup(props, { emit }) {
     EventBus.emit("loading_event", true);
     EventBus.on("create_map", (prams) => {
       d3.selectAll("svg").remove();
@@ -61,6 +61,8 @@ export default defineComponent({
 
       let g = svg.append("g").attr("id", "group");
 
+      let cityName = "";
+      let count = 0;
       d3.json<Model.IMapResponseData>("./Taiwan.geo.json")
         .then((data) => {
           if (data) {
@@ -87,17 +89,17 @@ export default defineComponent({
                 // By City
                 if(props.type == Status.ManufacturerMapType.City) {
                   let items:[] = props.data;
-                  let name = "";
-                  let count = 0;
+                  cityName = "";
+                  count = 0;
 
                   items?.map((item: { countryId: string; name: string; count: number; }) => {
                       if (item.countryId == d.properties["COUNTYID"]) {
-                          name = item.name;
-                          count = item.count;
+                        cityName = item.name;
+                        count = item.count;
                       }
                   });
               
-                  let tooltipStr = "全台中小企業加速投資行動方案家數<br>" + name + ": " + count;
+                  let tooltipStr = "全台中小企業加速投資行動方案家數<br>" + cityName + ": " + count;
 
                   Tooltip.html(tooltipStr)
                     .style("opacity", 1)
@@ -112,7 +114,7 @@ export default defineComponent({
                 Tooltip.style("opacity", 0);
               })
               .on("click", (event, d) => {
-                d3OnClickListener();
+                d3OnClickListener(cityName);
               });
           }
         })
@@ -135,17 +137,9 @@ export default defineComponent({
       svg.call(zoom as never);
     });
 
-    function d3OnClickListener() {
-      //TODO: handle parent pieSection display.
+    function d3OnClickListener(cityName: string) {
+      emit('showPieSection', cityName);
     }
-  },
-  methods: {
-    updatePieSectionDisplayStatus(isShow: boolean): void {
-      if(isShow)
-        this.$emit('hidePieSection');
-      else
-        this.$emit('showPieSection');
-    },
   }
 });
 </script>

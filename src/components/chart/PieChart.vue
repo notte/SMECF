@@ -2,7 +2,7 @@
   <section class="container_chart">
     <!-- 最上層標題 -->
     <div class="top">
-      <p v-if="type==1" class="title">{{title}}</p>
+      <p v-if="type==1 || type==3" class="title">{{title}}</p>
       <ul v-if="type==2" class="switch_text" ref="tabs_switch">
         <li class="true" @click="clickTab($event)">製造業</li>
         <li class="false" @click="clickTab($event)">服務業</li>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <!-- 第二層 tab，可能有可能沒有，或者是出現圖標示圖 -->
-    <ul v-if="type==1" class="switch_text" ref="tabs_switch">
+    <ul v-if="type==1 || type==3" class="switch_text" ref="tabs_switch">
       <li class="true" @click="clickTab($event)">製造業</li>
       <li class="false" @click="clickTab($event)">服務業</li>
     </ul>

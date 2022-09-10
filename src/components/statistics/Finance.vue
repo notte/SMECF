@@ -7,7 +7,7 @@
       <BarChartStraight title="稅前淨利" :data="data.barProfits" />
       <PieChart type="1" title="最近年度財務結構" :data="data.pieStructure" />
       <BarChartStraight title="研發支出" :data="data.barDevelop" />
-      <PieChart type="1" title="財務問題(%)" :data="data.pieDifficult" />
+      <PieChart type="3" title="財務問題(%)" :data="data.pieDifficult" />
     </section>
   </section>
 </template>

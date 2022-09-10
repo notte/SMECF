@@ -4,7 +4,7 @@
       <Map :type="Status.ManufacturerMapType.City" :data="dataMaps" @showPieSection="showPieSection" @hidePieSection="hidePieSection"/>
     </div>
     <div class="city" v-if="isShow(isShowPieSection)">
-      <h6 class="title_h6">縣市</h6>
+      <h6 class="title_h6">{{cityName}}</h6>
       <ul class="switch_button" ref="tabs">
         <li class="true" @click="clickTab(Capital, $event)">{{Capital}}</li>
         <li class="false" @click="clickTab(IndustryRate, $event)">{{IndustryRate}}</li>
@@ -28,7 +28,7 @@
           </label>
         </li>
       </ul> -->
-      <button class="back" @click="hidePieSection()">回到 {{$props.type}}</button>
+      <button class="back" @click="hidePieSection()"><img src="@/assets/icons/arrow_left.svg"/>回到{{$props.type}}</button>
     </div>
   </div>
   <ul class="checkbox">
@@ -82,7 +82,8 @@ export default defineComponent({
     const Capital = ref(Status.ManufacturerSubType.Capital);
     const IndustryRate = ref(Status.ManufacturerSubType.IndustryRate);
     const tabs = ref();
-    const isShowPieSection = ref<boolean>(true);
+    const isShowPieSection = ref<boolean>(false);
+    const cityName = ref<string>();
 
     const dataMaps = ref(props.dataMap);
     const option = ref({
@@ -151,11 +152,13 @@ export default defineComponent({
       Status,
       isShowPieSection,
       isShow,
+      cityName
     };
   },
   methods: {
-    showPieSection() {
+    showPieSection(cityName: string) {
       this.isShowPieSection = true;
+      this.cityName = cityName;
     },
 
     hidePieSection() {
