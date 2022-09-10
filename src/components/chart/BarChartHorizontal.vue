@@ -17,7 +17,7 @@
         >
           <i class="gg-info"></i>
         </button>
-        <button><i class="gg-software-download"></i></button>
+        <!-- <button><i class="gg-software-download"></i></button> -->
       </div>
     </div>
 

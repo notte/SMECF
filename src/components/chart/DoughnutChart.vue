@@ -3,7 +3,7 @@
     <!-- 最上層標題 -->
     <div class="top">
       <p class="title"> {{title}} </p>
-      <button><i class="gg-software-download"></i></button>
+      <!-- <button><i class="gg-software-download"></i></button> -->
     </div>
 
     <!-- type1 整體平均 -->

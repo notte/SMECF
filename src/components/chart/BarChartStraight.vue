@@ -2,7 +2,7 @@
   <section class="container_chart">
     <div class="top">
       <p class="title">{{title}}</p>
-      <button><i class="gg-software-download"></i></button>
+      <!-- <button><i class="gg-software-download"></i></button> -->
     </div>
     <ul class="switch_text">
       <li class="legend_item">
