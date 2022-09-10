@@ -1,22 +1,18 @@
 <template>
   <div class="info">
     <div class="map color_city" ref="map_size">
-      <Map />
+      <Map :type="Status.ManufacturerMapType.City" :data="dataMaps" @showPieSection="showPieSection" @hidePieSection="hidePieSection"/>
     </div>
-    <div class="city">
+    <div class="city" v-if="isShow(isShowPieSection)">
       <h6 class="title_h6">縣市</h6>
       <ul class="switch_button" ref="tabs">
-        <li class="true" @click="clickTab(Register, $event)">登記地區</li>
-        <li class="false" @click="clickTab(Expand, $event)">擴建廠房分佈</li>
-        <li class="false" @click="clickTab(Created, $event)">新建廠房分佈</li>
-        <li class="false" @click="clickTab(Distributed, $event)">
-          產業別區域分佈
-        </li>
+        <li class="true" @click="clickTab(Capital, $event)">{{Capital}}</li>
+        <li class="false" @click="clickTab(IndustryRate, $event)">{{IndustryRate}}</li>
       </ul>
-      <div class="chart">
+      <div class="chart" ref="pieSection">
         <v-chart :option="option" />
       </div>
-      <ul class="checkbox">
+      <!-- <ul class="checkbox">
         <li class="label_item">
           <label class="container">
             <input type="checkbox" checked />
@@ -31,8 +27,8 @@
             <p>服務業</p>
           </label>
         </li>
-      </ul>
-      <button class="back">回到產業區域分布</button>
+      </ul> -->
+      <button class="back" @click="hidePieSection()">回到 {{$props.type}}</button>
     </div>
   </div>
   <ul class="checkbox">
@@ -79,16 +75,18 @@ echarts.use([
 ]);
 export default defineComponent({
   components: { Map, VChart },
-  setup() {
+  props: ['type', 'dataMap', 'dataPie'],
+  setup(props) {
     const map_size = ref();
-    const Current = ref(Status.ManufacturerType.Register);
-    const Register = ref(Status.ManufacturerType.Register);
-    const Expand = ref(Status.ManufacturerType.Expand);
-    const Created = ref(Status.ManufacturerType.Created);
-    const Distributed = ref(Status.ManufacturerType.Distributed);
+    const Current = ref(Status.ManufacturerSubType.Capital);
+    const Capital = ref(Status.ManufacturerSubType.Capital);
+    const IndustryRate = ref(Status.ManufacturerSubType.IndustryRate);
     const tabs = ref();
-    const option = {
-      color: ["#7A6FFF", "#2BC679", "#F3A41B", "#666E7A", "#00C7F2"],
+    const isShowPieSection = ref<boolean>(true);
+
+    const dataMaps = ref(props.dataMap);
+    const option = ref({
+      color: ["#7A6FFF", "#2BC679", "#F3A41B", "#666E7A", "#00C7F2", "#2AE0BF", "#EACC64"],
       tooltip: {
         trigger: "item",
         backgroundColor: "#383C41",
@@ -112,23 +110,27 @@ export default defineComponent({
           labelLine: {
             show: false,
           },
-          data: [
-            { value: 1048, label: "缺乏專業/專責財務人員" },
-            { value: 735, label: "缺乏專業/專責財務人員" },
-            { value: 580, label: "缺乏專業/專責財務人員" },
-            { value: 484, label: "缺乏專業/專責財務人員" },
-            { value: 300, label: "缺乏專業/專責財務人員" },
-          ],
+          data: props.dataPie.pieCapital,
         },
       ],
-    };
+    });
 
-    function clickTab(Status: Status.ManufacturerType, event: any): void {
+    function clickTab(Status: Status.ManufacturerSubType, event: any): void {
       for (let item of tabs.value.children) {
         item.className = "false";
       }
       Current.value = Status;
       event.path[0].className = "true";
+
+      if( Status == IndustryRate.value ) {
+        option.value.series[0].data = props.dataPie.pieIndustryRate;
+      } else {
+        option.value.series[0].data = props.dataPie.pieCapital;
+      }
+    }
+
+    function isShow(isShowPieSection: boolean): boolean {
+      return isShowPieSection;
     }
 
     onMounted(() => {
@@ -137,16 +139,28 @@ export default defineComponent({
         map_size.value.offsetHeight,
       ]);
     });
+
     return {
       map_size,
       option,
       tabs,
       clickTab,
-      Register,
-      Expand,
-      Created,
-      Distributed,
+      Capital,
+      IndustryRate,
+      dataMaps,
+      Status,
+      isShowPieSection,
+      isShow,
     };
   },
+  methods: {
+    showPieSection() {
+      this.isShowPieSection = true;
+    },
+
+    hidePieSection() {
+      this.isShowPieSection = false;
+    }
+  }
 });
 </script>

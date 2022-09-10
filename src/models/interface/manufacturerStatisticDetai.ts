@@ -1,12 +1,10 @@
 /** 過案廠商 - 明細
  * capital: 資本額分佈
  * industryRate: 產業別佔比
- * regionalDistribution: 員工數量分佈
  */
 export interface IManufacturerStatisticDetail {
     capital: ICapital;
     industryRate: IIndustryRate;
-    regionalDistribution: IRegionalDistributionCustomer;
 }
 
 /** 資本額分佈
@@ -35,17 +33,4 @@ export interface ICapital {
 export interface IIndustryRate {
     manufacturing: number;
     service: number;
-}
-
-/** 員工數量分佈
- * north:  index 0:製造業, 1:服務業
- * south:  index 0:製造業, 1:服務業
- * east:  index 0:製造業, 1:服務業
- * west:  index 0:製造業, 1:服務業
- */
-export interface IRegionalDistributionCustomer {
-    north: number[];
-    south: number[];
-    east: number[];
-    west: number[];
 }

@@ -11,11 +11,5 @@
   "industryRate": {
     "manufacturing": 87,
     "service": 13
-  },
-  "regionalDistribution": {
-    "north": [10, null],
-    "south": [35, null],
-    "east": [45, null],
-    "west": [10, null]
   }
 }

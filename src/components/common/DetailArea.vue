@@ -1,10 +1,10 @@
 <template>
   <div class="info">
     <div class="map color_area" ref="map_size">
-      <Map />
+      <Map :type="Status.ManufacturerMapType.Area" />
     </div>
     <div class="city items-center">
-      <h6 class="title_h6">縣市</h6>
+      <h6 class="title_h6">{{Current}}</h6>
       <div class="chart">
         <v-chart :option="option" />
       </div>
@@ -48,15 +48,17 @@ echarts.use([
 
 export default defineComponent({
   components: { Map, VChart },
-  setup() {
+  props: ['data'],
+  setup(props) {
     const map_size = ref();
-    const Current = ref(Status.ManufacturerType.Register);
-    const Register = ref(Status.ManufacturerType.Register);
-    const Expand = ref(Status.ManufacturerType.Expand);
-    const Created = ref(Status.ManufacturerType.Created);
-    const Distributed = ref(Status.ManufacturerType.Distributed);
+    const Current = ref(Status.ManufacturerRegionType.North);
+    const North = ref(Status.ManufacturerRegionType.North);
+    const South = ref(Status.ManufacturerRegionType.South);
+    const East = ref(Status.ManufacturerRegionType.East);
+    const West = ref(Status.ManufacturerRegionType.West);
+
     const tabs = ref();
-    const option = {
+    const option = ref({
       color: ["#7A6FFF", "#2BC679", "#F3A41B", "#666E7A", "#00C7F2"],
       tooltip: {
         trigger: "item",
@@ -81,23 +83,33 @@ export default defineComponent({
           labelLine: {
             show: false,
           },
-          data: [
-            { value: 1048, label: "缺乏專業/專責財務人員" },
-            { value: 735, label: "缺乏專業/專責財務人員" },
-            { value: 580, label: "缺乏專業/專責財務人員" },
-            { value: 484, label: "缺乏專業/專責財務人員" },
-            { value: 300, label: "缺乏專業/專責財務人員" },
-          ],
+          data: props.data.north,
         },
       ],
-    };
+    });
 
-    function clickTab(Status: Status.ManufacturerType, event: any): void {
+    function clickTab(Status: Status.ManufacturerRegionType, event: any): void {
       for (let item of tabs.value.children) {
         item.className = "false";
       }
       Current.value = Status;
       event.path[0].className = "true";
+
+      switch(Status) {
+        default:
+        case North.value:
+          option.value.series[0].data = props.data.north;
+          break;
+        case South.value:
+          option.value.series[0].data = props.data.north;
+          break;
+        case East.value:
+          option.value.series[0].data = props.data.east;
+          break;
+        case West.value:
+          option.value.series[0].data = props.data.west;
+          break;
+      }
     }
 
     onMounted(() => {
@@ -111,10 +123,12 @@ export default defineComponent({
       option,
       tabs,
       clickTab,
-      Register,
-      Expand,
-      Created,
-      Distributed,
+      Current,
+      North,
+      South,
+      East,
+      West,
+      Status
     };
   },
 });
