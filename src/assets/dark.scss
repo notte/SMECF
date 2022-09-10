@@ -169,3 +169,40 @@ ul.legends_row {
         }
     }
 }
+
+
+.title_dropdown {
+    ul.dropdown-menu {
+        @apply dark:bg-system-dark_02 ;
+
+        a {
+            @apply dark:text-system-light_03;
+        }
+
+        a:hover {
+            @apply dark:bg-system-dark_03;
+        }
+    }
+}
+
+.container_list {
+    .el-table,
+    table.el-table__header {
+        th.el-table__cell {
+            @apply dark:text-system-light_03;
+        }
+
+        tr.el-table__row {
+            td.el-table__cell {
+                @apply dark:text-system-light_03;
+            }
+        }
+        
+    }
+
+    tr.el-table__row {
+        td.el-table__cell {
+            @apply dark:border-gray-700;
+        }
+    }
+}

@@ -128,3 +128,51 @@ main {
 .container_popup {
     @apply bg-system-light_03;
 }
+
+
+.title_dropdown {
+    button.dropdown-toggle,
+    button.dropdown-toggle:hover {
+        @apply bg-primary-main text-system-light_05 mr-2;
+
+        border: 0;
+    }
+
+    .btn-outline-primary:hover,
+    .btn-outline-primary {
+        @apply text-primary-main bg-transparent;
+
+        border: 1px solid #055ffc;
+    }
+
+    button.btn:focus {
+        box-shadow: none;
+    }
+
+    ul.dropdown-menu {
+        @apply bg-system-light_05 text-system-dark_03;
+    }
+}
+
+.container_list {
+    .el-table,
+    table.el-table__header {
+        th.el-table__cell {
+            @apply text-system-dark_03;
+        }
+
+        tr.el-table__row {
+            td.el-table__cell {
+                @apply text-system-dark_03;
+            }
+        }
+        
+    }
+
+
+    tr.el-table__row {
+        td.el-table__cell {
+            @apply border-gray-200;
+        }
+    }
+}

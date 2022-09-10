@@ -146,9 +146,8 @@ html {
 }
 
 // popup
-
 .mask {
-    @apply fixed w-screen h-screen bg-system-dark_01 overflow-hidden z-10 top-0 left-0;
+    @apply fixed w-screen h-screen bg-system-dark_01 overflow-hidden z-30 top-0 left-0;
 }
 
 .container_popup {
@@ -320,4 +319,65 @@ ul.checkbox {
 
 .tabs_statisticsView {
     @apply mb-5 tab_l;
+}
+
+
+.title_dropdown {
+    @apply flex flex-row items-center justify-start;
+
+    .btn-outline-primary {
+        .btn-content {
+            @apply flex flex-row items-center;
+        }
+
+        p {
+            @apply mr-1;
+        }
+    }
+
+    h6,
+    p.other_subtitle {
+        @apply mr-6;
+    }
+
+    .btn-content {
+        @apply label_medium;
+    }
+}
+
+.container_list {
+    .el-table,
+    table.el-table__header {
+        background-color: transparent;
+
+        th.el-table__cell {
+            border-bottom: 1px solid #d8dee7;
+
+        }
+
+        .ascending .sort-caret.ascending {
+            border-bottom-color: #8a93a1;
+        }
+        
+        .descending {
+            .sort-caret.descending {
+                border-top-color: #8a93a1;
+
+            }
+        }
+
+        th,
+        tr,
+        td,
+        thead {
+            background-color: transparent;
+        }
+        
+    }
+
+    .el-table--enable-row-hover .el-table__body tr:hover > td {
+        background-color: transparent !important;
+    }
+      
+    
 }
