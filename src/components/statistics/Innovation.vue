@@ -3,17 +3,17 @@
     <p class="other_subtitle">國內外專利</p>
     <section class="container_grid">
       <PieChart type="2" title="" :data="data.piePatentHave"/>
-      <PieChart title="" :data="data.piePatentType"/>
+      <PieChart type="3" title="" :data="data.piePatentType"/>
     </section>
     <p class="other_subtitle">國際認證</p>
     <section class="container_grid">
       <PieChart type="2" title="" :data="data.pieLicenseHave"/>
-      <PieChart title="" :data="data.pieLicenseType"/>
+      <PieChart type="3" title="" :data="data.pieLicenseType"/>
     </section>
     <p class="other_subtitle">創新商業化</p>
     <section class="container_grid">
       <PieChart type="2" title="" :data="data.pieIdeasHave"/>
-      <PieChart title="" :data="data.pieIdeasType"/>
+      <PieChart type="3" title="" :data="data.pieIdeasType"/>
     </section>
   </section>
 </template>

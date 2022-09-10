@@ -1,6 +1,8 @@
 <template>
   <Loading v-if="loading" />
-  <ListPopup v-if="listPopup" />
+  <ListPopup v-if="listPopup"/>
+  <DetailPopup v-if="detailPopup" />
+
   <section class="layout dark:bg-mode-black">
     <nav @touchstart="showMenu($event)" @touchcancel="hiddenMenu(e)" ref="menu">
       <div class="logo">
@@ -52,13 +54,14 @@ import Nav from "@/components/common/Nav.vue";
 import ModeSwitch from "@/components/common/ModeSwitch.vue";
 import Loading from "@/components/common/Loading.vue";
 import ListPopup from "@/components/common/ListPopup.vue";
+import DetailPopup from "./components/common/DetailPopup.vue";
 import { statusStore } from "@/store/index";
 import * as Status from "@/models/status/type";
 import * as common from "@/utilities/common-methods";
 import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
-  components: { Nav, ModeSwitch, Loading, ListPopup },
+  components: { Nav, ModeSwitch, Loading, ListPopup, DetailPopup },
   setup() {
     const Current = ref(Status.ModeType.Light);
     const Dark = ref(Status.ModeType.Dark);
@@ -67,12 +70,17 @@ export default defineComponent({
     const status = statusStore();
     const loading = ref<boolean>(false);
     const listPopup = ref<boolean>(false);
+    const detailPopup = ref<boolean>(false);
 
     const menu = ref();
     const main = ref();
 
     EventBus.on("listpopup_close", (status) => {
       listPopup.value = status as boolean;
+    });
+
+    EventBus.on("detailPopup_close", (status) => {
+      detailPopup.value = status as boolean;
     });
 
     EventBus.on("loading_event", (status) => {
@@ -107,6 +115,7 @@ export default defineComponent({
       Light,
       loading,
       listPopup,
+      detailPopup
     };
   },
 });

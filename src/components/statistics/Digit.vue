@@ -8,17 +8,17 @@
     <p class="other_subtitle">價值鏈管理</p>
     <section class="container_grid">
       <PieChart type="2" title="" :data="data.pieValueChainTool" />
-      <BarChartHorizontal type="3" title="" :data="data.barValueChainTool" />
+      <BarChartHorizontal type="3" title="價值鏈管理 - 採用數位工具或技術" :data="data.barValueChainTool"/>
     </section>
     <p class="other_subtitle">研發生產</p>
     <section class="container_grid">
       <PieChart type="2" title="" :data="data.pieResearchTool" />
-      <BarChartHorizontal type="3" title="" :data="data.barResearchTool" />
+      <BarChartHorizontal type="3" title="研發生產 - 採用數位工具或技術" :data="data.barResearchTool"/>
     </section>
     <p class="other_subtitle">企業管理</p>
     <section class="container_grid">
       <PieChart type="2" title="" :data="data.pieOperationTool" />
-      <BarChartHorizontal type="3" title="" :data="data.barOperationTool" />
+      <BarChartHorizontal type="3" title="企業管理 - 採用數位工具或技術" :data="data.barOperationTool"/>
     </section>
   </section>
 </template>
@@ -64,7 +64,7 @@ export default defineComponent({
         { name: "財務會計系統", data: 50 },
         { name: "內部溝通工具", data: 50 },
         { name: "數據分析決策", data: 50 },
-      ],
+      ]
     });
 
     onMounted(() => {

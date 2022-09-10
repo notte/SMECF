@@ -1,6 +1,3 @@
-<!-- type1: Title, TopIcon,Progress -->
-<!-- type2: Title, TopIcon, Switch, Progress -->
-<!-- type3: TopIcon, Switch, Progress -->
 <template>
   <section class="container_chart">
     <div class="top">
@@ -10,27 +7,17 @@
         <li class="true" @click="clickTab($event)">製造業</li>
         <li class="false" @click="clickTab($event)">服務業</li>
       </ul>
-      <div class="icon_top">
+      <div v-if="type == 3" class="icon_top">
         <button
-          v-on:mouseover="showTooltip($event, 'content')"
+          v-on:mouseover="showTooltip($event, '點擊查看詳細使用工具')"
           v-on:mouseleave="leaveTooltip"
+          @click="openPopup()"
         >
           <i class="gg-info"></i>
         </button>
         <!-- <button><i class="gg-software-download"></i></button> -->
       </div>
     </div>
-
-    <!-- ProgressBar Demo-->
-    <!-- <div v-if="type == 1" class="container_bar">
-      <div class="bar_item" v-for="item in data" :key="item.key">
-        <div class="bar_info">
-          <span class="subtitle_4 text-system-dark_05">{{ item.name }}</span>
-          <span class="text-system-light_03">{{ item.data }}</span>
-        </div>
-        <b-progress :class="color" :value="30"></b-progress>
-      </div>
-    </div> -->
 
     <!-- type1-->
     <div v-if="type == 1" class="container_bar">
@@ -75,15 +62,15 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
-
 import * as d3 from "d3";
 import { html } from "d3";
 import { dataTool } from "echarts/core";
+import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
   components: {},
-  props: ["type", "title", "data"],
-  setup() {
+  props: ["type", "title", "data", "detail"],
+  setup(props) {
     const tabs = ref();
     const tabs_switch = ref();
     const color = ref("");
@@ -115,7 +102,12 @@ export default defineComponent({
       }
       event.path[0].className = "true";
     }
-    return { tabs_switch, tabs, clickTab, showTooltip, leaveTooltip, color };
+
+    function openPopup(): void {
+      EventBus.emit("detailPopup_close", true);
+    }
+
+    return { tabs_switch, tabs, clickTab, showTooltip, leaveTooltip, openPopup, color };
   },
 });
 </script>
