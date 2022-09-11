@@ -2,9 +2,9 @@
     background-color: #fff;
 }
 
-// .division {
-//     @apply division_light;
-// }
+.division {
+    @apply division_light;
+}
 
 ul.switch_button {
     li.false {
@@ -82,6 +82,12 @@ main {
 
     .container_bar {
         .bar_item {
+            .bar_info {
+                span {
+                    // @apply text-system-dark_04;
+                }
+            }
+
             .progress {
                 @apply bg-system-light_05;
             }
@@ -149,9 +155,18 @@ main {
         box-shadow: none;
     }
 
-    ul.dropdown-menu {
-        @apply bg-system-light_05 text-system-dark_03;
+    .dropdown-menu.show {
+        @apply bg-system-light_03;
     }
+
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+        @apply bg-system-light_05;
+    }
+
+    // ul.dropdown-menu {
+    //     @apply bg-system-light_05 text-system-dark_03;
+    // }
 }
 
 .container_list {

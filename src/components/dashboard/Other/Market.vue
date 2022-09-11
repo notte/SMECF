@@ -7,8 +7,8 @@
     </b-dropdown>
     <b-button variant="outline-primary" @click="openPopup"
       ><p>查看表格</p>
-      <i class="gg-calendar-dates"></i
-    ></b-button>
+      <img src="@/assets/icons/table.svg" alt="" />
+    </b-button>
   </div>
   <section class="container_grid">
     <DoughnutChart

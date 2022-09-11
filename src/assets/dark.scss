@@ -1,6 +1,6 @@
-// .division {
-//     @apply division_1;
-// }
+.division {
+    @apply dark:border-gray-300;
+}
 
 ul.switch_button {
     li.false {
@@ -90,7 +90,7 @@ ul.legends_row {
 
 
 .container_chart {
-    @apply dark:bg-system-dark_02;
+    @apply dark:bg-system-dark_02 elevation_light_modal_dialog;
 
     .top {
         .title {

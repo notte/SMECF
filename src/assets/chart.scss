@@ -21,6 +21,8 @@
     
     
         .text {
+            @apply w-3/5;
+
             .true {
                 @apply text-primary-main cursor-pointer;
             }
@@ -41,6 +43,10 @@
             @apply relative w-32 h-32;
         }
     }
+
+    .switch_text {
+        @apply mt-3;
+    }
 }
 
 // 自製 Progress Bar
@@ -53,7 +59,11 @@
         @apply flex items-center;
     
         .bar_info {
-            @apply flex-none  flex items-center;
+            @apply w-3/6 justify-between  flex items-center;
+
+            span {
+                @apply subtitle_4;
+            }
     
             *:first-child {
                 @apply mr-1;
@@ -65,8 +75,10 @@
         }
     
         .progress {
-            @apply w-full h-2/5;
-    
+            @apply w-3/6;
+
+            height: 12px;
+
             .progress-bar {
                 @apply bg-primary-main;
             }

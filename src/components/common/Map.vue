@@ -10,7 +10,7 @@ import { Console } from "console";
 import * as Status from "@/models/status/type";
 
 export default defineComponent({
-  props: ['type', 'data'],
+  props: ["type", "data"],
   setup(props, { emit }) {
     EventBus.emit("loading_event", true);
     EventBus.on("create_map", (prams) => {
@@ -87,28 +87,37 @@ export default defineComponent({
                 });
 
                 // By City
-                if(props.type == Status.ManufacturerMapType.City) {
-                  let items:[] = props.data;
+                if (props.type == Status.ManufacturerMapType.City) {
+                  let items: [] = props.data;
                   cityName = "";
                   count = 0;
 
-                  items?.map((item: { countryId: string; name: string; count: number; }) => {
+                  items?.map(
+                    (item: {
+                      countryId: string;
+                      name: string;
+                      count: number;
+                    }) => {
                       if (item.countryId == d.properties["COUNTYID"]) {
                         cityName = item.name;
                         count = item.count;
                       }
-                  });
-              
-                  let tooltipStr = "全台中小企業加速投資行動方案家數<br>" + cityName + ": " + count;
+                    }
+                  );
+
+                  let tooltipStr =
+                    "全台中小企業加速投資行動方案家數<br>" +
+                    cityName +
+                    ": " +
+                    count;
 
                   Tooltip.html(tooltipStr)
                     .style("opacity", 1)
                     .style("left", event.pageX + "px")
                     .style("top", event.pageY + "px");
-                } else { //By Area
-
+                } else {
+                  //By Area
                 }
-              
               })
               .on("mouseout", (d) => {
                 Tooltip.style("opacity", 0);
@@ -124,22 +133,22 @@ export default defineComponent({
           }, 1000);
         });
 
-      let zoom = d3
-        .zoom()
-        .scaleExtent([1, 2])
-        .translateExtent([
-          [0, 0],
-          [width, height],
-        ])
-        .on("zoom", function (event) {
-          g.selectAll("path").attr("transform", event.transform);
-        });
-      svg.call(zoom as never);
+      // let zoom = d3
+      //   .zoom()
+      //   .scaleExtent([1, 2])
+      //   .translateExtent([
+      //     [0, 0],
+      //     [width, height],
+      //   ])
+      //   .on("zoom", function (event) {
+      //     g.selectAll("path").attr("transform", event.transform);
+      //   });
+      // svg.call(zoom as never);
     });
 
     function d3OnClickListener(cityName: string) {
-      emit('showPieSection', cityName);
+      emit("showPieSection", cityName);
     }
-  }
+  },
 });
 </script>
