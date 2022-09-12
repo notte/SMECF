@@ -6,6 +6,10 @@ module.exports = {
   content: [],
   theme: {
     extend: {
+      boxShadow: {
+        light: "0 2px 8px rgb(17 17 36 / 5%), 0 16px 32px rgb(70 70 132 / 14%)",
+        dark: "1px 2px 10px rgb(22 22 31 / 50%), 2px 16px 32px rgb(22 22 31 / 30%)",
+      },
       colors: {
         mode: {
           black: "#1e1e1e",
@@ -76,6 +80,7 @@ module.exports = {
   variants: {
     extend: {
       width: ["hover"],
+      boxShadow: ["dark"],
     },
   },
   plugins: [],

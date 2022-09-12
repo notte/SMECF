@@ -54,8 +54,9 @@ main {
     @apply text-system-dark_03;
 }
 
+// elevation_light_modal_dialog
 .container_chart {
-    @apply bg-system-light_03 elevation_light_modal_dialog;
+    @apply bg-system-light_03 shadow-light;
 
     .top {
         .title {

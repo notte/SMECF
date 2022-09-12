@@ -88,9 +88,12 @@ ul.legends_row {
     }
 }
 
+// .elevation_dark_modal_dialog {
+//     box-shadow: 1px 2px 10px rgb(22 22 31 / 50%), 2px 16px 32px rgb(22 22 31 / 30%);
+// }
 
 .container_chart {
-    @apply dark:bg-system-dark_02 elevation_light_modal_dialog;
+    @apply dark:bg-system-dark_02 dark:shadow-dark;
 
     .top {
         .title {
