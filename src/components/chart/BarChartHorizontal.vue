@@ -23,10 +23,14 @@
     <div v-if="type == 1" class="container_bar">
       <div class="bar_item" v-for="item in data" :key="item.key">
         <div class="bar_info">
-          <span class="subtitle_4 text-system-dark_05">{{ item.name }}</span>
-          <span class="text-system-light_03">{{ item.data }}</span>
+          <span class="subtitle_4">{{ item.name }}</span>
+          <span>{{ item.data }}</span>
         </div>
-        <b-progress :class="item.color" :value="item.data" :max="item.max"></b-progress>
+        <b-progress
+          :class="item.color"
+          :value="item.data"
+          :max="item.max"
+        ></b-progress>
       </div>
     </div>
 
@@ -40,10 +44,14 @@
     <div v-if="type == 2" class="container_bar">
       <div class="bar_item" v-for="item in data" :key="item.key">
         <div class="bar_info">
-          <span class="text-system-light_03">{{ item.data }}</span>
-          <span class="subtitle_4 text-system-dark_05">/10</span>
+          <span>{{ item.data }}</span>
+          <span class="subtitle_4">/10</span>
         </div>
-        <b-progress :class="item.color" :value="item.data" :max="item.max"></b-progress>
+        <b-progress
+          :class="item.color"
+          :value="item.data"
+          :max="item.max"
+        ></b-progress>
       </div>
     </div>
 
@@ -51,10 +59,14 @@
     <div v-if="type == 3" class="container_bar">
       <div class="bar_item" v-for="item in data" :key="item.key">
         <div class="bar_info">
-          <span class="text-system-light_03">{{ item.name }}</span>
-          <span class="subtitle_4 text-system-dark_05">{{ item.data }}</span>
+          <span>{{ item.name }}</span>
+          <span class="subtitle_4">{{ item.data }}</span>
         </div>
-        <b-progress :class="item.color" :value="item.data" :max="item.max"></b-progress>
+        <b-progress
+          :class="item.color"
+          :value="item.data"
+          :max="item.max"
+        ></b-progress>
       </div>
     </div>
   </section>
@@ -107,7 +119,15 @@ export default defineComponent({
       EventBus.emit("detailPopup_close", true);
     }
 
-    return { tabs_switch, tabs, clickTab, showTooltip, leaveTooltip, openPopup, color };
+    return {
+      tabs_switch,
+      tabs,
+      clickTab,
+      showTooltip,
+      leaveTooltip,
+      openPopup,
+      color,
+    };
   },
 });
 </script>

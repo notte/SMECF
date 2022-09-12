@@ -146,9 +146,11 @@ export default defineComponent({
     });
 
     function openPopup(): void {
-      EventBus.emit("listpopup_close", true);
+      EventBus.emit("listpopup_event", {
+        status: true,
+        title: "Intelligent",
+      });
     }
-
     return { data, openPopup };
   },
 });

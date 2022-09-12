@@ -1,6 +1,4 @@
-// export interface ICreateVideoForm {
-//   url: string;
-//   language: string;
-//   type: string[];
-//   level: string;
-// }
+export interface IListPopupEvent {
+  status: boolean;
+  title: string;
+}

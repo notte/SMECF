@@ -49,6 +49,7 @@ import BarChartHorizontal from "@/components/chart/BarChartHorizontal.vue";
 import axios from "axios";
 import { IDashboardOtherFinance } from "@/models//interface/dashboardOtherFinance";
 import EventBus from "@/utilities/event-bus";
+import { statusStore } from "@/store/index";
 
 export default defineComponent({
   components: { DoughnutChart, BarChartHorizontal },
@@ -142,8 +143,69 @@ export default defineComponent({
           ];
         });
     });
+
+    const status = statusStore();
+
+    // 在子組件處理列表資料
+    const table: any[] = [
+      { type: "製造業", item1: 12, item2: 1, item3: 103, item4: 210, item5: 5 },
+      {
+        type: "服務業",
+        item1: 132,
+        item2: 11,
+        item3: 103,
+        item4: 210,
+        item5: 5,
+      },
+      {
+        type: "製造業",
+        item1: 124,
+        item2: 12,
+        item3: 103,
+        item4: 210,
+        item5: 5,
+      },
+      {
+        type: "服務業",
+        item1: 12,
+        item2: 13,
+        item3: 103,
+        item4: 210,
+        item5: 5,
+      },
+      { type: "製造業", item1: 12, item2: 0, item3: 103, item4: 210, item5: 5 },
+      {
+        type: "製造業",
+        item1: 12,
+        item2: 15,
+        item3: 103,
+        item4: 210,
+        item5: 3,
+      },
+      { type: "服務業", item1: 12, item2: 3, item3: 103, item4: 210, item5: 5 },
+      { type: "製造業", item1: 1, item2: 1, item3: 13, item4: 210, item5: 54 },
+      { type: "服務業", item1: 12, item2: 1, item3: 13, item4: 10, item5: 25 },
+      { type: "製造業", item1: 12, item2: 1, item3: 103, item4: 210, item5: 5 },
+      {
+        type: "製造業",
+        item1: 132,
+        item2: 1,
+        item3: 3,
+        item4: 210,
+        item5: 5,
+      },
+    ];
+
+    // 將處理過的資料，儲存在狀態管理套件中
+    // 從 ListPopup.vue 中會直接抓儲存的資料
+    status.setList(table);
+
+    // 傳送 popup 開啟事件，帶上狀態以及 title
     function openPopup(): void {
-      EventBus.emit("listpopup_close", true);
+      EventBus.emit("listpopup_event", {
+        status: true,
+        title: "Finance",
+      });
     }
     return { data, openPopup };
   },

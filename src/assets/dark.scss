@@ -117,6 +117,12 @@ ul.legends_row {
 
     .container_bar {
         .bar_item {
+            .bar_info {
+                span {
+                    @apply dark:text-system-light_03;
+                }
+            }
+
             .progress {
                 @apply dark:bg-system-dark_03;
             }

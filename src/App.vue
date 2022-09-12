@@ -1,6 +1,6 @@
 <template>
   <Loading v-if="loading" />
-  <ListPopup v-if="listPopup"/>
+  <ListPopup v-if="listPopup" :title="title" />
   <DetailPopup v-if="detailPopup" />
 
   <section class="layout dark:bg-mode-black">
@@ -57,6 +57,7 @@ import ListPopup from "@/components/common/ListPopup.vue";
 import DetailPopup from "./components/common/DetailPopup.vue";
 import { statusStore } from "@/store/index";
 import * as Status from "@/models/status/type";
+import * as Model from "@/models/interface/common";
 import * as common from "@/utilities/common-methods";
 import EventBus from "@/utilities/event-bus";
 
@@ -71,12 +72,14 @@ export default defineComponent({
     const loading = ref<boolean>(false);
     const listPopup = ref<boolean>(false);
     const detailPopup = ref<boolean>(false);
+    let title = ref<string>("");
 
     const menu = ref();
     const main = ref();
 
-    EventBus.on("listpopup_close", (status) => {
-      listPopup.value = status as boolean;
+    EventBus.on("listpopup_event", (prams) => {
+      listPopup.value = (prams as Model.IListPopupEvent).status;
+      title.value = (prams as Model.IListPopupEvent).title;
     });
 
     EventBus.on("detailPopup_close", (status) => {
@@ -115,7 +118,8 @@ export default defineComponent({
       Light,
       loading,
       listPopup,
-      detailPopup
+      detailPopup,
+      title,
     };
   },
 });
