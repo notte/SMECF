@@ -2,8 +2,8 @@
   <section class="container_chart">
     <!-- 最上層標題 -->
     <div class="top">
-      <p v-if="type==1 || type==3" class="title">{{title}}</p>
-      <ul v-if="type==2" class="switch_text" ref="tabs_switch">
+      <p v-if="type == 1 || type == 3" class="title">{{ title }}</p>
+      <ul v-if="type == 2" class="switch_text" ref="tabs_switch">
         <li class="true" @click="clickTab($event)">製造業</li>
         <li class="false" @click="clickTab($event)">服務業</li>
       </ul>
@@ -18,23 +18,24 @@
       </div>
     </div>
     <!-- 第二層 tab，可能有可能沒有，或者是出現圖標示圖 -->
-    <ul v-if="type==1 || type==3" class="switch_text" ref="tabs_switch">
+    <ul v-if="type == 1 || type == 3" class="switch_text" ref="tabs_switch">
       <li class="true" @click="clickTab($event)">製造業</li>
       <li class="false" @click="clickTab($event)">服務業</li>
     </ul>
     <div class="info">
       <!-- 分數資訊 -->
-      <div v-if="type==2" class="text">
-        <p class="text-system-light_05 subtitle_2">{{data[1].value}} %</p>
-        <p class="subtitle_4 text-system-dark_04">{{data[1].label}}</p>
+      <div v-if="type == 2" class="text">
+        <p class="text-system-light_05 subtitle_2">{{ data[1].value }} %</p>
+        <p class="subtitle_4 text-system-dark_04">{{ data[1].label }}</p>
       </div>
-      <ul v-if="type==1" class="legends">
-        <li class="legend_item" v-for="(item) in data" :key="item.name">
+      <ul v-if="type == 1" class="legends">
+        <li class="legend_item" v-for="item in data" :key="item.name">
           <div class="icon"></div>
-          {{item.label}}
+          {{ item.label }}
         </li>
       </ul>
-      <v-chart :option="option" class="chart" />
+      <div class="chart" ref="chartDOM"></div>
+      <!-- <v-chart :option="option" class="chart" /> -->
     </div>
   </section>
 </template>
@@ -65,13 +66,10 @@ echarts.use([
 
 export default defineComponent({
   components: { VChart },
-  props: [
-    'type',
-    'title',
-    'data'
-  ],
+  props: ["type", "title", "data"],
   setup(props, { attrs }: any) {
     const tabs_switch = ref();
+    const chartDOM = ref();
     let Tooltip: any;
 
     onMounted(() => {
@@ -81,6 +79,14 @@ export default defineComponent({
         .style("z-index", 10)
         .style("opacity", 0)
         .attr("class", "tooltips");
+
+      let pie = echarts.init(chartDOM.value);
+
+      pie.setOption(option);
+
+      window.addEventListener("resize", () => {
+        pie.resize();
+      });
     });
 
     function showTooltip(event: any, content: string): void {
@@ -100,10 +106,11 @@ export default defineComponent({
       }
       event.path[0].className = "true";
     }
-  
-    const colors = (props.type==2)
-    ? ["#8BEAFF", "#00C7F2"]
-    : ["#00C7F2", "#7A6FFF", "#FBB42B", "#2BC679", "#666E7A"];
+
+    const colors =
+      props.type == 2
+        ? ["#8BEAFF", "#00C7F2"]
+        : ["#00C7F2", "#7A6FFF", "#FBB42B", "#2BC679", "#666E7A"];
 
     const option = {
       color: colors,
@@ -118,10 +125,6 @@ export default defineComponent({
           return params.data.label;
         },
       },
-      // legend: {
-      //   top: "5%",
-      //   left: "center",
-      // },
       series: [
         {
           type: "pie",
@@ -131,29 +134,21 @@ export default defineComponent({
             show: false,
             position: "center",
           },
-          // emphasis: {
-          //   label: {
-          //     show: true,
-          //     fontSize: "40",
-          //     fontWeight: "bold",
-          //   },
-          // },
           labelLine: {
             show: false,
           },
           data: props.data,
-          // data: [
-          //   { value: 1048, label: "缺乏專業/專責財務人員" },
-          //   { value: 735, label: "缺乏專業/專責財務人員" },
-          //   { value: 580, label: "缺乏專業/專責財務人員" },
-          //   { value: 484, label: "缺乏專業/專責財務人員" },
-          //   { value: 300, label: "缺乏專業/專責財務人員" },
-          // ],
         },
       ],
     };
 
-    return { tabs_switch, clickTab, option, showTooltip, leaveTooltip };
+    return {
+      tabs_switch,
+      clickTab,
+      showTooltip,
+      leaveTooltip,
+      chartDOM,
+    };
   },
 });
 </script>

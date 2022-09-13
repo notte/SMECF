@@ -35,14 +35,23 @@ export default defineComponent({
     const tabs = ref();
 
     onMounted(() => {
-      if (navigator.userAgent.match("iPhone")) {
-        for (let i = 0; i <= tabs.value.children.length - 2; i++) {
-          let str = tabs.value.children[i].innerHTML;
-          str = str.slice(0, 2);
-          tabs.value.children[i].innerHTML = str;
-        }
+      if (window.innerWidth < 500) {
+        setTabName();
       }
+      window.addEventListener("resize", () => {
+        if (window.innerWidth < 500) {
+          setTabName();
+        }
+      });
     });
+
+    function setTabName(): void {
+      for (let i = 0; i <= tabs.value.children.length - 2; i++) {
+        let str = tabs.value.children[i].innerHTML;
+        str = str.slice(0, 2);
+        tabs.value.children[i].innerHTML = str;
+      }
+    }
 
     function clickTab(Status: Status.StatisticsType, event: any): void {
       for (let item of tabs.value.children) {

@@ -18,7 +18,9 @@
     // (下方的)資訊區塊
     .info {
         @apply flex items-center justify-between w-full;
-    
+
+        height: calc(100% - 52px);
+        max-height: calc(100% - 32px);
     
         .text {
             @apply w-3/5;
@@ -40,7 +42,11 @@
         
         // 圖表
         .chart {
-            @apply relative w-32 h-32;
+            @apply relative w-2/4 h-full;
+        }
+
+        .bar_straight {
+            @apply w-full h-32;
         }
     }
 

@@ -1,7 +1,7 @@
 <template>
   <section class="container_chart">
     <div class="top">
-      <p class="title">{{title}}</p>
+      <p class="title">{{ title }}</p>
       <!-- <button><i class="gg-software-download"></i></button> -->
     </div>
     <ul class="switch_text">
@@ -15,13 +15,14 @@
       </li>
     </ul>
     <div class="info">
-      <v-chart :option="option" class="barBase" style="height: 120px" />
+      <div class="bar_straight" ref="chartDOM"></div>
+      <!-- <v-chart :option="option"  /> -->
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import * as echarts from "echarts/core";
 import {
   DatasetComponent,
@@ -44,11 +45,18 @@ echarts.use([
 
 export default defineComponent({
   components: { VChart },
-  props: [
-    'title',
-    'data'
-  ],
+  props: ["title", "data"],
   setup(props) {
+    const chartDOM = ref();
+    onMounted(() => {
+      let barStraight = echarts.init(chartDOM.value);
+
+      barStraight.setOption(option);
+
+      window.addEventListener("resize", () => {
+        barStraight.resize();
+      });
+    });
     const option = {
       color: ["#00C7F2", "#695CFB"],
       legend: { show: false },
@@ -67,11 +75,9 @@ export default defineComponent({
           // interval: 1000,
           axisLabel: {
             // formatter: "{value}k",
-            formatter: function (value: number, index:number) {
-              if(value >= 1000)
-                return (value/1000) +'k';
-              else 
-                return value;
+            formatter: function (value: number, index: number) {
+              if (value >= 1000) return value / 1000 + "k";
+              else return value;
             },
           },
         },
@@ -82,7 +88,7 @@ export default defineComponent({
       ],
     };
 
-    return { option };
+    return { chartDOM };
   },
 });
 </script>

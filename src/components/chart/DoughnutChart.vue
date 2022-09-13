@@ -2,58 +2,75 @@
   <section class="container_chart">
     <!-- 最上層標題 -->
     <div class="top">
-      <p class="title"> {{title}} </p>
+      <p class="title">{{ title }}</p>
       <!-- <button><i class="gg-software-download"></i></button> -->
     </div>
 
     <!-- type1 整體平均 -->
-    <div v-if="type==1">
+    <div v-if="type == 1">
       <div class="info">
-      <!-- 分數資訊 -->
-      <div class="text">
-        <h1 class="percent">
-          {{data[0].data}}
-          <span class="subtitle_2">/10</span>
-        </h1>
-        <p class="subtitle_4 text-system-dark_04">整體平均 {{data[0].data}} 分</p>
-      </div>
-      <v-chart :option="option" class="chart" />
+        <!-- 分數資訊 -->
+        <div class="text">
+          <h1 class="percent">
+            {{ data[0].data }}
+            <span class="subtitle_2">/10</span>
+          </h1>
+          <p class="subtitle_4 text-system-dark_04">
+            整體平均 {{ data[0].data }} 分
+          </p>
+        </div>
+        <div class="chart" ref="oneDOM" style="height: 120px"></div>
       </div>
     </div>
 
-     <!-- type2-->
-    <div v-if="type==2">
+    <!-- type2-->
+    <div v-if="type == 2">
       <div class="info">
         <!-- 分數資訊 -->
         <div class="text" ref="tabs">
-          <p @click="clickTab('tabs', $event, index)" v-for="(item, index) in data" :key="item.name" :class="(index == 0)? 'true': 'false'">{{item.name}}</p>
+          <p
+            @click="clickTab('tabs', $event, index)"
+            v-for="(item, index) in data"
+            :key="item.name"
+            :class="index == 0 ? 'true' : 'false'"
+          >
+            {{ item.name }}
+          </p>
         </div>
-        <v-chart :option="option" class="chart" />
+        <div class="chart" ref="secDOM" style="height: 120px"></div>
       </div>
     </div>
 
-     <!-- type3-->
-    <div v-if="type==3">
+    <!-- type3-->
+    <div v-if="type == 3">
       <ul class="switch_text" ref="tabs_switch">
-        <li @click="clickTab('tabs_switch', $event, index)" v-for="(item, index) in data" :key="item.name" :class="(index == 0)? 'true': 'false'">{{item.name}}</li>
+        <li
+          @click="clickTab('tabs_switch', $event, index)"
+          v-for="(item, index) in data"
+          :key="item.name"
+          :class="index == 0 ? 'true' : 'false'"
+        >
+          {{ item.name }}
+        </li>
       </ul>
       <div class="info">
         <!-- 分數資訊 -->
         <div class="text">
           <h1 class="percent">
-            {{data[0].data}}
+            {{ data[0].data }}
             <span class="subtitle_2">/10</span>
           </h1>
         </div>
-        <v-chart :option="option" class="chart" />
+        <div class="chart" ref="thirdDOM" style="height: 120px"></div>
       </div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import { CanvasRenderer } from "echarts/renderers";
+import * as echarts from "echarts/core";
 import VChart from "vue-echarts";
 import { use } from "echarts/core";
 import { GaugeChart } from "echarts/charts";
@@ -73,14 +90,14 @@ use([
 
 export default defineComponent({
   components: { VChart },
-  props: [
-    'type',
-    'title',
-    'data'
-  ],
+  props: ["type", "title", "data"],
   setup(props, { attrs }) {
+    const oneDOM = ref();
+    const secDOM = ref();
+    const thirdDOM = ref();
     const tabs = ref();
     const tabs_switch = ref();
+    let doughnut: any;
 
     var gaugeData = ref([
       {
@@ -89,7 +106,28 @@ export default defineComponent({
     ]);
     var detail = ref(props.data[0].max);
     var max = ref(props.data[0].max);
- 
+
+    onMounted(() => {
+      switch (props.type) {
+        case "1":
+          doughnut = echarts.init(oneDOM.value);
+          break;
+        case "2":
+          doughnut = echarts.init(secDOM.value);
+          break;
+        case "3":
+          doughnut = echarts.init(thirdDOM.value);
+
+          break;
+        default:
+          break;
+      }
+      doughnut.setOption(option.value);
+      window.addEventListener("resize", () => {
+        doughnut.resize();
+      });
+    });
+
     const option = ref({
       // 進度條本身顏色
       color: ["#055FFC"],
@@ -97,7 +135,7 @@ export default defineComponent({
         trigger: "item",
         backgroundColor: "#383C41",
         borderWidth: 0,
-        formatter: '{c}',
+        formatter: "{c}",
         textStyle: {
           color: "#FCFDFE",
         },
@@ -158,7 +196,7 @@ export default defineComponent({
       ],
     });
 
-    function clickTab(status: string, event: any, index:number): void {
+    function clickTab(status: string, event: any, index: number): void {
       // console.log("index: " +index);
       // gaugeData = ref([
       //   {
@@ -167,7 +205,7 @@ export default defineComponent({
       // ]);
       // detail = ref(props.data[index].max);
       // max = ref(props.data[index].max);
-     
+
       if (status === "tabs") {
         for (let item of tabs.value.children) {
           item.className = "false";
@@ -180,7 +218,15 @@ export default defineComponent({
       event.path[0].className = "true";
     }
 
-    return { option, tabs_switch, tabs, clickTab, gaugeData };
+    return {
+      option,
+      tabs_switch,
+      tabs,
+      clickTab,
+      oneDOM,
+      secDOM,
+      thirdDOM,
+    };
   },
 });
 </script>
