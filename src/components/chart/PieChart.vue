@@ -125,14 +125,16 @@ export default defineComponent({
           return params.data.label;
         },
       },
+      minShowLabelAngle: 10,
       series: [
         {
           type: "pie",
           radius: ["0%", "70%"],
           avoidLabelOverlap: false,
           label: {
-            show: false,
-            position: "center",
+            show: true,
+            position: "inside",
+            formatter: '{c} %'
           },
           labelLine: {
             show: false,

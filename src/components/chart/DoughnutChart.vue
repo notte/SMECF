@@ -197,15 +197,6 @@ export default defineComponent({
     });
 
     function clickTab(status: string, event: any, index: number): void {
-      // console.log("index: " +index);
-      // gaugeData = ref([
-      //   {
-      //     value: props.data[index].data,
-      //   }
-      // ]);
-      // detail = ref(props.data[index].max);
-      // max = ref(props.data[index].max);
-
       if (status === "tabs") {
         for (let item of tabs.value.children) {
           item.className = "false";

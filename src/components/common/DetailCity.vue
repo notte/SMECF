@@ -105,8 +105,9 @@ export default defineComponent({
           radius: ["0%", "70%"],
           avoidLabelOverlap: false,
           label: {
-            show: false,
-            position: "center",
+            show: true,
+            position: "inside",
+            formatter: '{c} %'
           },
           labelLine: {
             show: false,

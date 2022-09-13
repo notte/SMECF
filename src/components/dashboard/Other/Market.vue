@@ -53,21 +53,21 @@ export default defineComponent({
   components: { DoughnutChart, BarChartHorizontal },
   setup() {
     const data = reactive({
-      developAvgScore: [{ name: "0", data: 0, max: 10 }],
+      developAvgScore: [{ name: "5.1", data: 5.1, max: 10 }],
       avgScore: [
-        { name: "製造業", data: 0, max: 10 },
+        { name: "製造業", data: 5.1, max: 10 },
         { name: "服務業", data: 0, max: 10 },
       ],
       facetedOverview1: [
-        { name: "製造業", data: 0, max: 10, color: "purple" },
+        { name: "製造業", data: 3, max: 10, color: "purple" },
         { name: "服務業", data: 0, max: 10, color: "blue" },
       ],
       facetedOverview2: [
-        { name: "製造業", data: 0, max: 10, color: "purple" },
+        { name: "製造業", data: 3, max: 10, color: "purple" },
         { name: "服務業", data: 0, max: 10, color: "blue" },
       ],
       facetedOverview3: [
-        { name: "製造業", data: 0, max: 10, color: "purple" },
+        { name: "製造業", data: 3, max: 10, color: "purple" },
         { name: "服務業", data: 0, max: 10, color: "blue" },
       ],
     });

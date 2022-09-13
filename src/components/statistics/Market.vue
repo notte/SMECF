@@ -30,32 +30,32 @@ export default defineComponent({
   setup() {
     const data = reactive({
       pieRankInternationality: [
-        { label: "無國際供應鏈關鍵地位", value: 0 },
-        { label: "具有國際供應鏈關鍵地位", value: 0 },
+        { label: "無國際供應鏈關鍵地位", value: 65 },
+        { label: "具有國際供應鏈關鍵地位", value: 35 },
       ],
       pieSaleAbroad: [
-        { label: "無自有品牌海外出貨比例", value: 0 },
-        { label: "自有品牌海外出貨比例", value: 0 },
+        { label: "無自有品牌海外出貨比例", value: 65 },
+        { label: "自有品牌海外出貨比例", value: 35 },
       ],
       pieCarbonSearchHave: [
-        { label: "無盤查碳排放量", value: 0 },
-        { label: "有盤查碳排放量", value: 0 },
+        { label: "無盤查碳排放量", value: 65 },
+        { label: "有盤查碳排放量", value: 35 },
       ],
       pieCarbonSearchDownRoad: [
-        { label: "無規劃具體減碳路徑", value: 0 },
-        { label: "規劃具體減碳路徑", value: 0 },
+        { label: "無規劃具體減碳路徑", value: 65 },
+        { label: "規劃具體減碳路徑", value: 35 },
       ],
       pieCarbonSearchProcess: [
-        { label: "無改善製程(如設備汰舊更新、導入智慧節能管理系統等)", value: 0 },
-        { label: "改善製程(如設備汰舊更新、導入智慧節能管理系統等)", value: 0 },
+        { label: "無改善製程(如設備汰舊更新、導入智慧節能管理系統等)", value: 65 },
+        { label: "改善製程(如設備汰舊更新、導入智慧節能管理系統等)", value: 35 },
       ],
       pieCarbonSearchConversion: [
-        { label: "無能源轉換(如擴大使用天然氣/生質能、導入綠電/氫能等)", value: 0 },
-        { label: "能源轉換(如擴大使用天然氣/生質能、導入綠電/氫能等)", value: 0 },
+        { label: "無能源轉換(如擴大使用天然氣/生質能、導入綠電/氫能等)", value: 65 },
+        { label: "能源轉換(如擴大使用天然氣/生質能、導入綠電/氫能等)", value: 35 },
       ],
       pieCarbonSearchReuse: [
-        { label: "無循環經濟(如原料替代、廢棄物衍生燃料、二氧化碳捕捉再利用等)", value: 0 },
-        { label: "循環經濟(如原料替代、廢棄物衍生燃料、二氧化碳捕捉再利用等)", value: 0 },
+        { label: "無循環經濟(如原料替代、廢棄物衍生燃料、二氧化碳捕捉再利用等)", value: 65 },
+        { label: "循環經濟(如原料替代、廢棄物衍生燃料、二氧化碳捕捉再利用等)", value: 35 },
       ],
     })
     
