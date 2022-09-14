@@ -1,16 +1,13 @@
 <template>
   <section class="container_chart">
     <div class="top">
-      <p class="title">過案廠商樣貌</p>
+      <p class="title">{{title}}</p>
       <!-- <button><i class="gg-software-download"></i></button> -->
     </div>
     <div class="info donut">
       <div class="text">
-        <ul class="switch_text" ref="tabs_switch">
-          <li class="true" @click="clickTab($event)">公司年資</li>
-          <li class="false" @click="clickTab($event)">資本額</li>
-          <li class="false" @click="clickTab($event)">員工數</li>
-          <li class="false" @click="clickTab($event)">場址地區</li>
+        <ul class="switch_text" ref="tabs_switch"> 
+          <li @click="clickTab($event, index)" v-for="(item, index) in data" :key="item.name" :class="index == 0 ? 'true' : 'false'">{{item.name}}</li>
         </ul>
       </div>
       <div class="chart" ref="chartDOM"></div>
@@ -30,7 +27,8 @@ import { TooltipComponent } from "echarts/components";
 echarts.use([PieChart, TooltipComponent, CanvasRenderer, LabelLayout]);
 
 export default defineComponent({
-  setup() {
+  props: ["title", "data"],
+  setup(props) {
     const status = statusStore();
     const chartDOM = ref();
     const tabs_switch = ref();
@@ -59,6 +57,66 @@ export default defineComponent({
       );
     });
 
+    var darkSeries = [];
+    var series = [];
+    for(var i=0; i<props.data.length; i++) {
+      var item = {
+        name: props.data[i].name,
+        type: "pie",
+        radius: ["40%", "70%"],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: "inside",
+          formatter : function (params: any){
+            return  params.value;
+          },
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: "14",
+            borderWidth: 0,
+            color: "#383C41",
+            fontWeight: "bold",
+          },
+        },
+        labelLine: {
+          show: false,
+        },
+        data: props.data[i].data,
+      };
+      
+      var darkItem = {
+        name: props.data[i].name,
+        type: "pie",
+        radius: ["40%", "70%"],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: "inside",
+          formatter : function (params: any){
+            return  params.value;
+          },
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: "14",
+            borderWidth: 0,
+            color: "#FCFDFE",
+            fontWeight: "bold",
+          },
+        },
+        labelLine: {
+          show: false,
+        },
+        data: props.data[i].data,
+      };
+      series.push(item);
+      darkSeries.push(darkItem);
+    }
+    
     const darkOption = {
       color: ["#5B4DFF", "#FBB42B", "#0BA7C9", "#055FFC"],
       tooltip: {
@@ -73,37 +131,9 @@ export default defineComponent({
           return params.name;
         },
       },
-      series: [
-        {
-          name: "Access From",
-          type: "pie",
-          radius: ["40%", "70%"],
-          avoidLabelOverlap: false,
-          label: {
-            show: false,
-            position: "center",
-          },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: "14",
-              borderWidth: 0,
-              color: "#FCFDFE",
-              fontWeight: "bold",
-            },
-          },
-          labelLine: {
-            show: false,
-          },
-          data: [
-            { value: 1048, name: "Search Engine" },
-            { value: 735, name: "Direct" },
-            { value: 580, name: "Email" },
-            { value: 484, name: "Union Ads" },
-          ],
-        },
-      ],
+      series: darkSeries,
     };
+
     const option = {
       color: ["#5B4DFF", "#FBB42B", "#0BA7C9", "#055FFC"],
       tooltip: {
@@ -118,38 +148,10 @@ export default defineComponent({
           return params.name;
         },
       },
-      series: [
-        {
-          name: "Access From",
-          type: "pie",
-          radius: ["40%", "70%"],
-          avoidLabelOverlap: false,
-          label: {
-            show: false,
-            position: "center",
-          },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: "14",
-              borderWidth: 0,
-              color: "#383C41",
-              fontWeight: "bold",
-            },
-          },
-          labelLine: {
-            show: false,
-          },
-          data: [
-            { value: 1048, name: "Search Engine" },
-            { value: 735, name: "Direct" },
-            { value: 580, name: "Email" },
-            { value: 484, name: "Union Ads" },
-          ],
-        },
-      ],
+      series: series,
     };
-    function clickTab(event: any): void {
+
+    function clickTab(event: any, index: number): void {
       for (let item of tabs_switch.value.children) {
         item.className = "false";
       }

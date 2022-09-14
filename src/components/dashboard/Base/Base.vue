@@ -4,28 +4,26 @@
     <BarChartHorizontal
       type="1"
       title="各構面平均分數"
-      :data="data.eachDimensionAvgScore"
-    />
+      :data="data.eachDimensionAvgScore" />
     <BarChartHorizontal
       type="1"
       title="指標亮點業者"
-      :data="data.highlightCompany"
-    />
-    <!-- TODO: 過案廠商樣貌 要換成 PieChart -->
-    <!-- <CircleProgressChart type=2 title="過案廠商樣貌" :data="data.manufacturer"/> -->
-    <PieChart type="2" title="過案廠商樣貌" :data="data.manufacturer" />
+      :data="data.highlightCompany" />
+    <DonutPieChart 
+      title="過案廠商樣貌" 
+      :data="data.manufacturer" />
   </section>
 </template>
 <script lang="ts">
 import { defineComponent, ref, reactive, onMounted } from "vue";
 import CircleProgressChart from "@/components/chart/CircleProgressChart.vue";
 import BarChartHorizontal from "@/components/chart/BarChartHorizontal.vue";
-import PieChart from "@/components/chart/PieChart.vue";
+import DonutPieChart from "@/components/chart/DonutPieChart.vue";
 import axios from "axios";
 import { IDashboardBasic } from "@/models//interface/dashboardBasic";
 
 export default defineComponent({
-  components: { CircleProgressChart, BarChartHorizontal },
+  components: { CircleProgressChart, BarChartHorizontal, DonutPieChart },
   setup() {
     const data = reactive({
       avgScore: [{ name: "5.1", data: 5.1, max: 10 }],
@@ -46,40 +44,40 @@ export default defineComponent({
         {
           name: "公司年資",
           data: [
-            { label: "5年以下", value: 25 },
-            { label: "6-20年", value: 35 },
-            { label: "21-50年", value: 25 },
-            { label: "51年以上", value: 15 },
+            { name: "5年以下", value: 25 },
+            { name: "6-20年", value: 35 },
+            { name: "21-50年", value: 25 },
+            { name: "51年以上", value: 15 },
           ],
         },
         {
           name: "資本額",
           data: [
-            { label: "2億以上", value: 65 },
-            { label: "1億-2億", value: 74 },
-            { label: "7500萬-1億", value: 30 },
-            { label: "5000萬-7500萬", value: 32 },
-            { label: "2500萬-5000萬", value: 15 },
-            { label: "1000萬-2500萬", value: 12 },
-            { label: "1000萬以下", value: 5 },
+            { name: "2億以上", value: 65 },
+            { name: "1億-2億", value: 74 },
+            { name: "7500萬-1億", value: 30 },
+            { name: "5000萬-7500萬", value: 32 },
+            { name: "2500萬-5000萬", value: 15 },
+            { name: "1000萬-2500萬", value: 12 },
+            { name: "1000萬以下", value: 5 },
           ],
         },
         {
           name: "員工數",
           data: [
-            { label: "10人以下", value: 25 },
-            { label: "11-100人", value: 35 },
-            { label: "101-200人", value: 25 },
-            { label: "201人以上", value: 15 },
+            { name: "10人以下", value: 25 },
+            { name: "11-100人", value: 35 },
+            { name: "101-200人", value: 25 },
+            { name: "201人以上", value: 15 },
           ],
         },
         {
           name: "場址地區",
           data: [
-            { label: "東", value: 25 },
-            { label: "南", value: 35 },
-            { label: "西", value: 25 },
-            { label: "北", value: 15 },
+            { name: "東", value: 25 },
+            { name: "南", value: 35 },
+            { name: "西", value: 25 },
+            { name: "北", value: 15 },
           ],
         },
       ],
@@ -132,49 +130,49 @@ export default defineComponent({
           {
             name: "公司年資",
             data: [
-              { label: "5年以下", value: res.data.manufacturer.date[1] },
-              { label: "6-20年", value: res.data.manufacturer.date[2] },
-              { label: "21-50年", value: res.data.manufacturer.date[3] },
-              { label: "51年以上", value: res.data.manufacturer.date[4] },
+              { name: "5年以下", value: res.data.manufacturer.date[1] },
+              { name: "6-20年", value: res.data.manufacturer.date[2] },
+              { name: "21-50年", value: res.data.manufacturer.date[3] },
+              { name: "51年以上", value: res.data.manufacturer.date[4] },
             ],
           },
           {
             name: "資本額",
             data: [
-              { label: "2億以上", value: res.data.manufacturer.capital[1] },
-              { label: "1億-2億", value: res.data.manufacturer.capital[2] },
-              { label: "7500萬-1億", value: res.data.manufacturer.capital[3] },
+              { name: "2億以上", value: res.data.manufacturer.capital[1] },
+              { name: "1億-2億", value: res.data.manufacturer.capital[2] },
+              { name: "7500萬-1億", value: res.data.manufacturer.capital[3] },
               {
-                label: "5000萬-7500萬",
+                name: "5000萬-7500萬",
                 value: res.data.manufacturer.capital[4],
               },
               {
-                label: "2500萬-5000萬",
+                name: "2500萬-5000萬",
                 value: res.data.manufacturer.capital[5],
               },
               {
-                label: "1000萬-2500萬",
+                name: "1000萬-2500萬",
                 value: res.data.manufacturer.capital[6],
               },
-              { label: "1000萬以下", value: res.data.manufacturer.capital[7] },
+              { name: "1000萬以下", value: res.data.manufacturer.capital[7] },
             ],
           },
           {
             name: "員工數",
             data: [
-              { label: "10人以下", value: res.data.manufacturer.sumPeople[1] },
-              { label: "11-100人", value: res.data.manufacturer.sumPeople[2] },
-              { label: "101-200人", value: res.data.manufacturer.sumPeople[3] },
-              { label: "201人以上", value: res.data.manufacturer.sumPeople[4] },
+              { name: "10人以下", value: res.data.manufacturer.sumPeople[1] },
+              { name: "11-100人", value: res.data.manufacturer.sumPeople[2] },
+              { name: "101-200人", value: res.data.manufacturer.sumPeople[3] },
+              { name: "201人以上", value: res.data.manufacturer.sumPeople[4] },
             ],
           },
           {
             name: "場址地區",
             data: [
-              { label: "東", value: res.data.manufacturer.st[1] },
-              { label: "南", value: res.data.manufacturer.st[2] },
-              { label: "西", value: res.data.manufacturer.st[3] },
-              { label: "北", value: res.data.manufacturer.st[4] },
+              { name: "東", value: res.data.manufacturer.st[1] },
+              { name: "南", value: res.data.manufacturer.st[2] },
+              { name: "西", value: res.data.manufacturer.st[3] },
+              { name: "北", value: res.data.manufacturer.st[4] },
             ],
           },
         ];

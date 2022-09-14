@@ -193,7 +193,7 @@ export default defineComponent({
           color: "#FCFDFE",
         },
         formatter: (params: any, ticket: any, callback: any) => {
-          return params.data.label;
+          return params.data.name;
         },
       },
       minShowLabelAngle: 10,
@@ -235,7 +235,7 @@ export default defineComponent({
           color: "#FCFDFE",
         },
         formatter: (params: any, ticket: any, callback: any) => {
-          return params.data.label;
+          return params.data.name;
         },
       },
       minShowLabelAngle: 10,
@@ -268,7 +268,7 @@ export default defineComponent({
           color: "#FCFDFE",
         },
         formatter: (params: any, ticket: any, callback: any) => {
-          return params.data.label;
+          return params.data.name;
         },
       },
       minShowLabelAngle: 10,
