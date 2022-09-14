@@ -15,13 +15,18 @@
     </b-button>
   </div>
   <section class="container_grid">
-    <DoughnutChart
+    <CircleProgressChart
       type="1"
       title="Develop 綜合平均分數"
       :data="data.developAvgScore"
       :max="10"
     />
-    <DoughnutChart type="3" title="平均分數" :data="data.avgScore" :max="10" />
+    <CircleProgressChart
+      type="3"
+      title="平均分數"
+      :data="data.avgScore"
+      :max="10"
+    />
   </section>
   <p class="other_subtitle">構面概覽</p>
   <section class="container_grid">
@@ -47,14 +52,14 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, onMounted } from "vue";
-import DoughnutChart from "@/components/chart/DoughnutChart.vue";
+import CircleProgressChart from "@/components/chart/CircleProgressChart.vue";
 import BarChartHorizontal from "@/components/chart/BarChartHorizontal.vue";
 import axios from "axios";
 import { IDashboardOtherDevelop } from "@/models//interface/dashboardOtherDevelop";
 import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
-  components: { DoughnutChart, BarChartHorizontal },
+  components: { CircleProgressChart, BarChartHorizontal },
   setup() {
     const data = reactive({
       developAvgScore: [{ name: "5.1", data: 5.1, max: 10 }],

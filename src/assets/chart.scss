@@ -31,6 +31,10 @@
                 @apply text-system-dark_04 cursor-pointer;
             }
 
+            .switch_text {
+                @apply mt-3 flex-col;
+            }
+
         }
 
         
@@ -52,8 +56,14 @@
         }
     }
 
-    .switch_text {
-        @apply mt-3;
+    .info.donut {
+        .text {
+            @apply w-2/5;
+        }
+
+        .chart {
+            @apply w-3/5;
+        }
     }
 }
 

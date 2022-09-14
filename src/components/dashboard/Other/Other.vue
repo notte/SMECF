@@ -1,23 +1,16 @@
 <template>
-  <p class="other_subtitle">平均分數</p>
   <section class="container_grid">
-    <DoughnutChart />
-    <DoughnutChart />
-  </section>
-  <p class="other_subtitle">購面概覽</p>
-  <section class="container_grid">
-    <BarChartHorizontal />
-    <BarChartHorizontal />
-    <BarChartHorizontal />
+    <DonutPieChart />
+    <DonutPieChart />
+    <DonutPieChart />
   </section>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import DoughnutChart from "@/components/chart/DoughnutChart.vue";
-import BarChartHorizontal from "@/components/chart/BarChartHorizontal.vue";
+import DonutPieChart from "@/components/chart/DonutPieChart.vue";
 
 export default defineComponent({
-  components: { DoughnutChart, BarChartHorizontal },
+  components: { DonutPieChart },
   setup() {
     return {};
   },

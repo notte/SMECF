@@ -37,6 +37,13 @@ const routes: Array<RouteRecordRaw> = [
       main: () => import("../components/common/ListPopup.vue"),
     },
   },
+  {
+    path: "/donutpie",
+    name: "donutpie",
+    components: {
+      main: () => import("../components/dashboard/Other/Other.vue"),
+    },
+  },
 ];
 
 const router = createRouter({
