@@ -1,5 +1,5 @@
 .container_chart {
-    @apply my-4 p-6;
+    @apply my-4 p-6 flex flex-col justify-between;
 
     .top {
         @apply flex justify-between;
@@ -17,10 +17,8 @@
 
     // (下方的)資訊區塊
     .info {
-        @apply flex items-center justify-between w-full;
+        @apply flex items-center justify-between w-full h-36;
 
-        height: calc(100% - 52px);
-        max-height: calc(100% - 32px);
     
         .text {
             @apply w-3/5;
@@ -45,6 +43,10 @@
             @apply relative w-2/4 h-full;
         }
 
+        .pie_chart {
+            @apply w-full h-full;
+        }
+
         .bar_straight {
             @apply w-full h-32;
         }
@@ -65,7 +67,7 @@
         @apply flex items-center;
     
         .bar_info {
-            @apply w-3/6 justify-between  flex items-center;
+            @apply justify-between  flex items-center;
 
             span {
                 @apply subtitle_4;
@@ -79,9 +81,13 @@
                 @apply mr-2;
             }
         }
+
+        .bar_info.bar_info_max {
+            width: 50%;
+        }
     
         .progress {
-            @apply w-3/6;
+            @apply flex-auto;
 
             height: 12px;
 

@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import * as echarts from "echarts/core";
 import {
   DatasetComponent,
@@ -34,6 +34,7 @@ import { BarChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 import { propsToAttrMap } from "@vue/shared";
 import { keyCodesByKeyName } from "@vue/test-utils/dist/createDomEvent";
+import { statusStore } from "@/store/index";
 
 echarts.use([
   DatasetComponent,
@@ -47,48 +48,148 @@ export default defineComponent({
   components: { VChart },
   props: ["title", "data"],
   setup(props) {
+    const status = statusStore();
     const chartDOM = ref();
+
     onMounted(() => {
       let barStraight = echarts.init(chartDOM.value);
-
-      barStraight.setOption(option);
-
       window.addEventListener("resize", () => {
         barStraight.resize();
       });
+
+      if (status.mode === "dark") {
+        barStraight.setOption(darkOption, true);
+      } else {
+        barStraight.setOption(option, true);
+      }
+
+      watch(
+        () => status.mode,
+        (newMode) => {
+          if (newMode === "dark") {
+            barStraight.setOption(darkOption, true);
+          } else {
+            barStraight.setOption(option, true);
+          }
+        },
+        { deep: true }
+      );
     });
     const option = {
+      backgroundColor: "transparent",
+      textStyle: {
+        color: "#8A93A1",
+      },
+      lineStyle: {
+        color: "#8A93A1",
+      },
+      borderColor: "#D8DEE7",
       color: ["#00C7F2", "#695CFB"],
       legend: { show: false },
       tooltip: { show: false },
-      grid: { show: true, top: 20, left: 30, right: 0, height: 80 },
+      grid: {
+        show: true,
+        top: 20,
+        left: 40,
+        right: 0,
+        height: 80,
+        borderColor: "#D8DEE7",
+      },
       xAxis: {
         type: "category",
-        axisLine: { lineStyle: { color: "#8A93A1" } },
         data: props.data.xAxis,
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+        },
       },
-      yAxis: [
-        {
-          type: "value",
-          // min: 0,
-          // max: Math.max(props.data.data),
-          // interval: 1000,
-          axisLabel: {
-            // formatter: "{value}k",
-            formatter: function (value: number, index: number) {
-              if (value >= 1000) return value / 1000 + "k";
-              else return value;
-            },
+      yAxis: {
+        splitLine: {
+          show: true,
+          lineStyle: { color: "#D8DEE7" },
+        },
+        type: "value",
+        // min: 0,
+        // max: Math.max(props.data.data),
+        // interval: 1000,
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+        },
+        axisLabel: {
+          // formatter: "{value}k",
+          formatter: function (value: number, index: number) {
+            if (value >= 1000) return value / 1000 + "k";
+            else return value;
           },
         },
-      ],
+      },
       series: [
         { type: "bar", data: props.data.data },
         { type: "bar", data: props.data.data },
       ],
     };
 
-    return { chartDOM };
+    const darkOption = {
+      backgroundColor: "transparent",
+      textStyle: {
+        color: "#8A93A1",
+      },
+      borderColor: "#383C41",
+      color: ["#00C7F2", "#695CFB"],
+      legend: { show: false },
+      tooltip: { show: false },
+      grid: {
+        show: true,
+        top: 20,
+        left: 40,
+        right: 0,
+        height: 80,
+        borderColor: "#383C41",
+      },
+      xAxis: {
+        type: "category",
+        data: props.data.xAxis,
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+        },
+      },
+      yAxis: {
+        splitLine: {
+          show: true,
+          lineStyle: { color: "#383C41" },
+        },
+        type: "value",
+        // min: 0,
+        // max: Math.max(props.data.data),
+        // interval: 1000,
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+        },
+        axisLabel: {
+          // formatter: "{value}k",
+          formatter: function (value: number, index: number) {
+            if (value >= 1000) return value / 1000 + "k";
+            else return value;
+          },
+        },
+      },
+      series: [
+        { type: "bar", data: props.data.data },
+        { type: "bar", data: props.data.data },
+      ],
+    };
+    return { chartDOM, status };
   },
 });
 </script>

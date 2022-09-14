@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import * as Model from "@/models/interface/map";
 import EventBus from "@/utilities/event-bus";
 import * as d3 from "d3";
@@ -12,9 +12,14 @@ import * as Status from "@/models/status/type";
 export default defineComponent({
   props: ["type", "data"],
   setup(props, { emit }) {
-    EventBus.emit("loading_event", true);
     EventBus.on("create_map", (prams) => {
+      EventBus.emit("loading_event", true);
+      setMap(prams as number[]);
+    });
+
+    function setMap(prams: number[]): void {
       d3.selectAll("svg").remove();
+
       let width = (prams as number[])[0];
       let height = (prams as number[])[1];
 
@@ -144,8 +149,7 @@ export default defineComponent({
       //     g.selectAll("path").attr("transform", event.transform);
       //   });
       // svg.call(zoom as never);
-    });
-
+    }
     function d3OnClickListener(cityName: string) {
       emit("showPieSection", cityName);
     }

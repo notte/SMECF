@@ -2,7 +2,11 @@
   <section>
     <div class="title_dropdown">
       <h6 class="title_h6 dark:title_h6_dark">基本平均表現</h6>
-      <b-dropdown text="下載按鈕">
+      <b-dropdown no-caret>
+        <template #button-content>
+          <p>下載按鈕</p>
+          <img src="@/assets/icons/dropdown-arrow.svg" alt="" />
+        </template>
         <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
         <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
       </b-dropdown>

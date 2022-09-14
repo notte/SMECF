@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const statusStore = defineStore("id", {
   state: () => {
     return {
-      mode: "Light",
+      mode: "light",
       listPopup: undefined,
     };
   },

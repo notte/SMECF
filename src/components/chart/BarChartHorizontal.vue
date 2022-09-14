@@ -58,7 +58,7 @@
     <!-- type3-->
     <div v-if="type == 3" class="container_bar">
       <div class="bar_item" v-for="item in data" :key="item.key">
-        <div class="bar_info">
+        <div class="bar_info bar_info_max">
           <span>{{ item.name }}</span>
           <span class="subtitle_4">{{ item.data }}</span>
         </div>

@@ -1,13 +1,20 @@
 <template>
   <div class="info">
     <div class="map color_city" ref="map_size">
-      <Map :type="Status.ManufacturerMapType.City" :data="dataMaps" @showPieSection="showPieSection" @hidePieSection="hidePieSection"/>
+      <Map
+        :type="Status.ManufacturerMapType.City"
+        :data="dataMaps"
+        @showPieSection="showPieSection"
+        @hidePieSection="hidePieSection"
+      />
     </div>
     <div class="city" v-if="isShow(isShowPieSection)">
-      <h6 class="title_h6">{{cityName}}</h6>
+      <h6 class="title_h6">{{ cityName }}</h6>
       <ul class="switch_button" ref="tabs">
-        <li class="true" @click="clickTab(Capital, $event)">{{Capital}}</li>
-        <li class="false" @click="clickTab(IndustryRate, $event)">{{IndustryRate}}</li>
+        <li class="true" @click="clickTab(Capital, $event)">{{ Capital }}</li>
+        <li class="false" @click="clickTab(IndustryRate, $event)">
+          {{ IndustryRate }}
+        </li>
       </ul>
       <div class="chart" ref="pieSection">
         <v-chart :option="option" />
@@ -28,7 +35,9 @@
           </label>
         </li>
       </ul> -->
-      <button class="back" @click="hidePieSection()"><img src="@/assets/icons/arrow_left.svg"/>回到{{$props.type}}</button>
+      <button class="back" @click="hidePieSection()">
+        <img src="@/assets/icons/arrow_left.svg" />回到{{ $props.type }}
+      </button>
     </div>
   </div>
   <ul class="checkbox">
@@ -50,7 +59,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, watch } from "vue";
 import Map from "@/components/common/Map.vue";
 import EventBus from "@/utilities/event-bus";
 import { CanvasRenderer } from "echarts/renderers";
@@ -75,7 +84,7 @@ echarts.use([
 ]);
 export default defineComponent({
   components: { Map, VChart },
-  props: ['type', 'dataMap', 'dataPie'],
+  props: ["type", "dataMap", "dataPie"],
   setup(props) {
     const map_size = ref();
     const Current = ref(Status.ManufacturerSubType.Capital);
@@ -84,10 +93,37 @@ export default defineComponent({
     const tabs = ref();
     const isShowPieSection = ref<boolean>(false);
     const cityName = ref<string>();
+    let windowWidth = ref(0);
+    function resizeWindow() {
+      windowWidth.value = window.innerWidth;
+    }
 
+    onMounted(() => {
+      window.addEventListener("resize", resizeWindow);
+      resizeWindow();
+    });
+
+    watch(
+      () => windowWidth.value,
+      (oldWindth, newWindth) => {
+        EventBus.emit("create_map", [
+          map_size.value.offsetWidth,
+          map_size.value.offsetHeight,
+        ]);
+      },
+      { deep: true }
+    );
     const dataMaps = ref(props.dataMap);
     const option = ref({
-      color: ["#7A6FFF", "#2BC679", "#F3A41B", "#666E7A", "#00C7F2", "#2AE0BF", "#EACC64"],
+      color: [
+        "#7A6FFF",
+        "#2BC679",
+        "#F3A41B",
+        "#666E7A",
+        "#00C7F2",
+        "#2AE0BF",
+        "#EACC64",
+      ],
       tooltip: {
         trigger: "item",
         backgroundColor: "#383C41",
@@ -107,7 +143,7 @@ export default defineComponent({
           label: {
             show: true,
             position: "inside",
-            formatter: '{c} %'
+            formatter: "{c} %",
           },
           labelLine: {
             show: false,
@@ -124,7 +160,7 @@ export default defineComponent({
       Current.value = Status;
       event.path[0].className = "true";
 
-      if( Status == IndustryRate.value ) {
+      if (Status == IndustryRate.value) {
         option.value.series[0].data = props.dataPie.pieIndustryRate;
       } else {
         option.value.series[0].data = props.dataPie.pieCapital;
@@ -153,7 +189,7 @@ export default defineComponent({
       Status,
       isShowPieSection,
       isShow,
-      cityName
+      cityName,
     };
   },
   methods: {
@@ -164,7 +200,7 @@ export default defineComponent({
 
     hidePieSection() {
       this.isShowPieSection = false;
-    }
-  }
+    },
+  },
 });
 </script>

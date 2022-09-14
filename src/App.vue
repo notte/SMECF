@@ -74,31 +74,12 @@ export default defineComponent({
     const detailPopup = ref<boolean>(false);
     let title = ref<string>("");
 
-    let windowWidth = ref(0);
-
     const menu = ref();
     const main = ref();
-
-    function resizeWindow() {
-      windowWidth.value = window.innerWidth;
-    }
-
-    onMounted(() => {
-      window.addEventListener("resize", resizeWindow);
-      resizeWindow();
-    });
 
     // onUnmounted(() => {
     //   window.removeEventListener("resize", resizeWindow);
     // });
-
-    watch(
-      () => windowWidth.value,
-      (oldWindth, newWindth) => {
-        console.log(oldWindth, newWindth);
-      },
-      { deep: true }
-    );
 
     EventBus.on("listpopup_event", (prams) => {
       listPopup.value = (prams as Model.IListPopupEvent).status;

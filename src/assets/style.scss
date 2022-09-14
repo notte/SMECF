@@ -325,6 +325,18 @@ ul.checkbox {
 .title_dropdown {
     @apply flex flex-row items-center justify-start;
 
+    .btn-group {
+        @apply opacity-100;
+    }
+
+    .btn-content {
+        @apply flex label_medium;
+
+        p {
+            @apply mr-2;
+        }
+    }
+
     .btn-outline-primary {
         .btn-content {
             @apply flex flex-row items-center;
@@ -338,10 +350,6 @@ ul.checkbox {
     h6,
     p.other_subtitle {
         @apply mr-6;
-    }
-
-    .btn-content {
-        @apply label_medium;
     }
 }
 

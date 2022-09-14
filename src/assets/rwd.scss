@@ -1,4 +1,10 @@
 @media (max-width: 1024px) { 
+    .title_dropdown {
+        .btn-group {
+            @apply opacity-0;
+        }
+    }
+
     .mode_switch {
         @apply hidden;
     }
@@ -123,12 +129,11 @@
         // @apply top-16;
 
         ul.checkbox {
-            @apply order-1;
+            @apply order-1 mt-5;
         }
     
         .info {
             @apply order-2;
-
         }
     }
 
