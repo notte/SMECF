@@ -57,10 +57,58 @@ export default defineComponent({
       );
     });
 
-    var darkSeries = [];
-    var series = [];
+    let darkSeries: { 
+      name: any; 
+      type: string; 
+      radius: string[]; 
+      avoidLabelOverlap: boolean; 
+      label: { 
+        show: boolean; 
+        position: string; 
+        formatter: (params: any) => any; 
+      }; 
+      emphasis: { 
+        label: { 
+          show: boolean; 
+          fontSize: string; 
+          borderWidth: number; 
+          color: string; 
+          fontWeight: string; 
+        }; 
+      }; 
+      labelLine: { 
+        show: boolean; 
+      }; 
+      data: any; 
+    }[] = [];
+
+    let series: { 
+      name: any; 
+      type: string; 
+      radius: string[]; 
+      avoidLabelOverlap: boolean; 
+      label: { 
+        show: boolean; 
+        position: string; 
+        formatter: (params: any) => any; 
+      }; 
+      emphasis: { 
+        label: { 
+          show: boolean; 
+          fontSize: string; 
+          borderWidth: number; 
+          color: string; 
+          fontWeight: string; 
+        }; 
+      }; 
+      labelLine: { 
+        show: boolean; 
+      }; 
+      data: any; 
+    }[] = [];
+
     for(var i=0; i<props.data.length; i++) {
-      var item = {
+      let item = {
         name: props.data[i].name,
         type: "pie",
         radius: ["40%", "70%"],
@@ -87,7 +135,7 @@ export default defineComponent({
         data: props.data[i].data,
       };
       
-      var darkItem = {
+      let darkItem = {
         name: props.data[i].name,
         type: "pie",
         radius: ["40%", "70%"],
@@ -131,7 +179,7 @@ export default defineComponent({
           return params.name;
         },
       },
-      series: darkSeries,
+      series: darkSeries[0],
     };
 
     const option = {
@@ -148,7 +196,7 @@ export default defineComponent({
           return params.name;
         },
       },
-      series: series,
+      series: series[0],
     };
 
     function clickTab(event: any, index: number): void {
@@ -156,6 +204,9 @@ export default defineComponent({
         item.className = "false";
       }
       event.path[0].className = "true";
+      //TODO: update series data with tabs_switch selected.
+      // option.series = series[index];
+      // darkOption.series = darkSeries[index];
     }
     return { chartDOM, status, tabs_switch, clickTab };
   },
