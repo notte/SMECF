@@ -115,11 +115,12 @@ export default defineComponent({
                     cityName +
                     ": " +
                     count;
-
+                  const x = event.x - 80;
+                  const y = event.y - 80;
                   Tooltip.html(tooltipStr)
                     .style("opacity", 1)
-                    .style("left", event.pageX + "px")
-                    .style("top", event.pageY + "px");
+                    .style("left", x + "px")
+                    .style("top", y + "px");
                 } else {
                   //By Area
                 }

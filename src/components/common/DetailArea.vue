@@ -4,9 +4,19 @@
       <Map :type="Status.ManufacturerMapType.Area" />
     </div>
     <div class="city items-center">
-      <h6 class="title_h6">{{Current}}</h6>
+      <h6 class="title_h6">{{ Current }}</h6>
       <div class="chart">
         <v-chart :option="option" />
+      </div>
+      <div class="title_dropdown">
+        <b-dropdown no-caret>
+          <template #button-content>
+            <p>下載按鈕</p>
+            <img src="../../assets/icons/dropdown-arrow.svg" alt="" />
+          </template>
+          <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
+          <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
+        </b-dropdown>
       </div>
       <ul class="legends_row">
         <li class="legend_item">
@@ -48,7 +58,7 @@ echarts.use([
 
 export default defineComponent({
   components: { Map, VChart },
-  props: ['data'],
+  props: ["data"],
   setup(props) {
     const map_size = ref();
     const Current = ref(Status.ManufacturerRegionType.North);
@@ -79,7 +89,7 @@ export default defineComponent({
           label: {
             show: true,
             position: "inside",
-            formatter: '{c} %'
+            formatter: "{c} %",
           },
           labelLine: {
             show: false,
@@ -96,7 +106,7 @@ export default defineComponent({
       Current.value = Status;
       event.path[0].className = "true";
 
-      switch(Status) {
+      switch (Status) {
         default:
         case North.value:
           option.value.series[0].data = props.data.north;
@@ -129,7 +139,7 @@ export default defineComponent({
       South,
       East,
       West,
-      Status
+      Status,
     };
   },
 });

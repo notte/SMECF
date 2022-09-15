@@ -141,6 +141,10 @@
 
     height: calc(100% - 60px);
 
+    .title_dropdown {
+        @apply mt-5 mb-0;
+    }
+
     ul.switch_button {
         @apply mb-0;
     }
@@ -158,8 +162,17 @@
         }
 
         .back {
-            @apply body_14 mt-6 self-center;
+            @apply body_14 mt-6 self-center flex justify-center items-center;
+
+            img {
+                @apply mr-2;
+            }
         }
+
+        .title_dropdown {
+            @apply justify-center mb-5;
+        }
+
     }
 }
 

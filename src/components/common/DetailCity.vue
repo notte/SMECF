@@ -19,6 +19,16 @@
       <div class="chart" ref="pieSection">
         <v-chart :option="option" />
       </div>
+      <div class="title_dropdown">
+        <b-dropdown no-caret>
+          <template #button-content>
+            <p>下載按鈕</p>
+            <img src="../../assets/icons/dropdown-arrow.svg" alt="" />
+          </template>
+          <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
+          <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
+        </b-dropdown>
+      </div>
       <!-- <ul class="checkbox">
         <li class="label_item">
           <label class="container">
@@ -56,6 +66,16 @@
       </label>
     </li>
   </ul>
+  <div class="title_dropdown" v-if="!isShow(isShowPieSection)">
+    <b-dropdown no-caret>
+      <template #button-content>
+        <p>下載按鈕</p>
+        <img src="../../assets/icons/dropdown-arrow.svg" alt="" />
+      </template>
+      <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
+      <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
+    </b-dropdown>
+  </div>
 </template>
 
 <script lang="ts">
