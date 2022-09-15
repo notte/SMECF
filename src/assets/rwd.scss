@@ -135,6 +135,13 @@
         .info {
             @apply order-2;
         }
+
+        .title_dropdown {
+            .btn-group {
+                @apply opacity-0;
+            }
+        }
+    
     }
 
     .container_chart {

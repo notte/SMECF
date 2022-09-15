@@ -142,7 +142,7 @@
     height: calc(100% - 60px);
 
     .title_dropdown {
-        @apply mt-5 mb-0;
+        @apply mt-5 mb-0 opacity-100;
     }
 
     ul.switch_button {
@@ -170,7 +170,7 @@
         }
 
         .title_dropdown {
-            @apply justify-center mb-5;
+            @apply justify-center mb-5 opacity-100;
         }
 
     }
