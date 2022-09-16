@@ -140,14 +140,11 @@ export default defineComponent({
           let gaugeData = [{
             value: newData[data_index.value].data,
           }];
-          // let detail = newData[data_index.value].max;
           let max = newData[data_index.value].max;
 
           darkOption.series[0].data = gaugeData;
-          // darkOption.series[0].detail = detail;
           darkOption.series[0].max = max;
           option.series[0].data = gaugeData;
-          // option.series[0].detail = detail;
           option.series[0].max = max;
 
           if (status.mode === "dark") {
