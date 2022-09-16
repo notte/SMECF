@@ -12,10 +12,19 @@ import * as Status from "@/models/status/type";
 export default defineComponent({
   props: ["type", "data"],
   setup(props, { emit }) {
-    const north = [ "10002", "10005", "10004", "68", "63", "10018", "65", "10017" ];
-    const south = [ "64", "67", "10013" ];
-    const west = [ "10010", "10007", "66", "10009", "10020", "10008", "10016" ];
-    const east = [ "10015", "10014" ];
+    const north = [
+      "10002",
+      "10005",
+      "10004",
+      "68",
+      "63",
+      "10018",
+      "65",
+      "10017",
+    ];
+    const south = ["64", "67", "10013"];
+    const west = ["10010", "10007", "66", "10009", "10020", "10008", "10016"];
+    const east = ["10015", "10014"];
 
     EventBus.on("create_map", (prams) => {
       EventBus.emit("loading_event", true);
@@ -134,19 +143,23 @@ export default defineComponent({
                 Tooltip.style("opacity", 0);
               })
               .on("click", (event, d) => {
+                if (window.innerWidth < 640) {
+                  EventBus.emit("mobile_map_click");
+                }
                 if (props.type == Status.ManufacturerMapType.City) {
                   d3OnClickListener(cityName);
                 } else {
                   let countryId = d.properties["COUNTYID"];
-                  let status = (north.includes(countryId)==true)
-                    ? Status.ManufacturerRegionType.North 
-                    : (south.includes(countryId)==true)
-                    ? Status.ManufacturerRegionType.South
-                    : (west.includes(countryId)==true)
-                    ? Status.ManufacturerRegionType.West
-                    : (east.includes(countryId)==true)
-                    ? Status.ManufacturerRegionType.East
-                    : Status.ManufacturerRegionType.North;
+                  let status =
+                    north.includes(countryId) == true
+                      ? Status.ManufacturerRegionType.North
+                      : south.includes(countryId) == true
+                      ? Status.ManufacturerRegionType.South
+                      : west.includes(countryId) == true
+                      ? Status.ManufacturerRegionType.West
+                      : east.includes(countryId) == true
+                      ? Status.ManufacturerRegionType.East
+                      : Status.ManufacturerRegionType.North;
                   changePieSection(status);
                 }
               });

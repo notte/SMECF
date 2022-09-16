@@ -1,18 +1,28 @@
 <template>
   <section class="container_map">
-    <h6 class="title_h6">產業區域分布</h6>
-    <ul class="switch_button" ref="tabs">
-      <li class="true" @click="clickTab(Register, $event)">{{Register}}</li>
-      <li class="false" @click="clickTab(Expand, $event)">{{Expand}}</li>
-      <li class="false" @click="clickTab(Created, $event)">{{Created}}</li>
-      <li class="false" @click="clickTab(Distributed, $event)">{{Distributed}}</li>
+    <h6 v-if="mobile_text" class="title_h6">產業區域分布</h6>
+    <ul v-if="mobile_text" class="switch_button" ref="tabs">
+      <li class="true" @click="clickTab(Register, $event)">{{ Register }}</li>
+      <li class="false" @click="clickTab(Expand, $event)">{{ Expand }}</li>
+      <li class="false" @click="clickTab(Created, $event)">{{ Created }}</li>
+      <li class="false" @click="clickTab(Distributed, $event)">
+        {{ Distributed }}
+      </li>
     </ul>
-    <DetailCity v-if="isShow(Register) || isShow(Expand) || isShow(Created)" :type="Current" :dataMap="data.mapCities" :dataPie="data.pieCities" />
-    <DetailArea v-if="isShow(Distributed)" :data="data.pieRegionalDistributionCustomer" />
+    <DetailCity
+      v-if="isShow(Register) || isShow(Expand) || isShow(Created)"
+      :type="Current"
+      :dataMap="data.mapCities"
+      :dataPie="data.pieCities"
+    />
+    <DetailArea
+      v-if="isShow(Distributed)"
+      :data="data.pieRegionalDistributionCustomer"
+    />
   </section>
 </template>
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted } from "vue";
+import { defineComponent, ref, reactive, onMounted, watch } from "vue";
 import * as Status from "@/models/status/type";
 import DetailCity from "@/components/common/DetailCity.vue";
 import DetailArea from "@/components/common/DetailArea.vue";
@@ -30,7 +40,12 @@ export default defineComponent({
     const Expand = ref(Status.ManufacturerType.Expand);
     const Created = ref(Status.ManufacturerType.Created);
     const Distributed = ref(Status.ManufacturerType.Distributed);
+    const mobile_text = ref<boolean>(true);
     const tabs = ref();
+
+    EventBus.on("mobile_title_show", (status) => {
+      mobile_text.value = status as boolean;
+    });
 
     function clickTab(Status: Status.ManufacturerType, event: any): void {
       for (let item of tabs.value.children) {
@@ -70,7 +85,7 @@ export default defineComponent({
       ],
       pieCities: {
         pieCapital: [
-          { label: "2億以上", value: 65 }, 
+          { label: "2億以上", value: 65 },
           { label: "1億-2億", value: 74 },
           { label: "7500萬-1億", value: 30 },
           { label: "5000萬-7500萬", value: 32 },
@@ -79,32 +94,33 @@ export default defineComponent({
           { label: "1000萬以下", value: 5 },
         ],
         pieIndustryRate: [
-          { label: "製造業", value: 87 }, 
+          { label: "製造業", value: 87 },
           { label: "服務業", value: 13 },
         ],
       },
       pieRegionalDistributionCustomer: {
         north: [
-          { label: "製造業", value: 10 }, 
-          { label: "服務業", value: 0 }
+          { label: "製造業", value: 10 },
+          { label: "服務業", value: 0 },
         ],
         south: [
-          { label: "製造業", value: 35 }, 
+          { label: "製造業", value: 35 },
           { label: "服務業", value: 0 },
         ],
         east: [
-          { label: "製造業", value: 45 }, 
+          { label: "製造業", value: 45 },
           { label: "服務業", value: 0 },
         ],
         west: [
-          { label: "製造業", value: 10 }, 
+          { label: "製造業", value: 10 },
           { label: "服務業", value: 0 },
-        ]
+        ],
       },
     });
 
     onMounted(() => {
-      axios.get<IManufacturerStatistic>("./data/manufacturer_statistics.json")
+      axios
+        .get<IManufacturerStatistic>("./data/manufacturer_statistics.json")
         .then((res) => {
           // console.log(res.data);
           data.mapCities = [
@@ -133,12 +149,15 @@ export default defineComponent({
           ];
         });
 
-        axios.get<IManufacturerStatisticDetail>("./data/manufacturer_statistics_detail.json")
-          .then((res) => {
+      axios
+        .get<IManufacturerStatisticDetail>(
+          "./data/manufacturer_statistics_detail.json"
+        )
+        .then((res) => {
           // console.log(res.data);
           data.pieCities = {
             pieCapital: [
-              { label: "2億以上", value: res.data.capital[1] }, 
+              { label: "2億以上", value: res.data.capital[1] },
               { label: "1億-2億", value: res.data.capital[2] },
               { label: "7500萬-1億", value: res.data.capital[3] },
               { label: "5000萬-7500萬", value: res.data.capital[4] },
@@ -147,31 +166,34 @@ export default defineComponent({
               { label: "1000萬以下", value: res.data.capital[7] },
             ],
             pieIndustryRate: [
-              { label: "製造業", value: res.data.industryRate.manufacturing }, 
+              { label: "製造業", value: res.data.industryRate.manufacturing },
               { label: "服務業", value: res.data.industryRate.service },
             ],
           };
         });
 
-        axios.get<IManufacturerStatisticRegion>("./data/manufacturer_statistics_region.json")
-          .then((res) => {
+      axios
+        .get<IManufacturerStatisticRegion>(
+          "./data/manufacturer_statistics_region.json"
+        )
+        .then((res) => {
           data.pieRegionalDistributionCustomer = {
             north: [
-              { label: "製造業", value: res.data.north[0] }, 
+              { label: "製造業", value: res.data.north[0] },
               { label: "服務業", value: res.data.north[1] },
             ],
             south: [
-              { label: "製造業", value: res.data.south[0] }, 
+              { label: "製造業", value: res.data.south[0] },
               { label: "服務業", value: res.data.south[1] },
             ],
             east: [
-              { label: "製造業", value: res.data.east[0] }, 
+              { label: "製造業", value: res.data.east[0] },
               { label: "服務業", value: res.data.east[1] },
             ],
             west: [
-              { label: "製造業", value: res.data.west[0] }, 
+              { label: "製造業", value: res.data.west[0] },
               { label: "服務業", value: res.data.west[1] },
-            ]
+            ],
           };
         });
     });
@@ -185,7 +207,8 @@ export default defineComponent({
       Expand,
       Created,
       Distributed,
-      data
+      data,
+      mobile_text,
     };
   },
 });

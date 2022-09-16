@@ -202,14 +202,9 @@
         .info {
             flex-direction: row !important;
 
-            .map {
-                // display: none;
-            }
 
             .city {
                 @apply items-center justify-start;
-
-                display: none;
             }
 
             .checkbox {
@@ -228,6 +223,10 @@
 
         .map {
             @apply w-full h-full;
+        }
+
+        .map.color_area {
+            @apply hidden;
         }
     }
 

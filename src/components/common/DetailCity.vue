@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <div class="map color_city" ref="map_size">
+    <div class="map color_city" ref="map_size" v-if="mobile_show">
       <Map
         :type="Status.ManufacturerMapType.City"
         :data="dataMaps"
@@ -50,7 +50,7 @@
       </button>
     </div>
   </div>
-  <ul class="checkbox">
+  <ul class="checkbox" v-if="mobile_text">
     <li class="label_item">
       <label class="container">
         <input type="checkbox" checked />
@@ -113,10 +113,17 @@ export default defineComponent({
     const tabs = ref();
     const isShowPieSection = ref<boolean>(false);
     const cityName = ref<string>();
+    const mobile_show = ref<boolean>(true);
+    const mobile_text = ref<boolean>(true);
     let windowWidth = ref(0);
     function resizeWindow() {
       windowWidth.value = window.innerWidth;
     }
+
+    EventBus.on("mobile_map_click", () => {
+      mobile_show.value = false;
+      // console.log(map_size.value, isShowPieSection.value);
+    });
 
     onMounted(() => {
       window.addEventListener("resize", resizeWindow);
@@ -210,16 +217,34 @@ export default defineComponent({
       isShowPieSection,
       isShow,
       cityName,
+      mobile_show,
+      mobile_text,
     };
   },
   methods: {
     showPieSection(cityName: string) {
       this.isShowPieSection = true;
       this.cityName = cityName;
+
+      if (window.innerWidth < 640) {
+        EventBus.emit("mobile_title_show", false);
+        this.mobile_text = false;
+      }
     },
 
     hidePieSection() {
       this.isShowPieSection = false;
+      if (window.innerWidth < 640) {
+        this.mobile_show = true;
+        setTimeout(() => {
+          EventBus.emit("create_map", [
+            this.map_size.offsetWidth,
+            this.map_size.offsetHeight,
+          ]);
+        }, 100);
+        this.mobile_text = true;
+        EventBus.emit("mobile_title_show", true);
+      }
     },
   },
 });

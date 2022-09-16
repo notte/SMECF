@@ -252,6 +252,7 @@
 }
 
 .map.color_area {
+    @apply block;
     // 藍色
     path.city_10002,
     path.city_10005,
