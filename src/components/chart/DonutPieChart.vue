@@ -32,6 +32,7 @@ export default defineComponent({
     const status = statusStore();
     const chartDOM = ref();
     const tabs_switch = ref();
+    const tab_index = ref(0);
 
     onMounted(() => {
       let donut = echarts.init(chartDOM.value);
@@ -44,6 +45,7 @@ export default defineComponent({
       } else {
         donut.setOption(option, true);
       }
+
       watch(
         () => status.mode,
         (newMode) => {
@@ -55,6 +57,34 @@ export default defineComponent({
         },
         { deep: true }
       );
+
+      watch(() => props.data, (newData, oldData) => {
+        if(newData!=oldData) {
+          generateSeriesData();
+          darkOption.series = darkSeries[tab_index.value];
+          option.series = series[tab_index.value];
+          donut.clear();
+          if (status.mode === "dark") {
+            donut.setOption(darkOption, true);
+          } else {
+            donut.setOption(option, true);
+          }
+        }
+      });
+
+      watch(() => tab_index.value, (newIndex, oldIndex) => {
+        if(newIndex!=oldIndex) {
+          darkOption.series = darkSeries[newIndex];
+          option.series = series[newIndex];
+          donut.clear();
+          if (status.mode === "dark") {
+            donut.setOption(darkOption, true);
+          } else {
+            donut.setOption(option, true);
+          }
+        }
+      });
+
     });
 
     let darkSeries: { 
@@ -106,65 +136,9 @@ export default defineComponent({
       }; 
       data: any; 
     }[] = [];
-
-    for(var i=0; i<props.data.length; i++) {
-      let item = {
-        name: props.data[i].name,
-        type: "pie",
-        radius: ["40%", "70%"],
-        avoidLabelOverlap: false,
-        label: {
-          show: false,
-          position: "inside",
-          formatter : function (params: any){
-            return  params.value;
-          },
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: "14",
-            borderWidth: 0,
-            color: "#383C41",
-            fontWeight: "bold",
-          },
-        },
-        labelLine: {
-          show: false,
-        },
-        data: props.data[i].data,
-      };
-      
-      let darkItem = {
-        name: props.data[i].name,
-        type: "pie",
-        radius: ["40%", "70%"],
-        avoidLabelOverlap: false,
-        label: {
-          show: false,
-          position: "inside",
-          formatter : function (params: any){
-            return  params.value;
-          },
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: "14",
-            borderWidth: 0,
-            color: "#FCFDFE",
-            fontWeight: "bold",
-          },
-        },
-        labelLine: {
-          show: false,
-        },
-        data: props.data[i].data,
-      };
-      series.push(item);
-      darkSeries.push(darkItem);
-    }
     
+    generateSeriesData();
+
     const darkOption = {
       color: ["#5B4DFF", "#FBB42B", "#0BA7C9", "#055FFC"],
       tooltip: {
@@ -179,7 +153,7 @@ export default defineComponent({
           return params.name;
         },
       },
-      series: darkSeries[0],
+      series: darkSeries[tab_index.value],
     };
 
     const option = {
@@ -196,7 +170,7 @@ export default defineComponent({
           return params.name;
         },
       },
-      series: series[0],
+      series: series[tab_index.value],
     };
 
     function clickTab(event: any, index: number): void {
@@ -204,10 +178,72 @@ export default defineComponent({
         item.className = "false";
       }
       event.path[0].className = "true";
-      //TODO: update series data with tabs_switch selected.
-      // option.series = series[index];
-      // darkOption.series = darkSeries[index];
+
+      tab_index.value = index;
     }
+
+    function generateSeriesData() {
+      series = [];
+      darkSeries = [];
+      for(var i=0; i<props.data.length; i++) {
+        let item = {
+          name: props.data[i].name,
+          type: "pie",
+          radius: ["40%", "70%"],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: "inside",
+            formatter : function (params: any){
+              return  params.value;
+            },
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: "14",
+              borderWidth: 0,
+              color: "#383C41",
+              fontWeight: "bold",
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: props.data[i].data,
+        };
+        
+        let darkItem = {
+          name: props.data[i].name,
+          type: "pie",
+          radius: ["40%", "70%"],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: "inside",
+            formatter : function (params: any){
+              return  params.value;
+            },
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: "14",
+              borderWidth: 0,
+              color: "#FCFDFE",
+              fontWeight: "bold",
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: props.data[i].data,
+        };
+        series.push(item);
+        darkSeries.push(darkItem);
+      }
+    }
+
     return { chartDOM, status, tabs_switch, clickTab };
   },
 });

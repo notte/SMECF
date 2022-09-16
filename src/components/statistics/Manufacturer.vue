@@ -7,7 +7,7 @@
       <li class="false" @click="clickTab(Created, $event)">{{Created}}</li>
       <li class="false" @click="clickTab(Distributed, $event)">{{Distributed}}</li>
     </ul>
-    <DetailCity v-if="isShow(Register) | isShow(Expand) | isShow(Created)" :type="Current" :dataMap="data.mapCities" :dataPie="data.pieCities" />
+    <DetailCity v-if="isShow(Register) || isShow(Expand) || isShow(Created)" :type="Current" :dataMap="data.mapCities" :dataPie="data.pieCities" />
     <DetailArea v-if="isShow(Distributed)" :data="data.pieRegionalDistributionCustomer" />
   </section>
 </template>
