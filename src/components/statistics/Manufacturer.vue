@@ -10,7 +10,7 @@
       </li>
     </ul>
     <DetailCity
-      v-if="isShow(Register) | isShow(Expand) | isShow(Created)"
+      v-if="isShow(Register) || isShow(Expand) || isShow(Created)"
       :type="Current"
       :dataMap="data.mapCities"
       :dataPie="data.pieCities"

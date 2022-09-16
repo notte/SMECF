@@ -64,10 +64,10 @@ export default defineComponent({
   components: { CircleProgressChart, BarChartHorizontal },
   setup() {
     const data = reactive({
-      compositeAveScore: [{ name: "5.1", data: 5.1, max: 10 }],
+      compositeAveScore: [{ name: "", data: 0, max: 0 }],
       avgScore: [
-        { name: "製造業", data: 5.1, max: 10, color: "purple" },
-        { name: "服務業", data: 0, max: 10, color: "blue" },
+        { name: "製造業", data: 0, max: 0 },
+        { name: "服務業", data: 0, max: 0 },
       ],
       facetedOverview1: [
         { name: "製造業", data: 3, max: 10, color: "purple" },
@@ -99,13 +99,11 @@ export default defineComponent({
               name: "製造業",
               data: res.data.avgScore[0] ?? 0,
               max: 10,
-              color: "purple",
             },
             {
               name: "服務業",
               data: res.data.avgScore[1] ?? 0,
               max: 10,
-              color: "blue",
             },
           ];
           data.facetedOverview1 = [

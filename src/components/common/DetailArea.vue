@@ -1,7 +1,10 @@
 <template>
   <div class="info">
     <div class="map color_area" ref="map_size">
-      <Map :type="Status.ManufacturerMapType.Area" />
+      <Map 
+        :type="Status.ManufacturerMapType.Area" 
+        @changePieSection="changePieSection"
+      />
     </div>
     <div class="city items-center">
       <h6 class="title_h6">{{ Current }}</h6>
@@ -141,6 +144,27 @@ export default defineComponent({
       West,
       Status,
     };
+  },
+
+  methods: {
+    changePieSection(status: Status.ManufacturerRegionType) {
+      this.Current = status;
+      switch (status) {
+        default:
+        case this.North:
+          this.option.series[0].data = this.$props.data.north;
+          break;
+        case this.South:
+          this.option.series[0].data = this.$props.data.north;
+          break;
+        case this.East:
+          this.option.series[0].data = this.$props.data.east;
+          break;
+        case this.West:
+          this.option.series[0].data = this.$props.data.west;
+          break;
+      }
+    }
   },
 });
 </script>
