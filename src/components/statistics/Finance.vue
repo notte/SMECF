@@ -36,19 +36,19 @@ export default defineComponent({
       ],
       barRevenue: { 
         xAxis: [ "前兩年", "前年", "去年" ],
-        data: [ 100000, 20000, 400000 ],
+        data: [ 0, 0, 0 ],
       },
       barSumPeople: { 
         xAxis: [ "前兩年", "前年", "去年" ],
-        data: [ 500, 1000, 1200 ],
+        data: [ 0, 0, 0 ],
       },
       barProfits: { 
         xAxis: [ "前兩年", "前年", "去年" ],
-        data: [ 100000, 20000, 400000 ],
+        data: [ 0, 0, 0 ],
       },
       barDevelop: { 
         xAxis: [ "前兩年", "前年", "去年" ],
-        data: [ 15000, 22000, 50000] ,
+        data: [ 0, 0, 0] ,
       },
     });
 

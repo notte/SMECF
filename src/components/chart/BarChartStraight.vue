@@ -74,6 +74,26 @@ export default defineComponent({
         },
         { deep: true }
       );
+
+      watch(() => props.data, (newData, oldData) => {        
+        if(newData!=oldData) {
+          option.series = [
+            { type: "bar", data: newData.data },
+            { type: "bar", data: newData.data },
+          ];
+          option.xAxis.data = newData.xAxis;
+          darkOption.series = [
+            { type: "bar", data: newData.data },
+            { type: "bar", data: newData.data },
+          ];
+          darkOption.xAxis.data = newData.xAxis;
+          if (status.mode === "dark") {
+            barStraight.setOption(darkOption, true);
+          } else {
+            barStraight.setOption(option, true);
+          }
+        }
+      });
     });
     const option = {
       backgroundColor: "transparent",

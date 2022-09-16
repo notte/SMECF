@@ -38,32 +38,32 @@ export default defineComponent({
         { label: "有採用數位化工具", value: 65 },
       ],
       barValueChainTool: [
-        { name: "庫存與訂單管理", data: 30 },
-        { name: "物料搬運", data: 30 },
-        { name: "顧客經營與行銷", data: 50 },
-        { name: "數據分析決策", data: 50 },
+        { name: "庫存與訂單管理", data: 0, max: 0 },
+        { name: "物料搬運", data: 0, max: 0 },
+        { name: "顧客經營與行銷", data: 0, max: 0 },
+        { name: "數據分析決策", data: 0, max: 0 },
       ],
       pieResearchTool: [
         { label: "無採用數位化工具", value: 35 }, 
         { label: "有採用數位化工具", value: 65 },
       ],
       barResearchTool: [
-        { name: "產品研發設計", data: 30 },
-        { name: "生產設備監測", data: 30 },
-        { name: "產線自動化", data: 50 },
-        { name: "生產管理系統", data: 50 },
-        { name: "數據分析決策", data: 50 },
+        { name: "產品研發設計", data: 0, max: 0 },
+        { name: "生產設備監測", data: 0, max: 0 },
+        { name: "產線自動化", data: 0, max: 0 },
+        { name: "生產管理系統", data: 0, max: 0 },
+        { name: "數據分析決策", data: 0, max: 0 },
       ],
       pieOperationTool: [
         { label: "無採用數位化工具", value: 35 }, 
         { label: "有採用數位化工具", value: 65 }
       ],
       barOperationTool: [
-        { name: "企業資源管理", data: 30 },
-        { name: "人事管理系統", data: 30 },
-        { name: "財務會計系統", data: 50 },
-        { name: "內部溝通工具", data: 50 },
-        { name: "數據分析決策", data: 50 },
+        { name: "企業資源管理", data: 0, max: 0 },
+        { name: "人事管理系統", data: 0, max: 0 },
+        { name: "財務會計系統", data: 0, max: 0 },
+        { name: "內部溝通工具", data: 0, max: 0 },
+        { name: "數據分析決策", data: 0, max: 0 },
       ]
     });
 
@@ -83,10 +83,10 @@ export default defineComponent({
             },
           ];
           data.barValueChainTool = [
-            { name: "庫存與訂單管理", data: res.data.valueChainTool.order },
-            { name: "物料搬運", data: res.data.valueChainTool.carry },
-            { name: "顧客經營與行銷", data: res.data.valueChainTool.customer },
-            { name: "數據分析決策", data: res.data.valueChainTool.analyze },
+            { name: "庫存與訂單管理", data: res.data.valueChainTool.order, max: 100 },
+            { name: "物料搬運", data: res.data.valueChainTool.carry, max: 100 },
+            { name: "顧客經營與行銷", data: res.data.valueChainTool.customer, max: 100 },
+            { name: "數據分析決策", data: res.data.valueChainTool.analyze, max: 100 },
           ];
           data.pieResearchTool = [
             {
@@ -99,11 +99,11 @@ export default defineComponent({
             },
           ];
           data.barResearchTool = [
-            { name: "產品研發設計", data: res.data.researchTool.design },
-            { name: "生產設備監測", data: res.data.researchTool.monitor },
-            { name: "產線自動化", data: res.data.researchTool.auto },
-            { name: "生產管理系統", data: res.data.researchTool.manage },
-            { name: "數據分析決策", data: res.data.researchTool.analyze },
+            { name: "產品研發設計", data: res.data.researchTool.design, max: 100 },
+            { name: "生產設備監測", data: res.data.researchTool.monitor, max: 100 },
+            { name: "產線自動化", data: res.data.researchTool.auto, max: 100 },
+            { name: "生產管理系統", data: res.data.researchTool.manage, max: 100 },
+            { name: "數據分析決策", data: res.data.researchTool.analyze, max: 100 },
           ];
           data.pieOperationTool = [
             {
@@ -116,11 +116,11 @@ export default defineComponent({
             },
           ];
           data.barOperationTool = [
-            { name: "企業資源管理", data: res.data.operationTool.erp },
-            { name: "人事管理系統", data: res.data.operationTool.hrs },
-            { name: "財務會計系統", data: res.data.operationTool.fas },
-            { name: "內部溝通工具", data: res.data.operationTool.ics },
-            { name: "數據分析決策", data: res.data.operationTool.analyze },
+            { name: "企業資源管理", data: res.data.operationTool.erp, max: 100 },
+            { name: "人事管理系統", data: res.data.operationTool.hrs, max: 100 },
+            { name: "財務會計系統", data: res.data.operationTool.fas, max: 100 },
+            { name: "內部溝通工具", data: res.data.operationTool.ics, max: 100 },
+            { name: "數據分析決策", data: res.data.operationTool.analyze, max: 100 },
           ];
         });
     });
