@@ -129,6 +129,9 @@ export default defineComponent({
                 Tooltip.style("opacity", 0);
               })
               .on("click", (event, d) => {
+                if (window.innerWidth < 640) {
+                  EventBus.emit("mobile_map_click");
+                }
                 d3OnClickListener(cityName);
               });
           }
