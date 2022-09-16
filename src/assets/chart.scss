@@ -2,7 +2,7 @@
     @apply my-4 p-6 flex flex-col justify-between;
 
     .top {
-        @apply flex justify-between;
+        @apply flex justify-between mb-3;
 
         .title {
             @apply subtitle_3;
@@ -65,6 +65,7 @@
             @apply w-3/5;
         }
     }
+
 }
 
 // 自製 Progress Bar
