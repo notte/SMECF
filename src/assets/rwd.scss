@@ -1,7 +1,7 @@
 @media (max-width: 1024px) { 
     .title_dropdown {
         .btn-group {
-            @apply opacity-0;
+            @apply hidden;
         }
     }
 
@@ -228,6 +228,12 @@
 
         .map {
             @apply w-full h-full;
+        }
+    }
+
+    .title_dropdown {
+        .btn-outline-primary {
+            @apply opacity-0;
         }
     }
 }
