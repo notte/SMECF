@@ -134,12 +134,6 @@ export default defineComponent({
         map_size.value.offsetHeight,
       ]);
 
-      watch(() => props.dataMap, (newData, oldData) => {        
-        if(newData!=oldData) {
-          option.value.series[0].data = newData.pieCapital;
-        }
-      });
-
       watch(() => props.dataPie, (newData, oldData) => {        
         if(newData!=oldData) {
           if (Current.value == IndustryRate.value) {
