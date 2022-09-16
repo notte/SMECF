@@ -29,31 +29,31 @@ export default defineComponent({
   setup() {
     const data = reactive({
       piePatentHave: [
-        { label: "無專利", value: 65 },
-        { label: "有專利", value: 35 },
+        { label: "無專利", value: 0 },
+        { label: "有專利", value: 0 },
       ],
       piePatentType: [
-        { label: "國內發明專利", value: 80 },
-        { label: "國內新型專利", value: 79 },
-        { label: "國內設計專利", value: 74 },
-        { label: "國外專利", value: 70 },
+        { label: "國內發明專利", value: 0 },
+        { label: "國內新型專利", value: 0 },
+        { label: "國內設計專利", value: 0 },
+        { label: "國外專利", value: 0 },
       ],
       pieLicenseHave: [
-        { label: "無國際認證", value: 65 },
-        { label: "有國際認證", value: 35 },
+        { label: "無國際認證", value: 0 },
+        { label: "有國際認證", value: 0 },
       ],
       pieLicenseType: [
-        { label: "產品安全認證", value: 80 },
-        { label: "品質管理認證", value: 79 },
-        { label: "其他", value: 30 },
+        { label: "產品安全認證", value: 0 },
+        { label: "品質管理認證", value: 0 },
+        { label: "其他", value: 0 },
       ],
       pieIdeasHave: [
-        { label: "無創新產品/技術/製程", value: 65 },
-        { label: "有創新產品/技術/製程", value: 35 },
+        { label: "無創新產品/技術/製程", value: 0 },
+        { label: "有創新產品/技術/製程", value: 0 },
       ],
       pieIdeasType: [
-        { label: "有新產品", value: 80 },
-        { label: "有新事業", value: 79 },
+        { label: "有新產品", value: 0 },
+        { label: "有新事業", value: 0 },
       ],
     })
     

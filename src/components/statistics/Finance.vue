@@ -23,16 +23,16 @@ export default defineComponent({
   setup() {
     const data = reactive({
       pieStructure: [
-        { label: "總資產", value: 55 }, 
-        { label: "股東權益", value: 20 },
-        { label: "總負債", value: 35 },
+        { label: "總資產", value: 0 }, 
+        { label: "股東權益", value: 0 },
+        { label: "總負債", value: 0 },
       ],
       pieDifficult: [
-        { label: "缺乏專業/專責財務人員", value: 40 }, 
-        { label: "近年財務體質欠佳", value: 20 },
-        { label: "自有資金不足，資金籌措困難", value: 15 },
-        { label: "訴訟中或其他負債待解決", value: 20 },
-        { label: "其他", value: 5 },
+        { label: "缺乏專業/專責財務人員", value: 0 }, 
+        { label: "近年財務體質欠佳", value: 0 },
+        { label: "自有資金不足，資金籌措困難", value: 0 },
+        { label: "訴訟中或其他負債待解決", value: 0 },
+        { label: "其他", value: 0 },
       ],
       barRevenue: { 
         xAxis: [ "前兩年", "前年", "去年" ],
@@ -56,7 +56,6 @@ export default defineComponent({
       axios
         .get<IFinanceStatistics>("./data/finance_statistics.json")
         .then((res) => {
-          // console.log(res.data);
           data.pieStructure = [
             { label: "總資產", value: res.data.structure.asset },
             { label: "股東權益", value: res.data.structure.equity },

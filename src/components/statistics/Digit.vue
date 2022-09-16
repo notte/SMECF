@@ -34,8 +34,8 @@ export default defineComponent({
   setup() {
     const data = reactive({
       pieValueChainTool: [
-        { label: "無採用數位化工具", value: 35 }, 
-        { label: "有採用數位化工具", value: 65 },
+        { label: "無採用數位化工具", value: 0 }, 
+        { label: "有採用數位化工具", value: 0 },
       ],
       barValueChainTool: [
         { name: "庫存與訂單管理", data: 0, max: 0 },
@@ -44,8 +44,8 @@ export default defineComponent({
         { name: "數據分析決策", data: 0, max: 0 },
       ],
       pieResearchTool: [
-        { label: "無採用數位化工具", value: 35 }, 
-        { label: "有採用數位化工具", value: 65 },
+        { label: "無採用數位化工具", value: 0 }, 
+        { label: "有採用數位化工具", value: 0 },
       ],
       barResearchTool: [
         { name: "產品研發設計", data: 0, max: 0 },
@@ -55,8 +55,8 @@ export default defineComponent({
         { name: "數據分析決策", data: 0, max: 0 },
       ],
       pieOperationTool: [
-        { label: "無採用數位化工具", value: 35 }, 
-        { label: "有採用數位化工具", value: 65 }
+        { label: "無採用數位化工具", value: 0 }, 
+        { label: "有採用數位化工具", value: 0 }
       ],
       barOperationTool: [
         { name: "企業資源管理", data: 0, max: 0 },
@@ -71,7 +71,6 @@ export default defineComponent({
       axios
         .get<IIntelligentStatistics>("./data/intelligent_statistics.json")
         .then((res) => {
-          // console.log(res.data);
           data.pieValueChainTool = [
             {
               label: "無採用數位化工具",

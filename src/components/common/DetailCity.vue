@@ -128,6 +128,27 @@ export default defineComponent({
     onMounted(() => {
       window.addEventListener("resize", resizeWindow);
       resizeWindow();
+
+      EventBus.emit("create_map", [
+        map_size.value.offsetWidth,
+        map_size.value.offsetHeight,
+      ]);
+
+      watch(() => props.dataMap, (newData, oldData) => {        
+        if(newData!=oldData) {
+          option.value.series[0].data = newData.pieCapital;
+        }
+      });
+
+      watch(() => props.dataPie, (newData, oldData) => {        
+        if(newData!=oldData) {
+          if (Current.value == IndustryRate.value) {
+            option.value.series[0].data = props.dataPie.pieIndustryRate;
+          } else {
+            option.value.series[0].data = props.dataPie.pieCapital;
+          }
+        }
+      });
     });
 
     watch(
@@ -140,6 +161,7 @@ export default defineComponent({
       },
       { deep: true }
     );
+
     const dataMaps = ref(props.dataMap);
     const option = ref({
       color: [
@@ -197,13 +219,6 @@ export default defineComponent({
     function isShow(isShowPieSection: boolean): boolean {
       return isShowPieSection;
     }
-
-    onMounted(() => {
-      EventBus.emit("create_map", [
-        map_size.value.offsetWidth,
-        map_size.value.offsetHeight,
-      ]);
-    });
 
     return {
       map_size,

@@ -73,7 +73,7 @@ echarts.use([
   CanvasRenderer,
   LabelLayout,
 ]);
-
+ 
 export default defineComponent({
   components: { VChart },
   props: ["type", "title", "data"],
@@ -162,6 +162,50 @@ export default defineComponent({
         },
         { deep: true }
       );
+
+      watch(() => props.data, (newData, oldData) => {        
+        if(newData!=oldData) {
+          legendData = [];
+          for (let item of newData) {
+            legendData.push({ name: item.label, value: item.value });
+          }
+          legendDarkOption.series[0].data = legendData;
+          noLegendOption.series[0].data = legendData;
+          legendOption.series[0].data = legendData;
+          
+          if (status.mode === "dark") {
+            switch (props.type) {
+              case "1":
+                pie.setOption(legendDarkOption);
+                break;
+              case "2":
+                pie.setOption(noLegendOption);
+                break;
+              case "3":
+                pie.setOption(noLegendOption);
+                break;
+
+              default:
+                break;
+            }
+          } else {
+            switch (props.type) {
+              case "1":
+                pie.setOption(legendOption);
+                break;
+              case "2":
+                pie.setOption(noLegendOption);
+                break;
+              case "3":
+                pie.setOption(noLegendOption);
+                break;
+
+              default:
+                break;
+            }
+          }
+        }
+      });
     });
 
     function showTooltip(event: any, content: string): void {

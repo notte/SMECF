@@ -85,34 +85,34 @@ export default defineComponent({
       ],
       pieCities: {
         pieCapital: [
-          { label: "2億以上", value: 65 },
-          { label: "1億-2億", value: 74 },
-          { label: "7500萬-1億", value: 30 },
-          { label: "5000萬-7500萬", value: 32 },
-          { label: "2500萬-5000萬", value: 15 },
-          { label: "1000萬-2500萬", value: 12 },
-          { label: "1000萬以下", value: 5 },
+          { label: "2億以上", value: 0 },
+          { label: "1億-2億", value: 0 },
+          { label: "7500萬-1億", value: 0 },
+          { label: "5000萬-7500萬", value: 0 },
+          { label: "2500萬-5000萬", value: 0 },
+          { label: "1000萬-2500萬", value: 0 },
+          { label: "1000萬以下", value: 0 },
         ],
         pieIndustryRate: [
-          { label: "製造業", value: 87 },
-          { label: "服務業", value: 13 },
+          { label: "製造業", value: 0 },
+          { label: "服務業", value: 0 },
         ],
       },
       pieRegionalDistributionCustomer: {
         north: [
-          { label: "製造業", value: 10 },
+          { label: "製造業", value: 0 },
           { label: "服務業", value: 0 },
         ],
         south: [
-          { label: "製造業", value: 35 },
+          { label: "製造業", value: 0 },
           { label: "服務業", value: 0 },
         ],
         east: [
-          { label: "製造業", value: 45 },
+          { label: "製造業", value: 0 },
           { label: "服務業", value: 0 },
         ],
         west: [
-          { label: "製造業", value: 10 },
+          { label: "製造業", value: 0 },
           { label: "服務業", value: 0 },
         ],
       },
