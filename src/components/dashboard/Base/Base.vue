@@ -28,17 +28,17 @@ export default defineComponent({
     const data = reactive({
       avgScore: [{ name: "0", data: 0, max: 0 }],
       eachDimensionAvgScore: [
-        { name: "財務力", data: 4.9, max: 10, color: "purple" },
-        { name: "數位力", data: 4.9, max: 10, color: "blue" },
-        { name: "創新力", data: 4.9, max: 10, color: "green" },
-        { name: "市場力", data: 4.9, max: 10, color: "orange" },
+        { name: "財務力", data: 0, max: 0, color: "purple" },
+        { name: "數位力", data: 0, max: 0, color: "blue" },
+        { name: "創新力", data: 0, max: 0, color: "green" },
+        { name: "市場力", data: 0, max: 0, color: "orange" },
       ],
       highlightCompany: [
-        { name: "公司 A", data: 4.9, max: 10 },
-        { name: "公司 B", data: 4.9, max: 10 },
-        { name: "公司 C", data: 4.9, max: 10 },
-        { name: "公司 D", data: 4.9, max: 10 },
-        { name: "公司 E", data: 4.9, max: 10 },
+        { name: "公司 A", data: 0, max: 0 },
+        { name: "公司 B", data: 0, max: 0 },
+        { name: "公司 C", data: 0, max: 0 },
+        { name: "公司 D", data: 0, max: 0 },
+        { name: "公司 E", data: 0, max: 0 },
       ],
       manufacturer: [
         {

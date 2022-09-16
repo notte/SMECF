@@ -19,13 +19,11 @@
       type="1"
       title="Develop 綜合平均分數"
       :data="data.developAvgScore"
-      :max="10"
     />
     <CircleProgressChart
       type="3"
       title="平均分數"
       :data="data.avgScore"
-      :max="10"
     />
   </section>
   <p class="other_subtitle">構面概覽</p>
@@ -68,16 +66,16 @@ export default defineComponent({
         { name: "服務業", data: 0, max: 0 },
       ],
       facetedOverview1: [
-        { name: "製造業", data: 3, max: 10, color: "purple" },
-        { name: "服務業", data: 0, max: 10, color: "blue" },
+        { name: "製造業", data: 0, max: 0, color: "purple" },
+        { name: "服務業", data: 0, max: 0, color: "blue" },
       ],
       facetedOverview2: [
-        { name: "製造業", data: 3, max: 10, color: "purple" },
-        { name: "服務業", data: 0, max: 10, color: "blue" },
+        { name: "製造業", data: 0, max: 0, color: "purple" },
+        { name: "服務業", data: 0, max: 0, color: "blue" },
       ],
       facetedOverview3: [
-        { name: "製造業", data: 3, max: 10, color: "purple" },
-        { name: "服務業", data: 0, max: 10, color: "blue" },
+        { name: "製造業", data: 0, max: 0, color: "purple" },
+        { name: "服務業", data: 0, max: 0, color: "blue" },
       ],
     });
     onMounted(() => {
