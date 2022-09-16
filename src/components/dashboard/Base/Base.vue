@@ -26,7 +26,7 @@ export default defineComponent({
   components: { CircleProgressChart, BarChartHorizontal, DonutPieChart },
   setup() {
     const data = reactive({
-      avgScore: [{ name: "5.1", data: 5.1, max: 10 }],
+      avgScore: [{ name: "0", data: 0, max: 0 }],
       eachDimensionAvgScore: [
         { name: "財務力", data: 4.9, max: 10, color: "purple" },
         { name: "數位力", data: 4.9, max: 10, color: "blue" },

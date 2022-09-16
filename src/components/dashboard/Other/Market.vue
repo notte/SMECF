@@ -62,10 +62,10 @@ export default defineComponent({
   components: { CircleProgressChart, BarChartHorizontal },
   setup() {
     const data = reactive({
-      developAvgScore: [{ name: "5.1", data: 5.1, max: 10 }],
+      developAvgScore: [{ name: "0", data: 0, max: 0 }],
       avgScore: [
-        { name: "製造業", data: 5.1, max: 10 },
-        { name: "服務業", data: 0, max: 10 },
+        { name: "製造業", data: 0, max: 0 },
+        { name: "服務業", data: 0, max: 0 },
       ],
       facetedOverview1: [
         { name: "製造業", data: 3, max: 10, color: "purple" },

@@ -11,11 +11,11 @@
       <!-- 分數資訊 -->
       <div class="text">
         <h1 class="percent">
-          {{ data[0].data }}
+          {{ data[data_index].data }}
           <span class="subtitle_2">/10</span>
         </h1>
         <p class="subtitle_4 text-system-dark_04">
-          整體平均 {{ data[0].data }} 分
+          整體平均 {{ data[data_index].data }} 分
         </p>
       </div>
       <div class="chart" ref="oneDOM" style="height: 120px"></div>
@@ -53,7 +53,7 @@
         <!-- 分數資訊 -->
         <div class="text">
           <h1 class="percent">
-            {{ data[0].data }}
+            {{ data[data_index].data }}
             <span class="subtitle_2">/10</span>
           </h1>
         </div>
@@ -97,13 +97,7 @@ export default defineComponent({
     const status = statusStore();
     let doughnut: any;
 
-    var gaugeData = ref([
-      {
-        value: props.data[0].data,
-      },
-    ]);
-    var detail = ref(props.data[0].max);
-    var max = ref(props.data[0].max);
+    const data_index = ref(0);
 
     onMounted(() => {
       switch (props.type) {
@@ -115,15 +109,14 @@ export default defineComponent({
           break;
         case "3":
           doughnut = echarts.init(thirdDOM.value);
-
           break;
         default:
           break;
       }
       if (status.mode === "dark") {
-        doughnut.setOption(option.value, true);
+        doughnut.setOption(darkOption, true);
       } else if (status.mode === "light") {
-        doughnut.setOption(darkOption.value, true);
+        doughnut.setOption(option, true);
       }
 
       window.addEventListener("resize", () => {
@@ -134,16 +127,60 @@ export default defineComponent({
         () => status.mode,
         (newMode) => {
           if (newMode === "dark") {
-            doughnut.setOption(option.value, true);
+            doughnut.setOption(darkOption, true);
           } else {
-            doughnut.setOption(darkOption.value, true);
+            doughnut.setOption(option, true);
           }
         },
         { deep: true }
       );
+
+      watch(() => props.data, (newData, oldData) => {
+        if(newData!=oldData) {
+          let gaugeData = [{
+            value: newData[data_index.value].data,
+          }];
+          // let detail = newData[data_index.value].max;
+          let max = newData[data_index.value].max;
+
+          darkOption.series[0].data = gaugeData;
+          // darkOption.series[0].detail = detail;
+          darkOption.series[0].max = max;
+          option.series[0].data = gaugeData;
+          // option.series[0].detail = detail;
+          option.series[0].max = max;
+
+          if (status.mode === "dark") {
+            doughnut.setOption(darkOption, true);
+          } else {
+            doughnut.setOption(option, true);
+          }
+        }
+      });
+
+      watch(() => data_index.value, (newIndex, oldIndex) => {
+        if(newIndex!=oldIndex) {
+          let gaugeData = [{
+            value: props.data[newIndex].data,
+          }];
+          let max = props.data[newIndex].max;
+
+          darkOption.series[0].data = gaugeData;
+          darkOption.series[0].max = max;
+          option.series[0].data = gaugeData;
+          option.series[0].max = max;
+
+          if (status.mode === "dark") {
+            doughnut.setOption(darkOption, true);
+          } else {
+            doughnut.setOption(option, true);
+          }
+        }
+      });
+      
     });
 
-    const option = ref({
+    const darkOption = {
       // 進度條本身顏色
       color: ["#055FFC"],
       tooltip: {
@@ -163,7 +200,11 @@ export default defineComponent({
           type: "gauge",
           startAngle: 90,
           endAngle: -270,
-          data: gaugeData,
+          data: [
+            {
+              value: props.data[data_index.value].data
+            }
+          ],
           // 隱藏指針
           pointer: {
             show: false,
@@ -202,16 +243,16 @@ export default defineComponent({
           detail: {
             fontSize: 16,
             color: "#F7F9FC",
-            formatter: detail,
+            formatter: "{value}",
             offsetCenter: ["0%", "5%"],
           },
           min: 0,
-          max: max,
+          max: props.data[data_index.value].max,
         },
       ],
-    });
+    };
 
-    const darkOption = ref({
+    const option = {
       // 進度條本身顏色
       color: ["#055FFC"],
       tooltip: {
@@ -231,7 +272,11 @@ export default defineComponent({
           type: "gauge",
           startAngle: 90,
           endAngle: -270,
-          data: gaugeData,
+          data: [
+            {
+              value: props.data[data_index.value].data
+            }
+          ],
           // 隱藏指針
           pointer: {
             show: false,
@@ -270,14 +315,14 @@ export default defineComponent({
           detail: {
             fontSize: 16,
             color: "#383C41",
-            formatter: detail,
+            formatter: "{value}",
             offsetCenter: ["0%", "5%"],
           },
           min: 0,
-          max: max,
+          max: props.data[data_index.value].max,
         },
       ],
-    });
+    };
 
     function clickTab(status: string, event: any, index: number): void {
       if (status === "tabs") {
@@ -288,6 +333,7 @@ export default defineComponent({
         for (let item of tabs_switch.value.children) {
           item.className = "false";
         }
+        data_index.value = index;
       }
       event.path[0].className = "true";
     }
@@ -300,6 +346,7 @@ export default defineComponent({
       oneDOM,
       secDOM,
       thirdDOM,
+      data_index
     };
   },
 });
