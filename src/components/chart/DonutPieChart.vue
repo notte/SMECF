@@ -142,7 +142,7 @@ export default defineComponent({
     const darkOption = {
       color: ["#5B4DFF", "#FBB42B", "#0BA7C9", "#055FFC"],
       tooltip: {
-        triggerOn: "click",
+        // triggerOn: "click",
         trigger: "item",
         backgroundColor: "#383C41",
         borderWidth: 0,
@@ -159,7 +159,7 @@ export default defineComponent({
     const option = {
       color: ["#5B4DFF", "#FBB42B", "#0BA7C9", "#055FFC"],
       tooltip: {
-        triggerOn: "click",
+        // triggerOn: "click",
         trigger: "item",
         backgroundColor: "#383C41",
         borderWidth: 0,
