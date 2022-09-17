@@ -33,8 +33,8 @@
     <div class="info">
       <!-- 分數資訊 -->
       <div v-if="type == 2" class="text">
-        <p class="text-system-light_05 subtitle_2">{{ data[1].value }} %</p>
-        <p class="subtitle_4 text-system-dark_04">{{ data[1].label }}</p>
+        <p class="subtitle_2">{{ data[1].value }} %</p>
+        <p class="subtitle_4">{{ data[1].label }}</p>
       </div>
       <!-- <ul v-if="type == 1" class="legends">
         <li class="legend_item" v-for="item in data" :key="item.name">
@@ -73,7 +73,7 @@ echarts.use([
   CanvasRenderer,
   LabelLayout,
 ]);
- 
+
 export default defineComponent({
   components: { VChart },
   props: ["type", "title", "data"],
@@ -163,49 +163,52 @@ export default defineComponent({
         { deep: true }
       );
 
-      watch(() => props.data, (newData, oldData) => {        
-        if(newData!=oldData) {
-          legendData = [];
-          for (let item of newData) {
-            legendData.push({ name: item.label, value: item.value });
-          }
-          legendDarkOption.series[0].data = legendData;
-          noLegendOption.series[0].data = legendData;
-          legendOption.series[0].data = legendData;
-          
-          if (status.mode === "dark") {
-            switch (props.type) {
-              case "1":
-                pie.setOption(legendDarkOption);
-                break;
-              case "2":
-                pie.setOption(noLegendOption);
-                break;
-              case "3":
-                pie.setOption(noLegendOption);
-                break;
-
-              default:
-                break;
+      watch(
+        () => props.data,
+        (newData, oldData) => {
+          if (newData != oldData) {
+            legendData = [];
+            for (let item of newData) {
+              legendData.push({ name: item.label, value: item.value });
             }
-          } else {
-            switch (props.type) {
-              case "1":
-                pie.setOption(legendOption);
-                break;
-              case "2":
-                pie.setOption(noLegendOption);
-                break;
-              case "3":
-                pie.setOption(noLegendOption);
-                break;
+            legendDarkOption.series[0].data = legendData;
+            noLegendOption.series[0].data = legendData;
+            legendOption.series[0].data = legendData;
 
-              default:
-                break;
+            if (status.mode === "dark") {
+              switch (props.type) {
+                case "1":
+                  pie.setOption(legendDarkOption);
+                  break;
+                case "2":
+                  pie.setOption(noLegendOption);
+                  break;
+                case "3":
+                  pie.setOption(noLegendOption);
+                  break;
+
+                default:
+                  break;
+              }
+            } else {
+              switch (props.type) {
+                case "1":
+                  pie.setOption(legendOption);
+                  break;
+                case "2":
+                  pie.setOption(noLegendOption);
+                  break;
+                case "3":
+                  pie.setOption(noLegendOption);
+                  break;
+
+                default:
+                  break;
+              }
             }
           }
         }
-      });
+      );
     });
 
     function showTooltip(event: any, content: string): void {
