@@ -111,8 +111,22 @@ export default defineComponent({
     window.onload = () => {
       let str = location.path.slice(1);
       str = str[0].toUpperCase() + str.slice(1);
-      clickTab(str);
+      console.log(str);
+      if (str !== "Dashboard") {
+        clickTab(str);
+      }
     };
+
+    watch(
+      () => {
+        location.path;
+      },
+      () => {
+        let str = location.path.slice(1);
+        str = str[0].toUpperCase() + str.slice(1);
+        clickTab(str);
+      }
+    );
 
     if (window.innerWidth < 1025) {
       dashboard_status.value = false;
