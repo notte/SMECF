@@ -151,7 +151,9 @@
     }
     
     .info {
-        @apply flex w-full h-full justify-center items-center;
+        @apply flex w-full justify-center items-center;
+
+        height: 70%;
     }
 
     .city {
@@ -188,6 +190,7 @@
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 0.5px;
+        z-index: 0;
 
         &:hover,
         &.active {
@@ -287,11 +290,16 @@
     path.city_10015,
     path.city_10014 {
         fill: #f37c7c;
-        stroke: transparent;
     }
 
     path.city_10016 {
         fill: #fbb42b;
-        stroke: transparent;
     }
+}
+
+.hover {
+    transform: translateY(-5px);
+    // z-index: 0;
+    // fill: #fff;
+    // stroke: transparent;
 }

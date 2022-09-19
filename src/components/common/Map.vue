@@ -94,6 +94,7 @@ export default defineComponent({
                 return "city_" + d.properties["COUNTYID"];
               })
               .on("mouseover", (event, d) => {
+                const hoverID = "city_" + d.properties["COUNTYID"];
                 svg.selectAll("path").sort(function (a, b): number {
                   if (
                     (a as Model.IFeatur).properties["COUNTYID"] !==
@@ -137,9 +138,149 @@ export default defineComponent({
                     .style("top", y + "px");
                 } else {
                   //By Area
+                  g.selectAll("path").filter((a, i) => {
+                    const id =
+                      "city_" + (a as Model.IFeatur).properties.COUNTYID;
+                    let DOM = document.getElementsByClassName(id);
+
+                    switch (hoverID) {
+                      case "city_10002":
+                      case "city_10005":
+                      case "city_10004":
+                      case "city_68":
+                      case "city_63":
+                      case "city_10018":
+                      case "city_65":
+                      case "city_10017":
+                        if (
+                          id == "city_10002" ||
+                          id == "city_10005" ||
+                          id == "city_10004" ||
+                          id == "city_68" ||
+                          id == "city_63" ||
+                          id == "city_10018" ||
+                          id == "city_65" ||
+                          id == "city_10017"
+                        ) {
+                          DOM[0].classList.add("hover");
+                        }
+                        break;
+                      case "city_10010":
+                      case "city_10007":
+                      case "city_66":
+                      case "city_10009":
+                      case "city_10020":
+                      case "city_10008":
+                      case "city_10016":
+                        if (
+                          id == "city_10010" ||
+                          id == "city_10007" ||
+                          id == "city_66" ||
+                          id == "city_10009" ||
+                          id == "city_10020" ||
+                          id == "city_10008" ||
+                          id == "city_10016"
+                        ) {
+                          DOM[0].classList.add("hover");
+                        }
+                        break;
+                      case "city_64":
+                      case "city_67":
+                      case "city_10013":
+                        if (
+                          id == "city_64" ||
+                          id == "city_67" ||
+                          id == "city_10013"
+                        ) {
+                          DOM[0].classList.add("hover");
+                        }
+                        break;
+                      case "city_10015":
+                      case "city_10014":
+                        if (id == "city_10015" || id == "city_10014") {
+                          DOM[0].classList.add("hover");
+                        }
+                        break;
+                      default:
+                        break;
+                    }
+                    return true;
+                  });
                 }
               })
-              .on("mouseout", (d) => {
+              .on("mouseout", (event, d) => {
+                const leaveID = "city_" + d.properties["COUNTYID"];
+                if (props.type !== Status.ManufacturerMapType.City) {
+                  g.selectAll("path").filter((a, i) => {
+                    const id =
+                      "city_" + (a as Model.IFeatur).properties.COUNTYID;
+                    let DOM = document.getElementsByClassName(id);
+
+                    switch (leaveID) {
+                      case "city_10002":
+                      case "city_10005":
+                      case "city_10004":
+                      case "city_68":
+                      case "city_63":
+                      case "city_10018":
+                      case "city_65":
+                      case "city_10017":
+                        if (
+                          id == "city_10002" ||
+                          id == "city_10005" ||
+                          id == "city_10004" ||
+                          id == "city_68" ||
+                          id == "city_63" ||
+                          id == "city_10018" ||
+                          id == "city_65" ||
+                          id == "city_10017"
+                        ) {
+                          DOM[0].classList.remove("hover");
+                        }
+                        break;
+                      case "city_10010":
+                      case "city_10007":
+                      case "city_66":
+                      case "city_10009":
+                      case "city_10020":
+                      case "city_10008":
+                      case "city_10016":
+                        if (
+                          id == "city_10010" ||
+                          id == "city_10007" ||
+                          id == "city_66" ||
+                          id == "city_10009" ||
+                          id == "city_10020" ||
+                          id == "city_10008" ||
+                          id == "city_10016"
+                        ) {
+                          DOM[0].classList.remove("hover");
+                        }
+                        break;
+                      case "city_64":
+                      case "city_67":
+                      case "city_10013":
+                        if (
+                          id == "city_64" ||
+                          id == "city_67" ||
+                          id == "city_10013"
+                        ) {
+                          DOM[0].classList.remove("hover");
+                        }
+                        break;
+                      case "city_10015":
+                      case "city_10014":
+                        if (id == "city_10015" || id == "city_10014") {
+                          DOM[0].classList.remove("hover");
+                        }
+                        break;
+                      default:
+                        break;
+                    }
+                    return true;
+                  });
+                }
+
                 Tooltip.style("opacity", 0);
               })
               .on("click", (event, d) => {

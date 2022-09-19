@@ -87,8 +87,8 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
-import { useRouter } from "vue-router";
+import { defineComponent, onMounted, ref, watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import * as Status from "@/models/status/type";
 import EventBus from "@/utilities/event-bus";
 import { statusStore } from "@/store/index";
@@ -100,12 +100,19 @@ export default defineComponent({
     const Dark = ref(Status.ModeType.Dark);
     const Light = ref(Status.ModeType.Light);
     const router = useRouter();
+    const location = useRoute();
     const dashboard = ref();
     const statistics = ref();
     const dashboard_status = ref(true);
     const statistics_status = ref(true);
     const tabs = ref();
     const status = statusStore();
+
+    window.onload = () => {
+      let str = location.path.slice(1);
+      str = str[0].toUpperCase() + str.slice(1);
+      clickTab(str);
+    };
 
     if (window.innerWidth < 1025) {
       dashboard_status.value = false;

@@ -161,6 +161,18 @@
 
 }
 
+@media (max-width: 780px) {
+    .container_chart {
+        .info {
+            @apply h-28;
+        }
+    }
+
+    .container_grid {
+        @apply grid-cols-2;
+    }
+}
+
 @media (max-width: 640px) {
     .tab_l {
         font-size: 15px;
@@ -233,6 +245,14 @@
     .title_dropdown {
         .btn-outline-primary {
             @apply opacity-0;
+        }
+    }
+}
+
+@media (max-width: 380px) {
+    .container_chart {
+        .container_bar {
+            @apply h-32;
         }
     }
 }
