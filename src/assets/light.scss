@@ -24,7 +24,7 @@ nav {
     @apply bg-system-light_04;
 
     .nav_button.false {
-        @apply text-system-dark_03;
+        @apply text-system-dark_04;
     }
 
     .logo {
@@ -117,12 +117,12 @@ main {
             @apply bg-system-light_03 elevation_light_card_hover;
 
             li.nav_button {
-                @apply text-system-dark_03;
+                @apply text-system-dark_04;
             }
         }
 
         .nav_button {
-            color: #383c41 !important;
+            color: #666e7a !important;
         }
         
         .nav_button.true {
