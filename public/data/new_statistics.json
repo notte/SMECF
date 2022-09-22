@@ -1,26 +1,26 @@
 {
   "patent": {
-    "have": [65, 35],
+    "have": [86, 14],
     "type": {
-      "localCreative": 80,
-      "localNew": 79,
-      "localDesign": 74,
-      "oversea": 70
+      "localCreative": 33,
+      "localNew": 37,
+      "localDesign": 20,
+      "oversea": 27
     }
   },
   "license": {
-    "have": [65, 35],
+    "have": [58, 42],
     "type": {
-      "productSafety": 80,
-      "qualityManagement": 79,
-      "other": 30
+      "productSafety": 52,
+      "qualityManagement": 121,
+      "other": 0
     }
   },
   "ideas": {
-    "have": [65, 35],
+    "have": [71, 29],
     "type": {
-      "newProduct": 80,
-      "newCause": 79
+      "newProduct": 94,
+      "newCause": 25
     }
   }
 }

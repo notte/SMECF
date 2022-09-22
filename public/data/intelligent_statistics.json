@@ -1,25 +1,25 @@
 {
   "valueChainTool": {
-    "isUseTool": [35,65],
-    "order": 30,
-    "carry": 30,
-    "customer": 50,
-    "analyze": 50
+    "isUseTool": [58,42],
+    "order": 65,
+    "carry": 11,
+    "customer": 49,
+    "analyze": 42
   },
   "researchTool": {
-    "isUseTool": [35,65],
-    "design": 30,
-    "monitor": 30,
-    "auto": 50,
-    "manage": 50,
-    "analyze": 50
+    "isUseTool": [62,38],
+    "design": 46,
+    "monitor": 42,
+    "auto": 34,
+    "manage": 40,
+    "analyze": 29
   },
   "operationTool": {
-    "isUseTool": [35,65],
-    "erp": 30,
-    "hrs": 30,
-    "fas": 50,
-    "ics": 50,
-    "analyze": 50
+    "isUseTool": [29,71],
+    "erp": 85,
+    "hrs": 80,
+    "fas": 84,
+    "ics": 82,
+    "analyze": 23
   }
 }

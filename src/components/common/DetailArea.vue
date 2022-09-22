@@ -1,8 +1,8 @@
 <template>
   <div class="info">
     <div class="map color_area" ref="map_size">
-      <Map 
-        :type="Status.ManufacturerMapType.Area" 
+      <Map
+        :type="Status.ManufacturerMapType.Area"
         @changePieSection="changePieSection"
       />
     </div>
@@ -68,7 +68,7 @@ export default defineComponent({
     const North = ref(Status.ManufacturerRegionType.North);
     const South = ref(Status.ManufacturerRegionType.South);
     const East = ref(Status.ManufacturerRegionType.East);
-    const West = ref(Status.ManufacturerRegionType.West);
+    const Center = ref(Status.ManufacturerRegionType.Center);
 
     const tabs = ref();
     const option = ref({
@@ -120,8 +120,8 @@ export default defineComponent({
         case East.value:
           option.value.series[0].data = props.data.east;
           break;
-        case West.value:
-          option.value.series[0].data = props.data.west;
+        case Center.value:
+          option.value.series[0].data = props.data.center;
           break;
       }
     }
@@ -141,7 +141,7 @@ export default defineComponent({
       North,
       South,
       East,
-      West,
+      Center,
       Status,
     };
   },
@@ -160,8 +160,8 @@ export default defineComponent({
         case this.East:
           this.option.series[0].data = this.$props.data.east;
           break;
-        case this.West:
-          this.option.series[0].data = this.$props.data.west;
+        case this.Center:
+          this.option.series[0].data = this.$props.data.center;
           break;
       }
     }

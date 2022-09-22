@@ -22,7 +22,7 @@ export enum ManufacturerRegionType {
   North = "北區",
   South = "南區",
   East = "東區",
-  West = "西區",
+  Center = "中區",
 }
 
 export enum ManufacturerMapType {
