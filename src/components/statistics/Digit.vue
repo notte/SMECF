@@ -7,17 +7,17 @@
     </ul>
     <p class="other_subtitle">價值鏈管理</p>
     <section class="container_grid">
-      <PieChart type="2" title="" :data="data.pieValueChainTool" />
+      <PieChart type="2" title="採用數位化工具" :data="data.pieValueChainTool" />
       <BarChartHorizontal type="3" title="價值鏈管理 - 採用數位工具或技術" :data="data.barValueChainTool"/>
     </section>
     <p class="other_subtitle">研發生產</p>
     <section class="container_grid">
-      <PieChart type="2" title="" :data="data.pieResearchTool" />
+      <PieChart type="2" title="採用數位化工具" :data="data.pieResearchTool" />
       <BarChartHorizontal type="3" title="研發生產 - 採用數位工具或技術" :data="data.barResearchTool"/>
     </section>
     <p class="other_subtitle">企業管理</p>
     <section class="container_grid">
-      <PieChart type="2" title="" :data="data.pieOperationTool" />
+      <PieChart type="2" title="採用數位化工具" :data="data.pieOperationTool" />
       <BarChartHorizontal type="3" title="企業管理 - 採用數位工具或技術" :data="data.barOperationTool"/>
     </section>
   </section>
@@ -34,8 +34,8 @@ export default defineComponent({
   setup() {
     const data = reactive({
       pieValueChainTool: [
-        { label: "無採用數位化工具", value: 0 }, 
-        { label: "有採用數位化工具", value: 0 },
+        { label: "無", value: 0 }, 
+        { label: "有", value: 0 },
       ],
       barValueChainTool: [
         { name: "庫存與訂單管理", data: 0, max: 0 },
@@ -44,8 +44,8 @@ export default defineComponent({
         { name: "數據分析決策", data: 0, max: 0 },
       ],
       pieResearchTool: [
-        { label: "無採用數位化工具", value: 0 }, 
-        { label: "有採用數位化工具", value: 0 },
+        { label: "無", value: 0 }, 
+        { label: "有", value: 0 },
       ],
       barResearchTool: [
         { name: "產品研發設計", data: 0, max: 0 },
@@ -55,8 +55,8 @@ export default defineComponent({
         { name: "數據分析決策", data: 0, max: 0 },
       ],
       pieOperationTool: [
-        { label: "無採用數位化工具", value: 0 }, 
-        { label: "有採用數位化工具", value: 0 }
+        { label: "無", value: 0 }, 
+        { label: "有", value: 0 }
       ],
       barOperationTool: [
         { name: "企業資源管理", data: 0, max: 0 },
@@ -73,11 +73,11 @@ export default defineComponent({
         .then((res) => {
           data.pieValueChainTool = [
             {
-              label: "無採用數位化工具",
+              label: "無",
               value: res.data.valueChainTool.isUseTool[0],
             },
             {
-              label: "有採用數位化工具",
+              label: "有",
               value: res.data.valueChainTool.isUseTool[1],
             },
           ];
@@ -89,11 +89,11 @@ export default defineComponent({
           ];
           data.pieResearchTool = [
             {
-              label: "無採用數位化工具",
+              label: "無",
               value: res.data.researchTool.isUseTool[0],
             },
             {
-              label: "有採用數位化工具",
+              label: "有",
               value: res.data.researchTool.isUseTool[1],
             },
           ];
@@ -106,11 +106,11 @@ export default defineComponent({
           ];
           data.pieOperationTool = [
             {
-              label: "無採用數位化工具",
+              label: "無",
               value: res.data.operationTool.isUseTool[0],
             },
             {
-              label: "有採用數位化工具",
+              label: "有",
               value: res.data.operationTool.isUseTool[1],
             },
           ];

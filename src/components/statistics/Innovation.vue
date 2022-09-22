@@ -2,17 +2,17 @@
   <section>
     <p class="other_subtitle">國內外專利</p>
     <section class="container_grid">
-      <PieChart type="2" title="" :data="data.piePatentHave"/>
+      <PieChart type="2" title="專利" :data="data.piePatentHave"/>
       <PieChart type="3" title="" :data="data.piePatentType"/>
     </section>
     <p class="other_subtitle">國際認證</p>
     <section class="container_grid">
-      <PieChart type="2" title="" :data="data.pieLicenseHave"/>
+      <PieChart type="2" title="國際認證" :data="data.pieLicenseHave"/>
       <PieChart type="3" title="" :data="data.pieLicenseType"/>
     </section>
     <p class="other_subtitle">創新商業化</p>
     <section class="container_grid">
-      <PieChart type="2" title="" :data="data.pieIdeasHave"/>
+      <PieChart type="2" title="創新產品/技術/製程" :data="data.pieIdeasHave"/>
       <PieChart type="3" title="" :data="data.pieIdeasType"/>
     </section>
   </section>
@@ -29,8 +29,8 @@ export default defineComponent({
   setup() {
     const data = reactive({
       piePatentHave: [
-        { label: "無專利", value: 0 },
-        { label: "有專利", value: 0 },
+        { label: "無", value: 0 },
+        { label: "有", value: 0 },
       ],
       piePatentType: [
         { label: "國內發明專利", value: 0 },
@@ -39,8 +39,8 @@ export default defineComponent({
         { label: "國外專利", value: 0 },
       ],
       pieLicenseHave: [
-        { label: "無國際認證", value: 0 },
-        { label: "有國際認證", value: 0 },
+        { label: "無", value: 0 },
+        { label: "有", value: 0 },
       ],
       pieLicenseType: [
         { label: "產品安全認證", value: 0 },
@@ -48,8 +48,8 @@ export default defineComponent({
         { label: "其他", value: 0 },
       ],
       pieIdeasHave: [
-        { label: "無創新產品/技術/製程", value: 0 },
-        { label: "有創新產品/技術/製程", value: 0 },
+        { label: "無", value: 0 },
+        { label: "有", value: 0 },
       ],
       pieIdeasType: [
         { label: "有新產品", value: 0 },
@@ -62,8 +62,8 @@ export default defineComponent({
         .then((res) => {
           // console.log(res.data);
           data.piePatentHave = [
-            { label: "無專利", value: res.data.patent.have[0] },
-            { label: "有專利", value: res.data.patent.have[1] },
+            { label: "無", value: res.data.patent.have[0] },
+            { label: "有", value: res.data.patent.have[1] },
           ];
           data.piePatentType = [
             { label: "國內發明專利", value: res.data.patent.type.localCreative },
@@ -72,8 +72,8 @@ export default defineComponent({
             { label: "國外專利", value: res.data.patent.type.oversea },
           ];
           data.pieLicenseHave = [
-            { label: "無國際認證", value: res.data.license.have[0] },
-            { label: "有國際認證", value: res.data.license.have[1] },
+            { label: "無", value: res.data.license.have[0] },
+            { label: "有", value: res.data.license.have[1] },
           ];
           data.pieLicenseType = [
             { label: "產品安全認證", value: res.data.license.type.productSafety },
@@ -81,8 +81,8 @@ export default defineComponent({
             { label: "其他", value: res.data.license.type.other },
           ];
           data.pieIdeasHave = [
-            { label: "無創新產品/技術/製程", value: res.data.ideas.have[0] },
-            { label: "有創新產品/技術/製程", value: res.data.ideas.have[1] },
+            { label: "無", value: res.data.ideas.have[0] },
+            { label: "有", value: res.data.ideas.have[1] },
           ];
           data.pieIdeasType = [
             { label: "有新產品", value: res.data.ideas.type.newProduct },
