@@ -143,6 +143,13 @@ export default defineComponent({
           }
         }
       });
+
+      watch(() => props.dataMap, (newData, oldData) => {
+        if(newData!=oldData) {
+          EventBus.emit("update_map_data", newData);
+        }
+      });
+
     });
 
     watch(

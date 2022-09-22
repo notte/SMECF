@@ -31,6 +31,16 @@ export default defineComponent({
       setMap(prams as number[]);
     });
 
+    EventBus.on("update_map_data", (data) => {
+      EventBus.emit("loading_event", true);
+      updateMapData(data as []);
+    });
+
+    function updateMapData(data: []) {
+      //console.log(data);
+      //TODO: update map data.
+    }
+
     function setMap(prams: number[]): void {
       d3.selectAll("svg").remove();
 
