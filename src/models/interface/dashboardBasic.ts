@@ -1,4 +1,4 @@
-/** Dashboard - 總覽 
+/** Dashboard - 總覽
  * avgScore: 綜合平均分數
  * eachDimensionAvgScore: 各構面平均分數
  * highlightCompany: 指標亮點業者
@@ -6,12 +6,12 @@
  */
 export interface IDashboardBasic {
     avgScore: number;
-    eachDimensionAvgScore: IEachDimensionAvgScore; 
+    eachDimensionAvgScore: IEachDimensionAvgScore;
     highlightCompany: IHighlightCompany;
     manufacturer: IManufacturer;
 }
 
-/** 各構面平均分數 
+/** 各構面平均分數
  * F: 財務力
  * I: 數位力
  * N: 創新力
@@ -24,7 +24,7 @@ export interface IEachDimensionAvgScore {
     D: number;
 }
 
-/** 指標亮點業者 
+/** 指標亮點業者
  * 1: 排名ㄧ
  * 2: 排名二
  * 3: 排名三
@@ -32,14 +32,23 @@ export interface IEachDimensionAvgScore {
  * 5: 排名五
 */
 export interface IHighlightCompany {
-    1: number;
-    2: number;
-    3: number;
-    4: number;
-    5: number;
+    1: IHighlightCompanyDetail;
+    2: IHighlightCompanyDetail;
+    3: IHighlightCompanyDetail;
+    4: IHighlightCompanyDetail;
+    5: IHighlightCompanyDetail;
 }
 
-/** 過案廠商樣貌 
+/** 指標亮點業者細項
+ * name: 公司名
+ * score: 分數
+ */
+export interface IHighlightCompanyDetail {
+    name: string;
+    score: number;
+}
+
+/** 過案廠商樣貌
  * date: 公司年資
  * capital: 資本額
  * sumPeople: 公司人數
@@ -66,13 +75,13 @@ export interface IManufacturer {
 }
 
 /** 資本額
- * 1: 2億以上
- * 2: 1億-2億
- * 3: 7500萬-1億
+ * 1: 1000萬以下
+ * 2: 1000萬-2500萬
+ * 3: 2500萬-5000萬
  * 4: 5000萬-7500萬
- * 5: 2500萬-5000萬
- * 6: 1000萬-2500萬
- * 7: 1000萬以下
+ * 5: 7500萬-1億
+ * 6: 1億-2億
+ * 7: 2億以上
  */
  export interface IManufacturerCapital {
     1: number;
@@ -98,10 +107,10 @@ export interface IManufacturer {
 }
 
 /** 場址地區
- * 1: 東
- * 2: 南
- * 3: 西
- * 4: 北
+ * 1: 北
+ * 2: 中
+ * 3: 南
+ * 4: 東
  */
  export interface IManufacturerSt {
     1: number;

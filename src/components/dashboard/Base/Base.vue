@@ -9,8 +9,8 @@
       type="1"
       title="指標亮點業者"
       :data="data.highlightCompany" />
-    <DonutPieChart 
-      title="過案廠商樣貌" 
+    <DonutPieChart
+      title="過案廠商樣貌"
       :data="data.manufacturer" />
   </section>
 </template>
@@ -76,7 +76,7 @@ export default defineComponent({
           data: [
             { name: "東", value: 0 },
             { name: "南", value: 0 },
-            { name: "西", value: 0 },
+            { name: "中", value: 0 },
             { name: "北", value: 0 },
           ],
         },
@@ -120,11 +120,11 @@ export default defineComponent({
           },
         ];
         data.highlightCompany = [
-          { name: "公司 A", data: res.data.highlightCompany[1], max: 10 },
-          { name: "公司 B", data: res.data.highlightCompany[2], max: 10 },
-          { name: "公司 C", data: res.data.highlightCompany[3], max: 10 },
-          { name: "公司 D", data: res.data.highlightCompany[4], max: 10 },
-          { name: "公司 E", data: res.data.highlightCompany[5], max: 10 },
+          { name: res.data.highlightCompany[1].name, data: res.data.highlightCompany[1].score, max: 10 },
+          { name: res.data.highlightCompany[2].name, data: res.data.highlightCompany[2].score, max: 10 },
+          { name: res.data.highlightCompany[3].name, data: res.data.highlightCompany[3].score, max: 10 },
+          { name: res.data.highlightCompany[4].name, data: res.data.highlightCompany[4].score, max: 10 },
+          { name: res.data.highlightCompany[5].name, data: res.data.highlightCompany[5].score, max: 10 },
         ];
         data.manufacturer = [
           {

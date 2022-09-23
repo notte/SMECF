@@ -34,6 +34,13 @@ export default defineComponent({
 
     const tabs = ref();
 
+    window.onload = () => {
+      const tools = sessionStorage.getItem("tab");
+      if (tools) {
+        clickTab(tools as Status.StatisticsType);
+      }
+    };
+
     onMounted(() => {
       if (window.innerWidth < 500) {
         setTabName();
@@ -53,12 +60,47 @@ export default defineComponent({
       }
     }
 
-    function clickTab(Status: Status.StatisticsType, event: any): void {
+    function clickTab(Status: Status.StatisticsType, event?: any): void {
+      sessionStorage.setItem("tab", Status);
+      const tools = sessionStorage.getItem("tab");
       for (let item of tabs.value.children) {
         item.className = "false";
       }
+      if (event) {
+        event.path[0].className = "true";
+      }
+      if (tools) {
+        for (let item of tabs.value.children) {
+          if (
+            tools === "Digit" &&
+            (item.innerHTML === "數位力" || item.innerHTML === "數位")
+          ) {
+            item.className = "true";
+          }
+          if (
+            tools === "Market" &&
+            (item.innerHTML === "市場力" || item.innerHTML === "市場")
+          ) {
+            item.className = "true";
+          }
+          if (
+            tools === "Innovation" &&
+            (item.innerHTML === "創新力" || item.innerHTML === "創新")
+          ) {
+            item.className = "true";
+          }
+          if (
+            tools === "Finance" &&
+            (item.innerHTML === "財務力" || item.innerHTML === "財務")
+          ) {
+            item.className = "true";
+          }
+          if (tools === "Manufacturer" && item.innerHTML === "過案廠商樣貌") {
+            item.className = "true";
+          }
+        }
+      }
       Current.value = Status;
-      event.path[0].className = "true";
     }
 
     function isShow(page: Status.StatisticsType): boolean {

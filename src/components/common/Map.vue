@@ -23,7 +23,7 @@ export default defineComponent({
       "10017",
     ];
     const south = ["64", "67", "10013"];
-    const west = ["10010", "10007", "66", "10009", "10020", "10008", "10016"];
+    const center = ["10010", "10007", "66", "10009", "10020", "10008", "10016"];
     const east = ["10015", "10014"];
 
     EventBus.on("create_map", (prams) => {
@@ -306,8 +306,8 @@ export default defineComponent({
                       ? Status.ManufacturerRegionType.North
                       : south.includes(countryId) == true
                       ? Status.ManufacturerRegionType.South
-                      : west.includes(countryId) == true
-                      ? Status.ManufacturerRegionType.West
+                      : center.includes(countryId) == true
+                      ? Status.ManufacturerRegionType.Center
                       : east.includes(countryId) == true
                       ? Status.ManufacturerRegionType.East
                       : Status.ManufacturerRegionType.North;

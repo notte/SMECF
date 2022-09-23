@@ -1,7 +1,7 @@
 {
-  "intelligentAvgScore": 5.1,
+  "intelligentAvgScore": 3.3,
   "avgScore": [5.1,null],
-  "valueChainTool": [3,null],
-  "researchTool": [3,null],
-  "operationTool": [3,null]
+  "valueChainTool": [2.2,null],
+  "researchTool": [1.8,null],
+  "operationTool": [6.7,null]
 }
