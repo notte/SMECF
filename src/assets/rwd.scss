@@ -256,3 +256,14 @@
         }
     }
 }
+
+@media (max-width: 360px) {
+    .tabs_statisticsView {
+        li {
+            @apply whitespace-nowrap;
+
+            font-size: 12px;
+        }
+    }
+}
+

@@ -58,6 +58,7 @@
       <li
         class="nav_button hidden_switch false"
         @touchstart="setMode(Light)"
+        @click="setMode(Light)"
         v-show="isShow(Dark)"
       >
         <div class="nav_content">
@@ -70,6 +71,7 @@
       <li
         class="nav_button hidden_switch false"
         @touchstart="setMode(Dark)"
+        @click="setMode(Dark)"
         v-show="isShow(Light)"
       >
         <div class="nav_content">
@@ -111,11 +113,23 @@ export default defineComponent({
     window.onload = () => {
       let str = location.path.slice(1);
       str = str[0].toUpperCase() + str.slice(1);
-      console.log(str);
+
       if (str !== "Dashboard") {
-        clickTab(str);
+        clickTab("Statistics");
       }
     };
+
+    onMounted(() => {
+      const tools = sessionStorage.getItem("tab");
+      if (tools) {
+        clickTab("Statistics");
+      }
+      if (tools && window.innerWidth < 1025) {
+        dashboard_status.value = false;
+        statistics_status.value = false;
+        clickTab("Statistics", "mobile");
+      }
+    });
 
     watch(
       () => {
@@ -125,6 +139,9 @@ export default defineComponent({
         let str = location.path.slice(1);
         str = str[0].toUpperCase() + str.slice(1);
         clickTab(str);
+        if (window.innerWidth < 1025) {
+          clickTab(str, "mobile");
+        }
       }
     );
 
@@ -134,6 +151,8 @@ export default defineComponent({
 
     function clickTab(Status: string, type?: string): void {
       if (Status === "Dashboard") {
+        sessionStorage.removeItem("tab");
+
         dashboard.value.className = "nav_button true";
         statistics.value.className = "nav_button false";
         dashboard_status.value != dashboard_status.value;
