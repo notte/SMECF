@@ -34,7 +34,7 @@
       <!-- 分數資訊 -->
       <div v-if="type == 2" class="text">
         <p class="subtitle_2">{{ data[1].value }} %</p>
-        <p class="subtitle_4">{{ data[1].label+title}}</p>
+        <p class="subtitle_4">{{ title }}</p>
       </div>
       <!-- <ul v-if="type == 1" class="legends">
         <li class="legend_item" v-for="item in data" :key="item.name">

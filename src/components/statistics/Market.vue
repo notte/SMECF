@@ -2,7 +2,7 @@
   <section>
     <p class="other_subtitle">國際供應鏈關鍵地位</p>
     <section class="container_grid">
-      <PieChart type="2" title="國際供應鏈關鍵地位" :data="data.pieRankInternationality"/>
+      <PieChart type="2" title="具有國際供應鏈關鍵地位" :data="data.pieRankInternationality"/>
     </section>
     <p class="other_subtitle">自有品牌海外出貨比例</p>
     <section class="container_grid">
@@ -10,7 +10,7 @@
     </section>
     <p class="other_subtitle">淨零碳排落實狀況</p>
     <section class="container_grid">
-      <PieChart type="2" title="盤查碳排放量" :data="data.pieCarbonSearchHave"/>
+      <PieChart type="2" title="有盤查碳排放量" :data="data.pieCarbonSearchHave"/>
       <PieChart type="2" title="規劃具體減碳路徑" :data="data.pieCarbonSearchDownRoad"/>
       <PieChart type="2" title="改善製程(如設備汰舊更新、導入智慧節能管理系統等)" :data="data.pieCarbonSearchProcess"/>
       <PieChart type="2" title="能源轉換(如擴大使用天然氣/生質能、導入綠電/氫能等)" :data="data.pieCarbonSearchConversion"/>

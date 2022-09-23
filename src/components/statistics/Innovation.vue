@@ -2,17 +2,17 @@
   <section>
     <p class="other_subtitle">國內外專利</p>
     <section class="container_grid">
-      <PieChart type="2" title="專利" :data="data.piePatentHave"/>
+      <PieChart type="2" title="有專利" :data="data.piePatentHave"/>
       <PieChart type="3" title="" :data="data.piePatentType"/>
     </section>
     <p class="other_subtitle">國際認證</p>
     <section class="container_grid">
-      <PieChart type="2" title="國際認證" :data="data.pieLicenseHave"/>
+      <PieChart type="2" title="有國際認證" :data="data.pieLicenseHave"/>
       <PieChart type="3" title="" :data="data.pieLicenseType"/>
     </section>
     <p class="other_subtitle">創新商業化</p>
     <section class="container_grid">
-      <PieChart type="2" title="創新產品/技術/製程" :data="data.pieIdeasHave"/>
+      <PieChart type="2" title="有創新產品/技術/製程" :data="data.pieIdeasHave"/>
       <PieChart type="3" title="" :data="data.pieIdeasType"/>
     </section>
   </section>
