@@ -44,7 +44,7 @@
     <div v-if="type == 2" class="container_bar">
       <div class="bar_item" v-for="item in data" :key="item.key">
         <div class="bar_info">
-          <span>{{ item.data }}</span>
+          <p class="block_quotes">{{ item.data }}</p>
           <span class="subtitle_4">/10</span>
         </div>
         <b-progress

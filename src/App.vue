@@ -101,10 +101,10 @@ export default defineComponent({
 
     function showMenu(event: any): void {
       event.preventDefault();
-      if (menu.value.children[2].style.top === "107px") {
+      if (menu.value.children[2].style.top === "140px") {
         menu.value.children[2].style.top = "-200px";
       } else {
-        menu.value.children[2].style.top = "107px";
+        menu.value.children[2].style.top = "140px";
       }
     }
     function hiddenMenu(): void {

@@ -46,7 +46,11 @@
         </li>
       </ul> -->
       <button class="back" @click="hidePieSection()">
-        <img src="@/assets/icons/arrow_left.svg" />回到{{ $props.type }}
+        <img v-if="arrow_status" src="@/assets/icons/arrow_left.svg" />
+        <img
+          v-if="!arrow_status"
+          src="@/assets/icons/arrow_left_dark.svg"
+        />回到{{ $props.type }}
       </button>
     </div>
   </div>
@@ -93,6 +97,7 @@ import {
 import { PieChart } from "echarts/charts";
 import { LabelLayout } from "echarts/features";
 import * as Status from "@/models/status/type";
+import { statusStore } from "@/store/index";
 
 echarts.use([
   TitleComponent,
@@ -106,6 +111,7 @@ export default defineComponent({
   components: { Map, VChart },
   props: ["type", "dataMap", "dataPie"],
   setup(props) {
+    const status = statusStore();
     const map_size = ref();
     const Current = ref(Status.ManufacturerSubType.Capital);
     const Capital = ref(Status.ManufacturerSubType.Capital);
@@ -115,6 +121,7 @@ export default defineComponent({
     const cityName = ref<string>();
     const mobile_show = ref<boolean>(true);
     const mobile_text = ref<boolean>(true);
+    const arrow_status = ref<boolean>(true);
     let windowWidth = ref(0);
     function resizeWindow() {
       windowWidth.value = window.innerWidth;
@@ -134,22 +141,45 @@ export default defineComponent({
         map_size.value.offsetHeight,
       ]);
 
-      watch(() => props.dataPie, (newData, oldData) => {        
-        if(newData!=oldData) {
-          if (Current.value == IndustryRate.value) {
-            option.value.series[0].data = props.dataPie.pieIndustryRate;
-          } else {
-            option.value.series[0].data = props.dataPie.pieCapital;
+      watch(
+        () => props.dataPie,
+        (newData, oldData) => {
+          if (newData != oldData) {
+            if (Current.value == IndustryRate.value) {
+              option.value.series[0].data = props.dataPie.pieIndustryRate;
+            } else {
+              option.value.series[0].data = props.dataPie.pieCapital;
+            }
           }
         }
-      });
+      );
 
-      watch(() => props.dataMap, (newData, oldData) => {
-        if(newData!=oldData) {
-          EventBus.emit("update_map_data", newData);
+      watch(
+        () => props.dataMap,
+        (newData, oldData) => {
+          if (newData != oldData) {
+            EventBus.emit("update_map_data", newData);
+          }
         }
-      });
+      );
 
+      if (status.mode === "dark") {
+        arrow_status.value = false;
+      } else {
+        arrow_status.value = true;
+      }
+
+      watch(
+        () => status.mode,
+        (old, newMode) => {
+          if (newMode === "dark") {
+            arrow_status.value = true;
+          } else {
+            arrow_status.value = false;
+          }
+        },
+        { deep: true }
+      );
     });
 
     watch(
@@ -235,6 +265,7 @@ export default defineComponent({
       cityName,
       mobile_show,
       mobile_text,
+      arrow_status,
     };
   },
   methods: {

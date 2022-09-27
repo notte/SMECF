@@ -43,6 +43,10 @@
             }
         }
 
+        li.nav_button {
+            @apply my-4;
+        }
+
 
         li.nav_button.hidden_switch {
             display: flex;

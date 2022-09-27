@@ -110,14 +110,16 @@ export default defineComponent({
     const tabs = ref();
     const status = statusStore();
 
-    window.onload = () => {
-      let str = location.path.slice(1);
-      str = str[0].toUpperCase() + str.slice(1);
+    // window.onload = () => {
+    //   let str = location.path.slice(1);
+    //   str = str[0].toUpperCase() + str.slice(1);
 
-      if (str !== "Dashboard") {
-        clickTab("Statistics");
-      }
-    };
+    //   if (str !== "Dashboard") {
+    //     clickTab("Statistics");
+    //   } else {
+    //     clickTab("Dashboard");
+    //   }
+    // };
 
     onMounted(() => {
       const tools = sessionStorage.getItem("tab");

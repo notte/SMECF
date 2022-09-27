@@ -51,4 +51,16 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  console.log(from.path, to.path);
+  // if (
+  //   from.name == undefined &&
+  //   to.name === "Statistics" &&
+  //   sessionStorage.getItem("tab")
+  // ) {
+  //   next({ name: "Dashboard" });
+  // }
+  next();
+});
+
 export default router;
