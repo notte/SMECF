@@ -19,32 +19,6 @@
       <div class="chart" ref="pieSection">
         <v-chart :option="option" />
       </div>
-      <div class="title_dropdown">
-        <b-dropdown no-caret>
-          <template #button-content>
-            <p>下載按鈕</p>
-            <img src="../../assets/icons/dropdown-arrow.svg" alt="" />
-          </template>
-          <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
-          <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
-        </b-dropdown>
-      </div>
-      <!-- <ul class="checkbox">
-        <li class="label_item">
-          <label class="container">
-            <input type="checkbox" checked />
-            <span class="checkmark"><i class="gg-check"></i></span>
-            <p>製造業</p>
-          </label>
-        </li>
-        <li class="label_item">
-          <label class="container">
-            <input type="checkbox" checked />
-            <span class="checkmark"><i class="gg-check"></i></span>
-            <p>服務業</p>
-          </label>
-        </li>
-      </ul> -->
       <button class="back" @click="hidePieSection()">
         <img v-if="arrow_status" src="@/assets/icons/arrow_left.svg" />
         <img
@@ -70,16 +44,6 @@
       </label>
     </li>
   </ul>
-  <div class="title_dropdown" v-if="!isShow(isShowPieSection)">
-    <b-dropdown no-caret>
-      <template #button-content>
-        <p>下載按鈕</p>
-        <img src="../../assets/icons/dropdown-arrow.svg" alt="" />
-      </template>
-      <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
-      <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
-    </b-dropdown>
-  </div>
 </template>
 
 <script lang="ts">

@@ -23,12 +23,12 @@ export default defineComponent({
     function setMode(mode: string): void {
       status.increment(mode);
       Current.value = mode as Status.ModeType;
+
       if (status.mode === "dark") {
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
       }
-
       EventBus.emit("mode_switch", mode);
     }
 

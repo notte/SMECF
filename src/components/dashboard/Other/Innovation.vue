@@ -1,14 +1,6 @@
 <template>
   <div class="title_dropdown">
     <p class="other_subtitle">平均分數</p>
-    <b-dropdown no-caret>
-      <template #button-content>
-        <p>下載按鈕</p>
-        <img src="@/assets/icons/dropdown-arrow.svg" alt="" />
-      </template>
-      <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
-      <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
-    </b-dropdown>
     <b-button variant="outline-primary" @click="openPopup"
       ><p>查看表格</p>
       <img src="@/assets/icons/table.svg" alt="" />
@@ -20,11 +12,7 @@
       title="New 綜合平均分數"
       :data="data.newAvgScore"
     />
-    <CircleProgressChart
-      type="3"
-      title="平均分數"
-      :data="data.avgScore"
-    />
+    <CircleProgressChart type="3" title="平均分數" :data="data.avgScore" />
   </section>
   <p class="other_subtitle">構面概覽</p>
   <section class="container_grid">
@@ -82,7 +70,7 @@ export default defineComponent({
       axios
         .get<IDashboardOtherNew>("./data/dashboard_other_new.json")
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           data.newAvgScore = [
             {
               name: res.data.newAvgScore.toString(),

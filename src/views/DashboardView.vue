@@ -2,21 +2,11 @@
   <section>
     <div class="title_dropdown">
       <h6 class="title_h6 dark:title_h6_dark">基本平均表現</h6>
-      <b-dropdown no-caret>
-        <template #button-content>
-          <p>下載按鈕</p>
-          <img src="@/assets/icons/dropdown-arrow.svg" alt="" />
-        </template>
-        <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
-        <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
-      </b-dropdown>
     </div>
     <div class="my-6">
       <ul class="tab_l justify-start" ref="tabs_base">
-        <li class="false" @click="clickTab('A', 'tabs_base', $event)">
-          製造業
-        </li>
-        <li class="true" @click="clickTab('A', 'tabs_base', $event)">服務業</li>
+        <li class="false" @click="clickTab('tabs_base', $event)">製造業</li>
+        <li class="true" @click="clickTab('tabs_base', $event)">服務業</li>
       </ul>
       <hr class="division" />
     </div>
@@ -26,16 +16,16 @@
     <h6 class="title_h6 mt-4">其他平均表現</h6>
     <div class="my-6">
       <ul class="tab_l justify-start" ref="tabs_other">
-        <li class="true" @click="clickTab(Finance, 'tabs_other', $event)">
+        <li class="true" @click="clickTab('tabs_other', $event, Finance)">
           財務力
         </li>
-        <li class="false" @click="clickTab(Digit, 'tabs_other', $event)">
+        <li class="false" @click="clickTab('tabs_other', $event, Digit)">
           數位力
         </li>
-        <li class="false" @click="clickTab(Innovation, 'tabs_other', $event)">
+        <li class="false" @click="clickTab('tabs_other', $event, Innovation)">
           創新力
         </li>
-        <li class="false" @click="clickTab(Market, 'tabs_other', $event)">
+        <li class="false" @click="clickTab('tabs_other', $event, Market)">
           市場力
         </li>
       </ul>
@@ -48,14 +38,13 @@
   </section>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import Base from "@/components/dashboard/Base/Base.vue";
 import Finance from "@/components/dashboard/Other/Finance.vue";
 import Digit from "@/components/dashboard/Other/Digit.vue";
 import Innovation from "@/components/dashboard/Other/Innovation.vue";
 import Market from "@/components/dashboard/Other/Market.vue";
 import * as Status from "@/models/status/type";
-import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
   components: { Base, Finance, Digit, Innovation, Market },
@@ -69,9 +58,9 @@ export default defineComponent({
     const tabs_other = ref();
 
     function clickTab(
-      Status: Status.StatisticsType,
       block: string,
-      event: any
+      event: Event,
+      status: Status.StatisticsType
     ): void {
       if (block === "tabs_base") {
         for (let item of tabs_base.value.children) {
@@ -79,14 +68,13 @@ export default defineComponent({
         }
       }
       if (block === "tabs_other") {
-        Current.value = Status;
+        Current.value = status;
         for (let item of tabs_other.value.children) {
           item.className = "false";
         }
       }
-      event.path[0].className = "true";
+      (event as any).path[0].className = "true";
     }
-
     function isShow(page: Status.StatisticsType): boolean {
       return Current.value === page ? true : false;
     }

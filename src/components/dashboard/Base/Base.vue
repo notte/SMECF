@@ -4,14 +4,14 @@
     <BarChartHorizontal
       type="1"
       title="各構面平均分數"
-      :data="data.eachDimensionAvgScore" />
+      :data="data.eachDimensionAvgScore"
+    />
     <BarChartHorizontal
       type="1"
       title="指標亮點業者"
-      :data="data.highlightCompany" />
-    <DonutPieChart
-      title="過案廠商樣貌"
-      :data="data.manufacturer" />
+      :data="data.highlightCompany"
+    />
+    <DonutPieChart title="過案廠商樣貌" :data="data.manufacturer" />
   </section>
 </template>
 <script lang="ts">
@@ -85,7 +85,7 @@ export default defineComponent({
 
     onMounted(() => {
       axios.get<IDashboardBasic>("./data/dashboard_basic.json").then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         data.avgScore = [
           {
             name: res.data.avgScore.toString(),
@@ -120,11 +120,31 @@ export default defineComponent({
           },
         ];
         data.highlightCompany = [
-          { name: res.data.highlightCompany[1].name, data: res.data.highlightCompany[1].score, max: 10 },
-          { name: res.data.highlightCompany[2].name, data: res.data.highlightCompany[2].score, max: 10 },
-          { name: res.data.highlightCompany[3].name, data: res.data.highlightCompany[3].score, max: 10 },
-          { name: res.data.highlightCompany[4].name, data: res.data.highlightCompany[4].score, max: 10 },
-          { name: res.data.highlightCompany[5].name, data: res.data.highlightCompany[5].score, max: 10 },
+          {
+            name: res.data.highlightCompany[1].name,
+            data: res.data.highlightCompany[1].score,
+            max: 10,
+          },
+          {
+            name: res.data.highlightCompany[2].name,
+            data: res.data.highlightCompany[2].score,
+            max: 10,
+          },
+          {
+            name: res.data.highlightCompany[3].name,
+            data: res.data.highlightCompany[3].score,
+            max: 10,
+          },
+          {
+            name: res.data.highlightCompany[4].name,
+            data: res.data.highlightCompany[4].score,
+            max: 10,
+          },
+          {
+            name: res.data.highlightCompany[5].name,
+            data: res.data.highlightCompany[5].score,
+            max: 10,
+          },
         ];
         data.manufacturer = [
           {

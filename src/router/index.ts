@@ -37,13 +37,6 @@ const routes: Array<RouteRecordRaw> = [
       main: () => import("../components/common/ListPopup.vue"),
     },
   },
-  {
-    path: "/donutpie",
-    name: "donutpie",
-    components: {
-      main: () => import("../components/dashboard/Other/Other.vue"),
-    },
-  },
 ];
 
 const router = createRouter({
@@ -52,7 +45,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(from.path, to.path);
+  // console.log(from.path, to.path);
   // if (
   //   from.name == undefined &&
   //   to.name === "Statistics" &&

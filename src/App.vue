@@ -4,36 +4,10 @@
   <DetailPopup v-if="detailPopup" />
 
   <section class="layout dark:bg-mode-black">
-    <nav @touchstart="showMenu($event)" @touchcancel="hiddenMenu(e)" ref="menu">
-      <div class="logo">
-        <img
-          v-if="isShow(Current, Light)"
-          src="@/assets/icons/logo.svg"
-          class="logo_small"
-          alt=""
-        />
-        <img
-          v-if="isShow(Current, Light)"
-          src="@/assets/icons/logo-full.svg"
-          class="logo_full"
-          alt=""
-        />
-        <img
-          v-if="isShow(Current, Dark)"
-          src="@/assets/icons/logo_dark.svg"
-          class="logo_small"
-          alt=""
-        />
-        <img
-          v-if="isShow(Current, Dark)"
-          src="@/assets/icons/logo-full_dark.svg"
-          class="logo_full"
-          alt=""
-        />
-        <hr class="division" />
-      </div>
+    <nav @touchstart="showMenu($event)" @touchcancel="hiddenMenu()" ref="menu">
       <button class="menu_tablet"><i class="gg-menu_light"></i></button>
-      <Nav />
+      <Nav v-if="showNav" />
+      <MobileNav v-if="!showNav" />
     </nav>
     <main>
       <div
@@ -48,82 +22,87 @@
     </main>
   </section>
 </template>
+
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch, onUnmounted } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import Nav from "@/components/common/Nav.vue";
+import MobileNav from "@/components/common/Mobile_Nav.vue";
 import ModeSwitch from "@/components/common/ModeSwitch.vue";
 import Loading from "@/components/common/Loading.vue";
 import ListPopup from "@/components/common/ListPopup.vue";
 import DetailPopup from "./components/common/DetailPopup.vue";
-import { statusStore } from "@/store/index";
 import * as Status from "@/models/status/type";
 import * as Model from "@/models/interface/common";
-import * as common from "@/utilities/common-methods";
 import EventBus from "@/utilities/event-bus";
 
 export default defineComponent({
-  components: { Nav, ModeSwitch, Loading, ListPopup, DetailPopup },
+  components: { Nav, MobileNav, ModeSwitch, Loading, ListPopup, DetailPopup },
   setup() {
     const Current = ref(Status.ModeType.Light);
-    const Dark = ref(Status.ModeType.Dark);
-    const Light = ref(Status.ModeType.Light);
-    const isShow = common.isShow;
-    const status = statusStore();
     const loading = ref<boolean>(false);
     const listPopup = ref<boolean>(false);
     const detailPopup = ref<boolean>(false);
-    let title = ref<string>("");
-
     const menu = ref();
-    const main = ref();
+    let showNav = ref<boolean>(true);
+    let title = ref<string>("");
+    let windowWidth = ref(0);
+    function resizeWindow() {
+      windowWidth.value = window.innerWidth;
+    }
 
-    // onUnmounted(() => {
-    //   window.removeEventListener("resize", resizeWindow);
-    // });
+    onMounted(() => {
+      window.addEventListener("resize", resizeWindow);
+    });
+
+    watch(
+      () => windowWidth.value,
+      () => {
+        if (windowWidth.value < 1025) {
+          showNav.value = false;
+        }
+        if (windowWidth.value > 1024) {
+          showNav.value = true;
+        }
+      }
+    );
 
     EventBus.on("listpopup_event", (prams) => {
       listPopup.value = (prams as Model.IListPopupEvent).status;
       title.value = (prams as Model.IListPopupEvent).title;
     });
-
     EventBus.on("detailPopup_close", (status) => {
       detailPopup.value = status as boolean;
     });
-
     EventBus.on("loading_event", (status) => {
       loading.value = status as boolean;
     });
-
     EventBus.on("mode_switch", (prams) => {
       const mode = prams;
       Current.value = mode as Status.ModeType;
     });
 
-    function showMenu(event: any): void {
+    function showMenu(event: Event): void {
       event.preventDefault();
-      if (menu.value.children[2].style.top === "140px") {
-        menu.value.children[2].style.top = "-200px";
+      if (menu.value.children[1].style.top === "101px") {
+        menu.value.children[1].style.top = "-200px";
       } else {
-        menu.value.children[2].style.top = "140px";
+        menu.value.children[1].style.top = "101px";
       }
     }
     function hiddenMenu(): void {
-      menu.value.children[2].style.top = "-200px";
+      menu.value.children[1].style.top = "-200px";
     }
 
     return {
       menu,
       showMenu,
       hiddenMenu,
-      main,
-      isShow,
       Current,
-      Dark,
-      Light,
       loading,
       listPopup,
       detailPopup,
       title,
+      showNav,
     };
   },
 });

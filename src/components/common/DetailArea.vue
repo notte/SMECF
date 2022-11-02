@@ -11,16 +11,6 @@
       <div class="chart">
         <v-chart :option="option" />
       </div>
-      <div class="title_dropdown">
-        <b-dropdown no-caret>
-          <template #button-content>
-            <p>下載按鈕</p>
-            <img src="../../assets/icons/dropdown-arrow.svg" alt="" />
-          </template>
-          <b-dropdown-item href="#">製造業全部分數</b-dropdown-item>
-          <b-dropdown-item href="#">服務業全部分數</b-dropdown-item>
-        </b-dropdown>
-      </div>
       <ul class="legends_row">
         <li class="legend_item">
           <div class="icon"></div>
@@ -164,7 +154,7 @@ export default defineComponent({
           this.option.series[0].data = this.$props.data.center;
           break;
       }
-    }
+    },
   },
 });
 </script>

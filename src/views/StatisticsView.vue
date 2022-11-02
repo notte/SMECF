@@ -6,10 +6,10 @@
     <li class="false" @click="clickTab(Market, $event)">市場力</li>
     <li class="false" @click="clickTab(Manufacturer, $event)">過案廠商樣貌</li>
   </ul>
+  <Finance v-if="isShow(Finance)" />
   <Digit v-if="isShow(Digit)" />
   <Innovation v-if="isShow(Innovation)" />
   <Market v-if="isShow(Market)" />
-  <Finance v-if="isShow(Finance)" />
   <Manufacturer v-if="isShow(Manufacturer)" />
 </template>
 
@@ -31,7 +31,6 @@ export default defineComponent({
     const Market = ref(Status.StatisticsType.Market);
     const Finance = ref(Status.StatisticsType.Finance);
     const Manufacturer = ref(Status.StatisticsType.Manufacturer);
-
     const tabs = ref();
 
     window.onload = () => {
@@ -60,14 +59,14 @@ export default defineComponent({
       }
     }
 
-    function clickTab(Status: Status.StatisticsType, event?: any): void {
+    function clickTab(Status: Status.StatisticsType, event?: Event): void {
       sessionStorage.setItem("tab", Status);
       const tools = sessionStorage.getItem("tab");
       for (let item of tabs.value.children) {
         item.className = "false";
       }
       if (event) {
-        event.path[0].className = "true";
+        (event as any).path[0].className = "true";
       }
       if (tools) {
         for (let item of tabs.value.children) {
