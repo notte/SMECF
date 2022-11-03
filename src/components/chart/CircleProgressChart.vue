@@ -135,46 +135,55 @@ export default defineComponent({
         { deep: true }
       );
 
-      watch(() => props.data, (newData, oldData) => {
-        if(newData!=oldData) {
-          let gaugeData = [{
-            value: newData[data_index.value].data,
-          }];
-          let max = newData[data_index.value].max;
+      watch(
+        () => props.data,
+        (newData, oldData) => {
+          if (newData != oldData) {
+            let gaugeData = [
+              {
+                value: newData[data_index.value].data,
+              },
+            ];
+            let max = newData[data_index.value].max;
 
-          darkOption.series[0].data = gaugeData;
-          darkOption.series[0].max = max;
-          option.series[0].data = gaugeData;
-          option.series[0].max = max;
+            darkOption.series[0].data = gaugeData;
+            darkOption.series[0].max = max;
+            option.series[0].data = gaugeData;
+            option.series[0].max = max;
 
-          if (status.mode === "dark") {
-            doughnut.setOption(darkOption, true);
-          } else {
-            doughnut.setOption(option, true);
+            if (status.mode === "dark") {
+              doughnut.setOption(darkOption, true);
+            } else {
+              doughnut.setOption(option, true);
+            }
           }
         }
-      });
+      );
 
-      watch(() => data_index.value, (newIndex, oldIndex) => {
-        if(newIndex!=oldIndex) {
-          let gaugeData = [{
-            value: props.data[newIndex].data,
-          }];
-          let max = props.data[newIndex].max;
+      watch(
+        () => data_index.value,
+        (newIndex, oldIndex) => {
+          if (newIndex != oldIndex) {
+            let gaugeData = [
+              {
+                value: props.data[newIndex].data,
+              },
+            ];
+            let max = props.data[newIndex].max;
 
-          darkOption.series[0].data = gaugeData;
-          darkOption.series[0].max = max;
-          option.series[0].data = gaugeData;
-          option.series[0].max = max;
+            darkOption.series[0].data = gaugeData;
+            darkOption.series[0].max = max;
+            option.series[0].data = gaugeData;
+            option.series[0].max = max;
 
-          if (status.mode === "dark") {
-            doughnut.setOption(darkOption, true);
-          } else {
-            doughnut.setOption(option, true);
+            if (status.mode === "dark") {
+              doughnut.setOption(darkOption, true);
+            } else {
+              doughnut.setOption(option, true);
+            }
           }
         }
-      });
-      
+      );
     });
 
     const darkOption = {
@@ -199,8 +208,8 @@ export default defineComponent({
           endAngle: -270,
           data: [
             {
-              value: props.data[data_index.value].data
-            }
+              value: props.data[data_index.value].data,
+            },
           ],
           // 隱藏指針
           pointer: {
@@ -271,8 +280,8 @@ export default defineComponent({
           endAngle: -270,
           data: [
             {
-              value: props.data[data_index.value].data
-            }
+              value: props.data[data_index.value].data,
+            },
           ],
           // 隱藏指針
           pointer: {
@@ -343,7 +352,7 @@ export default defineComponent({
       oneDOM,
       secDOM,
       thirdDOM,
-      data_index
+      data_index,
     };
   },
 });

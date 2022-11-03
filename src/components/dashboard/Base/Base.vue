@@ -21,10 +21,14 @@ import BarChartHorizontal from "@/components/chart/BarChartHorizontal.vue";
 import DonutPieChart from "@/components/chart/DonutPieChart.vue";
 import axios from "axios";
 import { IDashboardBasic } from "@/models//interface/dashboardBasic";
+import Api from "@/api/dashboard";
 
 export default defineComponent({
   components: { CircleProgressChart, BarChartHorizontal, DonutPieChart },
   setup() {
+    Api.getDashboardBasic().then((res) => {
+      console.log(res);
+    });
     const data = reactive({
       avgScore: [{ name: "0", data: 0, max: 0 }],
       eachDimensionAvgScore: [
